@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>215947601281-vr0s26723ijckji4scvlgs0m0d0e6l51.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBRcwEQ-LlK5WX5Bdl6h6DBSSw8ipy9x6E</string>
+	<key>GCM_SENDER_ID</key>
+	<string>215947601281</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.phonegap.kmsobserver.kmschool</string>
+	<key>PROJECT_ID</key>
+	<string>kmschool-1d017</string>
+	<key>STORAGE_BUCKET</key>
+	<string>kmschool-1d017.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:215947601281:ios:ffb82121558f352dacb480</string>
+</dict>
+</plist>
