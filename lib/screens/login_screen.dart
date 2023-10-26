@@ -10,6 +10,11 @@ import 'package:kmschool/widgets/CommonTextField.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:firebase_messaging/firebase_messaging.dart';
+
+
+
 import '../app/AppLocalizations.dart';
 import '../app/router.dart';
 import '../bloc/event/login_event.dart';
@@ -53,7 +58,7 @@ class LoginPageState extends State<LoginPage> {
   final loginBloc = LoginBloc();
   bool dialogShown = false;
   final signupBloc = SignUpBloc();
-
+  String? fcmToken;
 
   @override
   void initState() {
@@ -75,6 +80,17 @@ class LoginPageState extends State<LoginPage> {
         context.go(Routes.mainHome);
       });
     }
+
+
+    FirebaseMessaging messaging = FirebaseMessaging.instance;
+    messaging.getToken().then((token) {
+      setState(() {
+        fcmToken = token;
+
+        SharedPrefs().setTokenKey(fcmToken!);
+      });
+    });
+
   }
 
   void passwordListener() {
@@ -174,7 +190,7 @@ class LoginPageState extends State<LoginPage> {
     else {
       passwordError = false;
       emailError = false;
-      loginBloc.add(LoginButtonPressed(username: userName, password: password));
+      loginBloc.add(LoginButtonPressed(username: userName, password: password, fcmToken: fcmToken!));
     }
   }
 
@@ -234,6 +250,7 @@ class LoginPageState extends State<LoginPage> {
       });
     }
   }
+
 
   showCustomToast() {
     setState(() {

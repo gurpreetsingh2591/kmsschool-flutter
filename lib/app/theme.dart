@@ -13,7 +13,10 @@ final mainTheme = ThemeData(
   scaffoldBackgroundColor: Colors.white,
   fontFamily: 'poppins',
   primaryColor: appBaseColor,
+  appBarTheme: appTheme,
+
   colorScheme: const ColorScheme(
+
     background: Colours.primary,
     onBackground: Colours.primary,
     brightness: Brightness.dark,
@@ -25,6 +28,7 @@ final mainTheme = ThemeData(
     onError: Colors.black87,
     surface: Colours.backgroundLight,
     onSurface: Colours.primary,
+
   ).copyWith(background: Colors.white),
   // textTheme: const TextTheme(
   //   headline1: TextStyle(color: Colours.primary),
@@ -35,4 +39,8 @@ final mainTheme = ThemeData(
   //   subtitle2: TextStyle(color: Colours.primary),
   //   caption: TextStyle(color: Colours.primary),
   // ),
+);
+
+const appTheme = AppBarTheme(
+  color: appBaseColor,
 );

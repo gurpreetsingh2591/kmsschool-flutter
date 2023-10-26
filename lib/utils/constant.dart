@@ -152,6 +152,18 @@ final dynamic dashboardList = [
     'image': 'assets/icons/message_to_teacher.png',
   },
   {
+    'name': 'Student Gallery',
+    'image': 'assets/icons/meeting_with_office.png',
+  },
+  {
+    'name': 'Lesson Status',
+    'image': 'assets/icons/message_to_teacher.png',
+  },
+  {
+    'name': 'Set Reminder',
+    'image': 'assets/icons/calender.png',
+  },
+  {
     'name': 'Switch Child',
     'image': 'assets/icons/exchange_child.png',
   },

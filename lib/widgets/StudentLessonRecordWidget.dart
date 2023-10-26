@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:kmschool/utils/extensions/lib_extensions.dart';
 import '../utils/constant.dart';
 
-
 class StudentLessonRecordWidget extends StatelessWidget {
-  final String subject;
-  final String description;
-  final String date;
+  final String lessonPlanId;
+  final String classId;
+  final String lessonStatus;
+  final String statusNew;
+  final String lessonName;
 
   const StudentLessonRecordWidget({
     Key? key,
-    required this.subject,
-    required this.description,
-    required this.date,
+    required this.lessonPlanId,
+    required this.classId,
+    required this.lessonStatus,
+    required this.statusNew,
+    required this.lessonName,
   }) : super(key: key);
 
   @override
@@ -28,29 +31,25 @@ class StudentLessonRecordWidget extends StatelessWidget {
           children: [
             Flexible(
               child: Text(
-                subject,
+                "Lesson Name: $lessonName",
                 textAlign: TextAlign.left,
-                style: textStyle(Colors.black, 14, 0, FontWeight.w400),
+                style: textStyle(Colors.black87, 14, 0, FontWeight.w500),
               ),
             ),
             5.height,
-            const Divider(
-              thickness: 1,
-              color: Colors.grey,
-            ),
-            5.height,
+
             Text(
-              description,
-              style: textStyle(Colors.black87, 12, 0, FontWeight.w400),
+              "Lesson New Status: $statusNew",
+              style: textStyle(Colors.black87, 14, 0, FontWeight.w500),
               textAlign: TextAlign.left,
             ),
             5.height,
             Container(
-              alignment: Alignment.centerRight,
+              alignment: Alignment.centerLeft,
               child: Text(
-                date,
-                style: textStyle(Colors.black, 12, 0, FontWeight.w500),
-                textAlign: TextAlign.right,
+                "Lesson Old Status: $lessonStatus",
+                style: textStyle(Colors.black87, 14, 0, FontWeight.w500),
+                textAlign: TextAlign.left,
               ),
             ),
           ],

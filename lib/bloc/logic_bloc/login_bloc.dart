@@ -18,7 +18,7 @@ class LoginBloc extends Bloc<LoginEvent, CommonState> {
 
     try {
       dynamic response =
-          await ApiService().getUserLogin(event.username.trim(), event.password);
+          await ApiService().getUserLogin(event.username.trim(), event.password,event.fcmToken);
 
       // Process the API response
       // Emit a success state
