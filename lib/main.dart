@@ -31,6 +31,7 @@ Future<void> main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]).then((value) => runApp(MaterialApp(
+    theme: ThemeData(appBarTheme: const AppBarTheme(color: appBaseColor)),
         debugShowCheckedModeBanner: false,
         home: MultiProvider(
           // Use MultiProvider to provide both LanguageProvider and MyApp

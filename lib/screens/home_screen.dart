@@ -142,27 +142,14 @@ class HomePageState extends State<HomePage> {
   Widget buildHomeContainer(BuildContext context, Size mq) {
     return SafeArea(
       child: Container(
-        constraints: BoxConstraints(
-          maxHeight: mq.height,
-        ),
+        constraints: const BoxConstraints.expand(),
         decoration: boxImageDashboardBgDecoration(),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            AppBar(
-              systemOverlayStyle: const SystemUiOverlayStyle(
-                statusBarColor: appBaseColor,
-                // <-- SEE HERE
-                statusBarIconBrightness: Brightness.dark,
-                //<-- For Android SEE HERE (dark icons)
-                statusBarBrightness:
-                Brightness.light, //<-- For iOS SEE HERE (dark icons)
-              ),
-              backgroundColor: appBaseColor,
-              centerTitle: true,
-              title: Container(
+             Container(
                 height: 60,
                 decoration: kButtonBgDecoration,
                 child: TopBarWidget(
@@ -181,7 +168,7 @@ class HomePageState extends State<HomePage> {
                   screen: 'home',
                 ),
               ),
-            ),
+
             Container(
               margin: const EdgeInsets.only(
                 bottom: 20,

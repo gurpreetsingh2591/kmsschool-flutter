@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kmschool/utils/extensions/lib_extensions.dart';
 import '../utils/constant.dart';
+
+
 
 class ReminderBoxWidget extends StatelessWidget {
   final String reminderName;
@@ -28,7 +29,10 @@ class ReminderBoxWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
-          children: [],
+          children: [
+
+
+          ],
         ),
       ),
     );

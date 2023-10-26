@@ -15,7 +15,7 @@ final mainTheme = ThemeData(
   primaryColor: appBaseColor,
   appBarTheme: appTheme,
 
-  colorScheme: const ColorScheme(
+  /*colorScheme: const ColorScheme(
 
     background: Colours.primary,
     onBackground: Colours.primary,
@@ -29,7 +29,7 @@ final mainTheme = ThemeData(
     surface: Colours.backgroundLight,
     onSurface: Colours.primary,
 
-  ).copyWith(background: Colors.white),
+  ).copyWith(background: Colors.white),*/
   // textTheme: const TextTheme(
   //   headline1: TextStyle(color: Colours.primary),
   //   bodyText1: TextStyle(color: Colours.primary),
