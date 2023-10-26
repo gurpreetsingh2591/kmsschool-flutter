@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kmschool/utils/extensions/lib_extensions.dart';
@@ -153,7 +154,18 @@ class LunchMenuPageState extends State<LunchMenuPage> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               height: 60,
               decoration: kButtonBgDecoration,
-              child: TopBarWidget(
+              child:AppBar(
+                systemOverlayStyle: const SystemUiOverlayStyle(
+                  statusBarColor: appBaseColor,
+                  // <-- SEE HERE
+                  statusBarIconBrightness: Brightness.dark,
+                  //<-- For Android SEE HERE (dark icons)
+                  statusBarBrightness:
+                  Brightness.light, //<-- For iOS SEE HERE (dark icons)
+                ),
+                backgroundColor: appBaseColor,
+                centerTitle: true,
+                title:  TopBarWidget(
                 onTapLeft: () {
                   _scaffoldKey.currentState?.openDrawer();
                 },
@@ -169,7 +181,7 @@ class LunchMenuPageState extends State<LunchMenuPage> {
                 subTitle: '',
                 screen: 'lm',
               ),
-            ),
+            )),
             Container(
               height: 500,
               margin: const EdgeInsets.only(bottom: 20, top: 80),
@@ -207,7 +219,18 @@ class LunchMenuPageState extends State<LunchMenuPage> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               height: 60,
               decoration: kButtonBgDecoration,
-              child: TopBarWidget(
+              child:AppBar(
+                systemOverlayStyle: const SystemUiOverlayStyle(
+                  statusBarColor: appBaseColor,
+                  // <-- SEE HERE
+                  statusBarIconBrightness: Brightness.dark,
+                  //<-- For Android SEE HERE (dark icons)
+                  statusBarBrightness:
+                  Brightness.light, //<-- For iOS SEE HERE (dark icons)
+                ),
+                backgroundColor: appBaseColor,
+                centerTitle: true,
+                title:  TopBarWidget(
                 onTapLeft: () {
                   _scaffoldKey.currentState?.openDrawer();
                 },
@@ -218,12 +241,12 @@ class LunchMenuPageState extends State<LunchMenuPage> {
                 rightIcon: 'assets/icons/user.png',
                 title: "Lunch Menu",
                 rightVisibility: false,
-                leftVisibility: true,
+                leftVisibility: false,
                 bottomTextVisibility: false,
                 subTitle: '',
                 screen: 'lm',
               ),
-            ),
+            )),
             Expanded(
               child: Container(
                 margin: const EdgeInsets.only(

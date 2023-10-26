@@ -36,5 +36,21 @@ class GetReminderListData extends StudentLessonEvent {
   List<Object> get props => [];
 }
 
+class SetRemindersData extends StudentLessonEvent {
+  final String studentId;
+  final String days;
+
+  const SetRemindersData({required this.studentId,required this.days});
+
+  @override
+  List<Object> get props => [studentId,days];
+}
+
+class GetEventsData extends StudentLessonEvent {
+  const GetEventsData();
+  @override
+  List<Object> get props => [];
+}
+
 
 

@@ -13,6 +13,7 @@ import '../bloc/logic_bloc/student_lesson_bloc.dart';
 import '../bloc/state/common_state.dart';
 import '../model/ReminderListResponse.dart';
 import '../utils/toast.dart';
+import '../widgets/ButtonWidget.dart';
 import '../widgets/ColoredSafeArea.dart';
 import '../utils/constant.dart';
 import '../utils/shared_prefs.dart';
@@ -36,6 +37,7 @@ class SetReminderPageState extends State<SetReminderPage> {
   final studentLessonBloc = StudentLessonBloc();
 
   String studentName = "";
+  String studentId = "";
 
   List<bool> selectedItems = List.generate(10, (index) => false);
   List<ReminderList> reminderList = [];
@@ -50,6 +52,7 @@ class SetReminderPageState extends State<SetReminderPage> {
 
     setState(() {
       studentName = SharedPrefs().getUserFullName().toString();
+      studentId = SharedPrefs().getStudentId().toString();
     });
     studentLessonBloc.add(const GetReminderListData());
   }
@@ -58,7 +61,7 @@ class SetReminderPageState extends State<SetReminderPage> {
     SharedPrefs.init(await SharedPreferences.getInstance());
   }
 
-  setReminderListData(dynamic reminders) {
+  getReminderListData(dynamic reminders) {
     reminderList.clear();
     try {
       var remindersResponse = ReminderListResponse.fromJson(reminders);
@@ -69,6 +72,45 @@ class SetReminderPageState extends State<SetReminderPage> {
         reminderList.addAll(remindersResponse.result);
       } else {
         toast("Data Not available", false);
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+  }
+
+  callSetReminderApi() {
+    String selectedIds = "";
+    for (int i = 0; i < reminderList.length; i++) {
+      if (selectedItems[i]) {
+        if (selectedIds.isNotEmpty) {
+          selectedIds += ",";
+        }
+        selectedIds += reminderList[i].id;
+      }
+    }
+    if (kDebugMode) {
+      print("Selected IDs: $selectedIds");
+    }
+
+    selectedIds.isNotEmpty
+        ? studentLessonBloc
+            .add(SetRemindersData(studentId: studentName, days: selectedIds))
+        : toast("Please Select minimum one Reminders", false);
+  }
+
+  setReminderData(dynamic reminders) {
+    reminderList.clear();
+    try {
+      var remindersResponse = ReminderListResponse.fromJson(reminders);
+      dynamic status = remindersResponse.status;
+      String message = remindersResponse.message;
+
+      if (status == 200) {
+        toast("Your Reminders are set successfully", false);
+      } else {
+        toast("Something went wrong, Try again", false);
       }
     } catch (e) {
       if (kDebugMode) {
@@ -100,9 +142,11 @@ class SetReminderPageState extends State<SetReminderPage> {
               if (state is LoadingState) {
                 return loaderBar(context, mq);
               } else if (state is ReminderListState) {
-                setReminderListData(state.response);
+                getReminderListData(state.response);
                 return buildHomeContainer(context, mq);
               } else if (state is SetReminderListState) {
+                setReminderData(state.response);
+
                 return buildHomeContainer(context, mq);
               } else if (state is FailureState) {
                 return Center(
@@ -135,17 +179,29 @@ class SetReminderPageState extends State<SetReminderPage> {
         margin: const EdgeInsets.all(30),
         child: Stack(
           children: [
-            TopBarWidget(
-              onTapLeft: () {},
-              onTapRight: () {},
-              leftIcon: 'assets/icons/menu.png',
-              rightIcon: 'assets/icons/user.png',
-              title: "Set Reminder",
-              rightVisibility: true,
-              leftVisibility: true,
-              bottomTextVisibility: false,
-              subTitle: '',
-              screen: 'sr',
+            AppBar(
+              systemOverlayStyle: const SystemUiOverlayStyle(
+                statusBarColor: appBaseColor,
+                // <-- SEE HERE
+                statusBarIconBrightness: Brightness.dark,
+                //<-- For Android SEE HERE (dark icons)
+                statusBarBrightness:
+                    Brightness.light, //<-- For iOS SEE HERE (dark icons)
+              ),
+              backgroundColor: appBaseColor,
+              centerTitle: true,
+              title: TopBarWidget(
+                onTapLeft: () {},
+                onTapRight: () {},
+                leftIcon: 'assets/icons/menu.png',
+                rightIcon: 'assets/icons/user.png',
+                title: "Reminder Setting",
+                rightVisibility: true,
+                leftVisibility: true,
+                bottomTextVisibility: false,
+                subTitle: '',
+                screen: 'sr',
+              ),
             ),
             Container(
               height: 500,
@@ -171,45 +227,42 @@ class SetReminderPageState extends State<SetReminderPage> {
   Widget buildHomeContainer(BuildContext context, Size mq) {
     return SafeArea(
       child: Container(
-        constraints: BoxConstraints(
-          maxHeight: mq.height,
-        ),
+        constraints: const BoxConstraints.expand(),
         decoration: boxImageDashboardBgDecoration(),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            AppBar(
-              systemOverlayStyle: const SystemUiOverlayStyle(
-                statusBarColor: appBaseColor,
-                // <-- SEE HERE
-                statusBarIconBrightness: Brightness.dark,
-                //<-- For Android SEE HERE (dark icons)
-                statusBarBrightness:
-                    Brightness.light, //<-- For iOS SEE HERE (dark icons)
-              ),
-              backgroundColor: appBaseColor,
-              centerTitle: true,
-              title: Container(
-                height: 60,
-                decoration: kButtonBgDecoration,
-                child: TopBarWidget(
-                  onTapLeft: () {
-                    _scaffoldKey.currentState?.openDrawer();
-                  },
-                  onTapRight: () {},
-                  leftIcon: 'assets/icons/menu.png',
-                  rightIcon: 'assets/icons/user.png',
-                  title: "Set Reminder",
-                  rightVisibility: true,
-                  leftVisibility: false,
-                  bottomTextVisibility: false,
-                  subTitle: '',
-                  screen: 'sr',
+            Container(
+              height: 60,
+              decoration: kButtonBgDecoration,
+              child: AppBar(
+                systemOverlayStyle: const SystemUiOverlayStyle(
+                  statusBarColor: appBaseColor,
+                  // <-- SEE HERE
+                  statusBarIconBrightness: Brightness.dark,
+                  //<-- For Android SEE HERE (dark icons)
+                  statusBarBrightness:
+                  Brightness.light, //<-- For iOS SEE HERE (dark icons)
                 ),
+                backgroundColor: appBaseColor,
+                centerTitle: true,
+                title: TopBarWidget(
+                onTapLeft: () {
+                  _scaffoldKey.currentState?.openDrawer();
+                },
+                onTapRight: () {},
+                leftIcon: 'assets/icons/menu.png',
+                rightIcon: 'assets/icons/user.png',
+                title: "Reminder Setting",
+                rightVisibility: true,
+                leftVisibility: false,
+                bottomTextVisibility: false,
+                subTitle: '',
+                screen: 'sr',
               ),
-            ),
+            ),),
             Container(
               margin: const EdgeInsets.only(
                 bottom: 20,
@@ -237,7 +290,25 @@ class SetReminderPageState extends State<SetReminderPage> {
                   ),
                   20.height,
                   buildCategoriesListWeb2000Container(context, mq),
-                  20.height,
+                  40.height,
+                  ButtonWidget(
+                    margin: 40,
+                    name: "Add Reminder".toUpperCase(),
+                    icon: "",
+                    visibility: false,
+                    padding: 0,
+                    onTap: () {
+                      callSetReminderApi();
+                    },
+                    size: 12,
+                    scale: 2,
+                    height: 50,
+                    decoration: kSelectedDecoration,
+                    textColors: Colors.white,
+                    rightVisibility: false,
+                    weight: FontWeight.w400,
+                    iconColor: Colors.white,
+                  )
                 ],
               ),
             ),
@@ -262,7 +333,10 @@ class SetReminderPageState extends State<SetReminderPage> {
             return Card(
               color: appBaseColor,
               child: ListTile(
-                title: Flexible(child: Text(reminderList[index].daystext)),
+                title: Text(
+                  reminderList[index].daystext,
+                  style: textStyle(Colors.white, 12, 0, FontWeight.normal),
+                ),
                 leading: InkWell(
                   onTap: () {
                     setState(() {
@@ -293,7 +367,7 @@ class SetReminderPageState extends State<SetReminderPage> {
           },
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2, childAspectRatio: 3 / 1),
-        )
+        ),
       ],
     );
   }

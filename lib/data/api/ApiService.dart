@@ -772,8 +772,70 @@ class ApiService {
   /// Get Reminder  list*/
   Future<dynamic> getReminderList() async {
     try {
+      var url = Uri.parse(
+          ApiConstants.baseUrl + ApiConstants.API_GET_PARENT_REMINDER);
+      var request = http.Request('GET', url);
+      request.body = '''''';
+      //var request = http.StreamedRequest('GET', url);
+
+      var streamedResponse = await request.send();
+      var response = await http.Response.fromStream(streamedResponse);
+      if (kDebugMode) {
+        print("url$url");
+        print(request);
+        print(response.statusCode);
+        print(response.body);
+      }
+      if (response.statusCode == 200) {
+        var result = jsonDecode(response.body);
+        return result;
+      } else {
+        var result = jsonDecode(response.body);
+        return result;
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  /// Set Reminder*/
+  Future<dynamic> setReminders(String studentId, String days) async {
+    try {
       var url = Uri.parse(ApiConstants.baseUrl +
-          ApiConstants.API_GET_PARENT_REMINDER );
+          ApiConstants.API_SET_PARENT_REMINDER +
+          studentId +
+          ApiConstants.dayS +
+          days);
+      var request = http.Request('GET', url);
+      request.body = '''''';
+      //var request = http.StreamedRequest('GET', url);
+
+      var streamedResponse = await request.send();
+      var response = await http.Response.fromStream(streamedResponse);
+      if (kDebugMode) {
+        print("url$url");
+        print(request);
+        print(response.statusCode);
+        print(response.body);
+      }
+      if (response.statusCode == 200) {
+        var result = jsonDecode(response.body);
+        return result;
+      } else {
+        var result = jsonDecode(response.body);
+        return result;
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+
+  /// Get Event Dates*/
+  Future<dynamic> getEventDates() async {
+    try {
+      var url = Uri.parse(ApiConstants.baseUrl +
+          ApiConstants.API_GET_EVENT);
       var request = http.Request('GET', url);
       request.body = '''''';
       //var request = http.StreamedRequest('GET', url);

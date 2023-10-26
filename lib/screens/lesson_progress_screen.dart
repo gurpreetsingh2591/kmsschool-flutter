@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:kmschool/bloc/event/student_lesson_event.dart';
 import 'package:kmschool/bloc/state/common_state.dart';
@@ -186,7 +187,18 @@ class LessonProgressPageState extends State<LessonProgressPage> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               height: 60,
               decoration: kButtonBgDecoration,
-              child: TopBarWidget(
+              child: AppBar(
+                systemOverlayStyle: const SystemUiOverlayStyle(
+                  statusBarColor: appBaseColor,
+                  // <-- SEE HERE
+                  statusBarIconBrightness: Brightness.dark,
+                  //<-- For Android SEE HERE (dark icons)
+                  statusBarBrightness:
+                  Brightness.light, //<-- For iOS SEE HERE (dark icons)
+                ),
+                backgroundColor: appBaseColor,
+                centerTitle: true,
+                title: TopBarWidget(
                 onTapLeft: () {
                   _scaffoldKey.currentState?.openDrawer();
                 },
@@ -195,12 +207,12 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                 rightIcon: 'assets/icons/user.png',
                 title: "Lesson Progress",
                 rightVisibility: false,
-                leftVisibility: true,
+                leftVisibility: false,
                 bottomTextVisibility: false,
                 subTitle: '',
                 screen: 'mwt',
               ),
-            ),
+            ),),
             Container(
               margin: const EdgeInsets.only(
                   bottom: 20, top: 80, left: 16, right: 16),

@@ -52,3 +52,8 @@ class SetReminderListState extends CommonState {
 
   const SetReminderListState(this.response);
 }
+class GetEventsListState extends CommonState {
+  final dynamic response;
+
+  const GetEventsListState(this.response);
+}

@@ -3,34 +3,26 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_calendar_carousel/classes/event.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:go_router/go_router.dart';
-import 'package:kmschool/bloc/state/meeting_state.dart';
-import 'package:kmschool/model/BookingSlotsResponse.dart';
+import 'package:kmschool/bloc/event/student_lesson_event.dart';
+import 'package:kmschool/bloc/logic_bloc/student_lesson_bloc.dart';
+import 'package:kmschool/bloc/state/common_state.dart';
 import 'package:flutter_calendar_carousel/flutter_calendar_carousel.dart'
     show CalendarCarousel, EventList;
+import 'package:kmschool/utils/extensions/extensions.dart';
 
-import 'package:kmschool/utils/extensions/lib_extensions.dart';
-import 'package:kmschool/utils/toast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../app/router.dart';
-import '../bloc/event/meeting_slot_event.dart';
-import '../bloc/logic_bloc/get_device_bloc.dart';
-import '../bloc/logic_bloc/meeting_bloc.dart';
-import '../bloc/state/get_device_state.dart';
 import '../model/BookedMeetingResponse.dart';
-import '../model/CommonResponse.dart';
-import '../model/DeviceResponse.dart';
-
+import '../model/EventDatesResponse.dart';
+import '../utils/toast.dart';
 import '../widgets/BookingItemWidget.dart';
-import '../widgets/ButtonWidget.dart';
 import '../widgets/ColoredSafeArea.dart';
-import '../widgets/SelectionWidget.dart';
 import '../utils/constant.dart';
 import '../utils/shared_prefs.dart';
 import '../utils/themes/colors.dart';
 import '../widgets/DrawerWidget.dart';
+import '../widgets/EventTypeColorWidget.dart';
 import '../widgets/TopBarWidget.dart';
 
 class SchoolCalenderPage extends StatefulWidget {
@@ -50,14 +42,13 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
   bool isLogin = false;
   bool selection = true;
 
-  //List<BookingSlots> subjectList = [];
-  List<BookedMeeting> bookedMeetings = [];
+  List<EvenDates> evenDatesList = [];
+  Map<DateTime, List<Event>>? dateTime;
 
-  // String selectedValue = "Select Subject";
-  final meetingBloc = MeetingBloc();
+  final studentLessonBloc = StudentLessonBloc();
   DateTime selectedDate = DateTime.now();
   String formattedDate = "";
-
+  final EventList<Event> _markedDateMap = EventList<Event>(events: {});
   @override
   void initState() {
     super.initState();
@@ -75,10 +66,110 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
 
     formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate);
 
-    meetingBloc.add(
-        GetOfficeTimeSlotsByDate(date: formattedDate, studentId: studentId));
+    studentLessonBloc.add(const GetEventsData());
+  }
 
-    // String selectedValue = bookingSlots[0].slot;
+  getEventDates(dynamic events) {
+    try {
+      var eventDatesResponse = EventDatesResponse.fromJson(events);
+      dynamic status = eventDatesResponse.status;
+      String message = eventDatesResponse.message;
+
+      if (status == 200) {
+        evenDatesList.addAll(eventDatesResponse.result);
+        if (kDebugMode) {
+          print("evenDatesList--$evenDatesList");
+
+        }
+
+        for (var eventData in evenDatesList) {
+
+
+          String inputDate = eventData.start;
+          List<String> dateParts = inputDate.split(" ")[0].split("/"); // Split by space and then by slash
+          int year = int.parse(dateParts[2]);
+          int month = int.parse(dateParts[0]);
+          int day = int.parse(dateParts[1]);
+          DateTime convertedDate = DateTime(year, month, day);
+
+          //final DateTime startDate = DateTime.parse(eventData.start);
+         // final  formatted = DateFormat('yyyy,MM,dd').format(startDate);
+
+          final String title = eventData.title;
+          final String className = eventData.className;
+          final String color = eventData.color;
+          if (kDebugMode) {
+            print("eventData--$eventData");
+            print("convertedDate--$convertedDate");
+
+          }
+          // Create an Event object and add it to the map
+          final event = Event(date:  convertedDate, title: title, dot: Container(
+            decoration: circleRedBox,
+            height: 35.0,
+            width: 35.0,
+          ), );
+
+          // Check if the date is already in the map; if not, create a new entry
+          if (dateTime == null) {
+            dateTime = { convertedDate: [event]};
+
+            if (kDebugMode) {
+              print("dateTime--$dateTime");
+
+            }
+          } else {
+            // If the date is already in the map, append the event to the existing list
+            dateTime![ convertedDate] = dateTime![ convertedDate] ?? [];
+            dateTime![convertedDate]!.add(event);
+
+            if (kDebugMode) {
+              print("dateTime--$dateTime");
+
+            }
+          }
+          _markedDateMap.add(convertedDate, events);
+          if (kDebugMode) {
+            print("_markedDateMap$_markedDateMap");
+            print("dateTime$dateTime");
+          }
+
+
+          if (kDebugMode) {
+            print("eventData--$eventData");
+
+          }
+          // Check if the date is already in the map; if not, create a new entry
+         /* if (_markedDateMap.events[startDate] == null) {
+            _markedDateMap.events[startDate] = [event];
+
+            if (kDebugMode) {
+              print("_markedDateMap$_markedDateMap");
+            }
+          } else {
+            // If the date is already in the map, append the event to the existing list
+            _markedDateMap.events[startDate]?.add(event);
+          }*/
+        }
+
+      } else {
+        toast("Sorry, Slot is not booked, Please Try Again", false);
+      }
+
+
+
+
+
+
+
+
+
+
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
   }
 
   static final Widget _eventIcon = Container(
@@ -91,15 +182,23 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
       color: Colors.amber,
     ),
   );
+
+
+
+
+
+
+/*
   final EventList<Event> _markedDateMap = EventList<Event>(
     events: {
+
       DateTime(2023, 11, 20): [
         Event(
           date: DateTime(2023, 10, 10),
           title: 'Event 1',
           icon: _eventIcon,
           dot: Container(
-            decoration: circleBox,
+            decoration: circleRedBox,
             height: 35.0,
             width: 35.0,
           ),
@@ -111,15 +210,15 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
           title: 'Event 1',
           icon: _eventIcon,
           dot: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 1.0),
-            color: Colors.red,
-            height: 5.0,
-            width: 5.0,
+            decoration: circleBlueBox,
+            height: 35.0,
+            width: 35.0,
           ),
         ),
       ],
     },
-  );
+  )
+*/
 
   Future<void> initializePreference() async {
     SharedPrefs.init(await SharedPreferences.getInstance());
@@ -129,7 +228,7 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context).size;
     return BlocProvider(
-      create: (context) => meetingBloc,
+      create: (context) => studentLessonBloc,
       child: Scaffold(
         key: _scaffoldKey,
         drawer: SizedBox(
@@ -143,16 +242,12 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
           ), //Drawer
         ),
         body: ColoredSafeArea(
-          child: BlocBuilder<MeetingBloc, MeetingState>(
+          child: BlocBuilder<StudentLessonBloc, CommonState>(
             builder: (context, state) {
               if (state is LoadingState) {
                 return loaderBar(context, mq);
-              } else if (state is GetOfficeSlotState) {
-                //setOfficeSlotData(state.response);
-                return buildHomeContainer(context, mq);
-              } else if (state is GetOfficeBookingSuccessState) {
-                return buildHomeContainer(context, mq);
-              } else if (state is GetOfficeBookedSuccessState) {
+              } else if (state is GetEventsListState) {
+                getEventDates(state.response);
                 return buildHomeContainer(context, mq);
               } else if (state is FailureState) {
                 return Center(
@@ -201,15 +296,12 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
                 screen: 'mwt',
               ),
             ),
-            Container(
-              margin: const EdgeInsets.only(
-                  bottom: 20, top: 80, left: 16, right: 16),
-              child: ListView(
+           ListView(
                 shrinkWrap: true,
                 primary: true,
                 children: [buildBookingHistoryContainer()],
               ),
-            ),
+
             Container(
               height: 500,
               margin: const EdgeInsets.only(bottom: 20, top: 80),
@@ -237,7 +329,7 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
         constraints: const BoxConstraints.expand(),
         decoration: boxImageDashboardBgDecoration(),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -260,20 +352,18 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
                 screen: 'mwt',
               ),
             ),
-            Expanded(
-              child: Container(
-                margin: const EdgeInsets.only(
-                    bottom: 20, top: 22, left: 16, right: 16),
-                child: ListView(
-                  shrinkWrap: true,
-                  primary: true,
-                  children: [
-                    buildCalenderView(),
-                    buildBookingHistoryContainer()
-                  ],
-                ),
+            Container(
+              margin: const EdgeInsets.only(),
+              child: ListView(
+                shrinkWrap: true,
+                primary: false,
+                children: [
+                  buildCalenderView(),
+              //  100.height,
+                //  buildBookingHistoryContainer()
+                ],
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -288,58 +378,43 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16.0),
       child: CalendarCarousel<Event>(
-          onDayPressed: (DateTime date, List<Event> events) {
-            setState(() => selectedDate = date);
-          },
-          weekendTextStyle: const TextStyle(
-            color: Colors.black87,
-          ),
-          customDayBuilder: (
-            /// you can provide your own build function to make custom day containers
-            bool isSelectable,
-            int index,
-            bool isSelectedDay,
-            bool isToday,
-            bool isPrevMonthDay,
-            TextStyle textStyle,
-            bool isNextMonthDay,
-            bool isThisMonthDay,
-            DateTime day,
-          ) {
-            /// If you return null, [CalendarCarousel] will build container for current [day] with default function.
-            /// This way you can build custom containers for specific days only, leaving rest as default.
-            // Example: every 15th of month, we have a flight, we can place an icon in the container like that:
+        onDayPressed: (DateTime date, List<Event> events) {
+          setState(() => selectedDate = date);
+        },
 
-          },
-          weekFormat: false,
-          markedDatesMap: _markedDateMap,
-          height: 420.0,
-          selectedDateTime: selectedDate,
-          daysHaveCircularBorder: true,
-          markedDateMoreCustomDecoration: circleBox,
+        weekendTextStyle: const TextStyle(
+          color: Colors.black87,
+        ),
+        customDayBuilder: (
+          /// you can provide your own build function to make custom day containers
+          bool isSelectable,
+          int index,
+          bool isSelectedDay,
+          bool isToday,
+          bool isPrevMonthDay,
+          TextStyle textStyle,
+          bool isNextMonthDay,
+          bool isThisMonthDay,
+          DateTime day,
+        ) {
+          /// If you return null, [CalendarCarousel] will build container for current [day] with default function.
+          /// This way you can build custom containers for specific days only, leaving rest as default.
+          // Example: every 15th of month, we have a flight, we can place an icon in the container like that:
+        },
+        weekFormat: false,
+        markedDatesMap: _markedDateMap,
+        height: 420.0,
+        selectedDateTime: selectedDate,
+        daysHaveCircularBorder: true,
+        markedDateMoreCustomDecoration: circleRedBox,
 
-          /// null for not rendering any border, true for circular border, false for rectangular border
-          ),
+        /// null for not rendering any border, true for circular border, false for rectangular border
+      ),
     );
   }
 
   Widget buildBookingHistoryContainer() {
-    return Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          ListView.builder(
-            primary: false,
-            shrinkWrap: true,
-            itemCount: bookedMeetings.length,
-            itemBuilder: (context, index) {
-              return BookingItemWidget(
-                date: bookedMeetings[index].meetdate,
-                time: bookedMeetings[index].meettime,
-              );
-            },
-          )
-        ]);
+    return Container(
+        alignment: Alignment.bottomCenter, child: const EventTypeColorWidget());
   }
 }

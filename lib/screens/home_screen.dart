@@ -98,9 +98,7 @@ class HomePageState extends State<HomePage> {
 
   Widget loaderBar(BuildContext context, Size mq) {
     return Container(
-      constraints: BoxConstraints(
-        maxHeight: mq.height,
-      ),
+      constraints: const BoxConstraints.expand(),
       decoration: boxImageDashboardBgDecoration(),
       child: Container(
         margin: const EdgeInsets.all(30),
@@ -152,7 +150,18 @@ class HomePageState extends State<HomePage> {
              Container(
                 height: 60,
                 decoration: kButtonBgDecoration,
-                child: TopBarWidget(
+                child: AppBar(
+                  systemOverlayStyle: const SystemUiOverlayStyle(
+                    statusBarColor: appBaseColor,
+                    // <-- SEE HERE
+                    statusBarIconBrightness: Brightness.dark,
+                    //<-- For Android SEE HERE (dark icons)
+                    statusBarBrightness:
+                    Brightness.light, //<-- For iOS SEE HERE (dark icons)
+                  ),
+                  backgroundColor: appBaseColor,
+                  centerTitle: true,
+                  title: TopBarWidget(
                   onTapLeft: () {
                     _scaffoldKey.currentState?.openDrawer();
                   },
@@ -167,7 +176,7 @@ class HomePageState extends State<HomePage> {
                   subTitle: '',
                   screen: 'home',
                 ),
-              ),
+              ),),
 
             Container(
               margin: const EdgeInsets.only(

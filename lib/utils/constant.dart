@@ -258,9 +258,25 @@ final kEditLineDecoration = BoxDecoration(
   border: Border(bottom: BorderSide(color: Colors.grey.shade400, width: 1.5)),
 );
 
-const circleBox =BoxDecoration(
+const circleRedBox =BoxDecoration(
   shape: BoxShape.circle, // This property makes the container circular
-  color: kRedTrans, // Set your desired background color
+  color: red, // Set your desired background color
+);
+const circleYellowBox =BoxDecoration(
+  shape: BoxShape.circle, // This property makes the container circular
+  color: yellow, // Set your desired background color
+);
+const circleBlueBox =BoxDecoration(
+  shape: BoxShape.circle, // This property makes the container circular
+  color: blue, // Set your desired background color
+);
+const circleMitiBox =BoxDecoration(
+  shape: BoxShape.circle, // This property makes the container circular
+  color: miti, // Set your desired background color
+);
+const circleGreenBox = BoxDecoration(
+  shape: BoxShape.circle, // This property makes the container circular
+  color: greenTrans, // Set your desired background color
 );
 const kInnerDecoration2 = BoxDecoration(
   color: Colors.red,
