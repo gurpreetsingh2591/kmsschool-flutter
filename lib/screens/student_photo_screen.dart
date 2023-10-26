@@ -1,19 +1,12 @@
 import 'dart:async';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:go_router/go_router.dart';
-
 import 'package:kmschool/utils/extensions/lib_extensions.dart';
-import 'package:kmschool/utils/toast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../app/router.dart';
 import '../bloc/logic_bloc/get_device_bloc.dart';
-
 import '../widgets/ColoredSafeArea.dart';
-import '../widgets/DashboardtemWidget.dart';
 import '../utils/constant.dart';
 import '../utils/shared_prefs.dart';
 import '../utils/themes/colors.dart';

@@ -11,6 +11,7 @@ class StudentLessonBloc extends Bloc<StudentLessonEvent, CommonState> {
   StudentLessonBloc() : super(InitialState()) {
     on<GetSubjectData>(_onGetSubjectData);
     on<GetLessonRecordData>(_onGetLessonRecordData);
+    on<GetReminderListData>(_onGetReminderListData);
   }
 
   Future<void> _onGetSubjectData(
@@ -44,7 +45,25 @@ class StudentLessonBloc extends Bloc<StudentLessonEvent, CommonState> {
       if (kDebugMode) {
         print(getUserData);
       }
-      emit(SuccessState(getUserData));
+      emit(UserDataSuccessState(getUserData));
+    } catch (error) {
+      // Emit a failure state
+      emit(FailureState(error.toString()));
+    }
+  }
+  Future<void> _onGetReminderListData(
+      GetReminderListData event, Emitter<CommonState> emit) async {
+    // Handle the Get User Data event
+    emit(LoadingState());
+
+    try {
+      dynamic getUserData = await ApiService().getReminderList();
+      // Process the API response
+      // Emit a success state
+      if (kDebugMode) {
+        print(getUserData);
+      }
+      emit(ReminderListState(getUserData));
     } catch (error) {
       // Emit a failure state
       emit(FailureState(error.toString()));

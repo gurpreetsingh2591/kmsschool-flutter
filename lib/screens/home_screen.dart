@@ -251,6 +251,12 @@ class HomePageState extends State<HomePage> {
                 } else if (index == 7) {
                   context.push(Routes.messageToTeacher);
                 } else if (index == 8) {
+                  context.push(Routes.studentPhotos);
+                } else if (index == 9) {
+                  context.push(Routes.lessonProgress);
+                } else if (index == 10) {
+                  context.push(Routes.setReminder);
+                } else if (index == 11) {
                   context.push(Routes.switchChild);
                 }
               },

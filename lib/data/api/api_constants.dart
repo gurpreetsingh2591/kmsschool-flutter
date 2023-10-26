@@ -37,6 +37,7 @@ class ApiConstants {
   static String API_GET_DELETE_MEETING_WITH_TEACHER="delete-meeting-with-teacher.php";
   static String API_GET_SUBJECT_LIST="get-subject.php";
   static String API_GET_LESSON_RECORD="get-subject.php?";
+  static String API_GET_PARENT_REMINDER="parent_reminder.php?days=all";
 
   //constant parameters
   static String EMAIL="email";
@@ -64,6 +65,7 @@ class ApiConstants {
   static String studentId="student_id=";
   static String subjectId="&subjectid=";
   static String classId="classid";
+  static String fcmToken="fcmToken";
 
 
 

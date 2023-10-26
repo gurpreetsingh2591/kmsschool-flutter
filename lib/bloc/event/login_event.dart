@@ -10,11 +10,12 @@ abstract class LoginEvent extends Equatable {
 class LoginButtonPressed extends LoginEvent {
   final String username;
   final String password;
+  final String fcmToken;
 
-  const LoginButtonPressed({required this.username, required this.password});
+  const LoginButtonPressed({required this.username, required this.password, required this.fcmToken});
 
   @override
-  List<Object> get props => [username, password];
+  List<Object> get props => [username, password,fcmToken];
 }
 
 class GetUserDataLogin extends LoginEvent {

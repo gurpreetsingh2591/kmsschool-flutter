@@ -8,8 +8,8 @@ import '../../utils/constant.dart';
 import 'api_constants.dart';
 
 class ApiService {
-  Future<dynamic> signup(String email, String password, String firstName,
-      String lastName) async {
+  Future<dynamic> signup(
+      String email, String password, String firstName, String lastName) async {
     try {
       var result = await channel.invokeMethod("signup", {
         "email": email,
@@ -119,7 +119,7 @@ class ApiService {
         print(email);
       }
       var result =
-      await channel.invokeMethod("resetPassword", {"email": email});
+          await channel.invokeMethod("resetPassword", {"email": email});
 
       if (kDebugMode) {
         print("reset password---$result");
@@ -166,7 +166,8 @@ class ApiService {
   }
 
   /// Login*/
-  Future<dynamic> getUserLogin(String email, String password) async {
+  Future<dynamic> getUserLogin(
+      String email, String password, String token) async {
     try {
       var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.API_LOGIN);
 
@@ -175,8 +176,11 @@ class ApiService {
         print(email + password);
       }
 
-      request.fields
-          .addAll({ApiConstants.EMAIL: email, ApiConstants.PASSWORD: password});
+      request.fields.addAll({
+        ApiConstants.EMAIL: email,
+        ApiConstants.PASSWORD: password,
+        ApiConstants.fcmToken: token
+      });
 
       if (kDebugMode) {
         print(request.fields);
@@ -204,7 +208,7 @@ class ApiService {
   Future<dynamic> getStudentLunchMenu(String studentId) async {
     try {
       var url =
-      Uri.parse(ApiConstants.baseUrl + ApiConstants.API_GET_LUNCH_MENU);
+          Uri.parse(ApiConstants.baseUrl + ApiConstants.API_GET_LUNCH_MENU);
 
       var request = http.MultipartRequest('POST', url);
 
@@ -238,7 +242,7 @@ class ApiService {
   Future<dynamic> getStudentSnackMenu(String studentId) async {
     try {
       var url =
-      Uri.parse(ApiConstants.baseUrl + ApiConstants.API_GET_SNACK_MENU);
+          Uri.parse(ApiConstants.baseUrl + ApiConstants.API_GET_SNACK_MENU);
 
       var request = http.MultipartRequest('POST', url);
 
@@ -337,8 +341,8 @@ class ApiService {
   }
 
   /// Forgot Password*/
-  Future<dynamic> postSendMessagesToOffice(String studentId, String sub,
-      String msg) async {
+  Future<dynamic> postSendMessagesToOffice(
+      String studentId, String sub, String msg) async {
     try {
       var url = Uri.parse(
           ApiConstants.baseUrl + ApiConstants.API_GET_MESSAGE_TO_OFFICE_DATA);
@@ -408,8 +412,8 @@ class ApiService {
   }
 
   /// Forgot Password*/
-  Future<dynamic> postSendMessagesToTeacher(String studentId, String sub,
-      String msg) async {
+  Future<dynamic> postSendMessagesToTeacher(
+      String studentId, String sub, String msg) async {
     try {
       var url = Uri.parse(
           ApiConstants.baseUrl + ApiConstants.API_GET_MESSAGE_TO_TEACHER_DATA);
@@ -479,8 +483,8 @@ class ApiService {
   }
 
   /// Teacher Time Slots*/
-  Future<dynamic> getTeacherTimeSlotListWithDate(String studentId,
-      String date) async {
+  Future<dynamic> getTeacherTimeSlotListWithDate(
+      String studentId, String date) async {
     try {
       var url = Uri.parse(
           ApiConstants.baseUrl + ApiConstants.API_GET_TEACHER_TIME_SLOTS);
@@ -515,8 +519,8 @@ class ApiService {
   }
 
   /// Book Teacher Time Slots*/
-  Future<dynamic> getTeacherBookTimeSlot(String studentId, String date,
-      String time) async {
+  Future<dynamic> getTeacherBookTimeSlot(
+      String studentId, String date, String time) async {
     try {
       var url = Uri.parse(
           ApiConstants.baseUrl + ApiConstants.API_GET_TEACHER_BOOK_MEETING);
@@ -552,7 +556,9 @@ class ApiService {
   }
 
   /// Get Booked Teacher Time Slots List*/
-  Future<dynamic> getTeacherBookedSlotList(String studentId,) async {
+  Future<dynamic> getTeacherBookedSlotList(
+    String studentId,
+  ) async {
     try {
       var url = Uri.parse(
           ApiConstants.baseUrl + ApiConstants.API_GET_TEACHER_MEETING_LIST);
@@ -586,8 +592,8 @@ class ApiService {
   }
 
   /// Office Time Slots*/
-  Future<dynamic> getOfficeTimeSlotListWithDate(String studentId,
-      String date) async {
+  Future<dynamic> getOfficeTimeSlotListWithDate(
+      String studentId, String date) async {
     try {
       var url = Uri.parse(
           ApiConstants.baseUrl + ApiConstants.API_GET_OFFICE_TIME_SLOTS);
@@ -622,8 +628,8 @@ class ApiService {
   }
 
   /// Office Time Slots*/
-  Future<dynamic> getOfficeBookTimeSlot(String parentId, String date,
-      String time) async {
+  Future<dynamic> getOfficeBookTimeSlot(
+      String parentId, String date, String time) async {
     try {
       var url = Uri.parse(
           ApiConstants.baseUrl + ApiConstants.API_GET_OFFICE_BOOK_MEETING);
@@ -659,8 +665,8 @@ class ApiService {
   }
 
   /// Get Booked Office Time Slots*/
-  Future<dynamic> getOfficeBookedTimeSlotsList(String studentId,
-      String parentId) async {
+  Future<dynamic> getOfficeBookedTimeSlotsList(
+      String studentId, String parentId) async {
     try {
       var url = Uri.parse(
           ApiConstants.baseUrl + ApiConstants.API_GET_OFFICE_MEETING_LIST);
@@ -670,7 +676,6 @@ class ApiService {
       request.fields.addAll({
         ApiConstants.STUDENT_ID: studentId,
         ApiConstants.P_ID: parentId,
-
       });
 
       if (kDebugMode) {
@@ -695,19 +700,17 @@ class ApiService {
     }
   }
 
-
   /// Get subject list*/
   Future<dynamic> getSubjectListList(String studentId, String classId) async {
     try {
-      var url = Uri.parse(
-          ApiConstants.baseUrl + ApiConstants.API_GET_SUBJECT_LIST);
+      var url =
+          Uri.parse(ApiConstants.baseUrl + ApiConstants.API_GET_SUBJECT_LIST);
 
       var request = http.MultipartRequest('POST', url);
 
       request.fields.addAll({
         ApiConstants.studentId: studentId,
         ApiConstants.classId: classId,
-
       });
 
       if (kDebugMode) {
@@ -732,21 +735,54 @@ class ApiService {
     }
   }
 
-
   /// Get Lesson Record list*/
-  Future<dynamic> getLessonRecordList(String studentId,
-      String subjectId) async {
+  Future<dynamic> getLessonRecordList(
+      String studentId, String subjectId) async {
     try {
-      var url = Uri.parse(
-          ApiConstants.baseUrl + ApiConstants.API_GET_OFFICE_MEETING_LIST +
-              ApiConstants.studentId + studentId + ApiConstants.subjectId +
-              subjectId);
-
-      var request = http.MultipartRequest('GET', url);
+      var url = Uri.parse(ApiConstants.baseUrl +
+          ApiConstants.API_GET_LESSON_RECORD +
+          ApiConstants.studentId +
+          studentId +
+          ApiConstants.subjectId +
+          subjectId);
+      var request = http.Request('GET', url);
+      request.body = '''''';
+      //var request = http.StreamedRequest('GET', url);
 
       var streamedResponse = await request.send();
       var response = await http.Response.fromStream(streamedResponse);
       if (kDebugMode) {
+        print("url$url");
+        print(request);
+        print(response.statusCode);
+        print(response.body);
+      }
+      if (response.statusCode == 200) {
+        var result = jsonDecode(response.body);
+        return result;
+      } else {
+        var result = jsonDecode(response.body);
+        return result;
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  /// Get Reminder  list*/
+  Future<dynamic> getReminderList() async {
+    try {
+      var url = Uri.parse(ApiConstants.baseUrl +
+          ApiConstants.API_GET_PARENT_REMINDER );
+      var request = http.Request('GET', url);
+      request.body = '''''';
+      //var request = http.StreamedRequest('GET', url);
+
+      var streamedResponse = await request.send();
+      var response = await http.Response.fromStream(streamedResponse);
+      if (kDebugMode) {
+        print("url$url");
+        print(request);
         print(response.statusCode);
         print(response.body);
       }

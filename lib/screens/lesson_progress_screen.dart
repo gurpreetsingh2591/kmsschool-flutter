@@ -11,8 +11,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/logic_bloc/student_lesson_bloc.dart';
-import '../model/BookedMeetingResponse.dart';
-import '../model/CommonResponse.dart';
 import '../model/LessonRecordResponse.dart';
 import '../model/StudentSubjectResponse.dart';
 import '../widgets/BookingItemWidget.dart';
@@ -21,6 +19,7 @@ import '../utils/constant.dart';
 import '../utils/shared_prefs.dart';
 import '../utils/themes/colors.dart';
 import '../widgets/DrawerWidget.dart';
+import '../widgets/StudentLessonRecordWidget.dart';
 import '../widgets/TopBarWidget.dart';
 
 class LessonProgressPage extends StatefulWidget {
@@ -35,29 +34,8 @@ class LessonProgressPageState extends State<LessonProgressPage> {
 
   String studentId = "";
   String parentId = "";
-  List<String> subjectList = [
-    "Select Subject",
-    "Language Arts",
-    "Mathematics",
-    "French",
-    "punjabi",
-    "Sensorial"
-  ];
 
-  bool isLoading = false;
-  bool isLogin = false;
-  bool selection = true;
-
-  //List<BookingSlots> subjectList = [];
-  List<LessonRecord> lessonRecord = [];
-
-  // String selectedValue = "Select Subject";
-  final studentLessonBloc = StudentLessonBloc();
-  DateTime selectedDate = DateTime.now();
-  String formattedDate = "";
-  String selectedValue = "Select Subject";
-
-/*  List<String> items = [
+/*  List<String> subjectList = [
     "Select Subject",
     "Language Arts",
     "Mathematics",
@@ -66,7 +44,18 @@ class LessonProgressPageState extends State<LessonProgressPage> {
     "Sensorial"
   ];*/
 
-  List<StudentSubject> items = [];
+  bool isLoading = false;
+  bool isLogin = false;
+  bool selection = true;
+
+  List<LessonRecord> lessonRecord = [];
+  final studentLessonBloc = StudentLessonBloc();
+  DateTime selectedDate = DateTime.now();
+  String formattedDate = "";
+  String selectedValue = "Select Subject";
+  String subjectId = "";
+
+  List<StudentSubject> subjectList = [];
 
   @override
   void initState() {
@@ -96,12 +85,15 @@ class LessonProgressPageState extends State<LessonProgressPage> {
       var lesson = LessonRecordResponse.fromJson(lessonRecordData);
       int status = lesson.status;
       String message = lesson.message;
+      if (kDebugMode) {
+        print("status----$status");
+      }
       if (status == 200) {
         lessonRecord.addAll(lesson.result);
       }
 
       if (kDebugMode) {
-        print(lessonRecord);
+        print("lessonRecord----$lessonRecord");
       }
     } catch (e) {
       if (kDebugMode) {
@@ -117,11 +109,9 @@ class LessonProgressPageState extends State<LessonProgressPage> {
       String message = bookingResponse.message;
 
       if (status == 200) {
-        studentLessonBloc.add(GetLessonRecordData(
-            studentId: studentId, subjectId: bookingResponse.result[0].id));
         final subject = StudentSubject(name: "Select Subject", id: '0');
-        items.add(subject);
-        items.addAll(bookingResponse.result);
+        subjectList.add(subject);
+        subjectList.addAll(bookingResponse.result);
       } else {
         toast("Subject Not available", false);
       }
@@ -220,7 +210,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                 children: [
                   selectSubjectDropDown(),
                   20.height,
-                  buildBookingHistoryContainer()
+                  buildLessonListContainer()
                 ],
               ),
             ),
@@ -284,7 +274,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                   children: [
                     selectSubjectDropDown(),
                     20.height,
-                    buildBookingHistoryContainer()
+                    buildLessonListContainer()
                   ],
                 ),
               ),
@@ -297,7 +287,11 @@ class LessonProgressPageState extends State<LessonProgressPage> {
 
   Widget selectSubjectDropDown() {
     return Container(
+      height: 50,
         decoration: kEditTextDecoration,
+        child:Row(children: [
+        Expanded(
+        flex: 5,
         child: DropdownButton<String>(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           value: selectedValue,
@@ -306,9 +300,21 @@ class LessonProgressPageState extends State<LessonProgressPage> {
           onChanged: (String? newValue) {
             setState(() {
               selectedValue = newValue!;
+
+              for (int i = 0; i < subjectList.length; i++) {
+                if (selectedValue.toLowerCase() ==
+                    subjectList[i].name.toLowerCase()) {
+                  subjectId = subjectList[i].id;
+                  if (kDebugMode) {
+                    print("subjectId--$subjectId");
+                  }
+                }
+              }
+              studentLessonBloc.add(GetLessonRecordData(
+                  studentId: studentId, subjectId: subjectId));
             });
           },
-          items: items.map((item) {
+          items: subjectList.map((item) {
             return DropdownMenuItem<String>(
               value: item.name,
               child: Text(
@@ -318,26 +324,48 @@ class LessonProgressPageState extends State<LessonProgressPage> {
             );
           }).toList(),
           underline: Container(),
-        ));
+        ),),
+      Expanded(
+        flex: 1,
+        child: Container(
+          alignment: Alignment.center,
+          child: Image.asset(
+            "assets/icons/ic_down.png",
+            scale: 2.5,
+          ),
+        ),
+      )
+    ]));
   }
 
-  Widget buildBookingHistoryContainer() {
+  Widget buildLessonListContainer() {
     return Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ListView.builder(
-            primary: false,
-            shrinkWrap: true,
-            itemCount: lessonRecord.length,
-            itemBuilder: (context, index) {
-              return BookingItemWidget(
-                date: lessonRecord[index].lessoname,
-                time: lessonRecord[index].lessonstatus,
-              );
-            },
-          )
+          lessonRecord.isNotEmpty
+              ? ListView.builder(
+                  primary: false,
+                  shrinkWrap: true,
+                  itemCount: lessonRecord.length,
+                  itemBuilder: (context, index) {
+                    return StudentLessonRecordWidget(
+                      lessonPlanId: lessonRecord[index].lessonplanid,
+                      classId: lessonRecord[index].classid,
+                      lessonStatus: lessonRecord[index].lessonstatus,
+                      statusNew: lessonRecord[index].statusnew,
+                      lessonName: lessonRecord[index].lessoname,
+                    );
+                  },
+                )
+              : Container(
+                  margin: const EdgeInsets.only(top: 50),
+                  child: Text(
+                    kData,
+                    style: textStyle(Colors.black54, 18, 0, FontWeight.w400),
+                  ),
+                ),
         ]);
   }
 }

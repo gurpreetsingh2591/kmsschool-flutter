@@ -42,3 +42,13 @@ class UserEmailVerificationSuccessState extends CommonState {
 
   const UserEmailVerificationSuccessState(this.response);
 }
+class ReminderListState extends CommonState {
+  final dynamic response;
+
+  const ReminderListState(this.response);
+}
+class SetReminderListState extends CommonState {
+  final dynamic response;
+
+  const SetReminderListState(this.response);
+}
