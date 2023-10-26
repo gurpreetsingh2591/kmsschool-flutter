@@ -37,6 +37,7 @@ const connectedTextColor = Color(0xffA3A3A3);
 
 
 const appBaseColor = Color(0xff30a7df);
+const appBaseColor1 = Color(0xff3cbdff);
 const appBaseColorSecondary = Color(0xff8ec045);
 const appRedColor = Color(0xfff1636a);
 const appTitleBarColor = Color(0xff9f9f9f);
