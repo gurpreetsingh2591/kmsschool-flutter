@@ -200,7 +200,7 @@ class SnackMenuPageState extends State<SnackMenuPage> {
                 leftVisibility: true,
                 bottomTextVisibility: false,
                 subTitle: '',
-                screen: 'lm',
+                screen: 'sm',
               ),
             ),
 
@@ -241,18 +241,7 @@ class SnackMenuPageState extends State<SnackMenuPage> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               height: 60,
               decoration: kButtonBgDecoration,
-              child: AppBar(
-                systemOverlayStyle: const SystemUiOverlayStyle(
-                  statusBarColor: appBaseColor,
-                  // <-- SEE HERE
-                  statusBarIconBrightness: Brightness.dark,
-                  //<-- For Android SEE HERE (dark icons)
-                  statusBarBrightness:
-                  Brightness.light, //<-- For iOS SEE HERE (dark icons)
-                ),
-                backgroundColor: appBaseColor,
-                centerTitle: true,
-                title: TopBarWidget(
+              child:  TopBarWidget(
                 onTapLeft: () {
                   _scaffoldKey.currentState?.openDrawer();
                 },
@@ -261,13 +250,13 @@ class SnackMenuPageState extends State<SnackMenuPage> {
                 },
                 leftIcon: 'assets/icons/menu.png',
                 rightIcon: 'assets/icons/user.png',
-                title: "Lunch Menu",
+                title: "Snack Menu",
                 rightVisibility: false,
                 leftVisibility: true,
                 bottomTextVisibility: false,
                 subTitle: '',
-                screen: 'lm',
-              ),
+                screen: 'sm',
+
             ),),
             Expanded(
               child: Container(

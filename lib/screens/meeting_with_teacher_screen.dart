@@ -275,8 +275,7 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
   }
 
   Widget loaderBar(BuildContext context, Size mq) {
-    return SafeArea(
-      child: Container(
+    return  Container(
         constraints: const BoxConstraints.expand(),
         decoration: boxImageDashboardBgDecoration(),
         child: Stack(
@@ -332,13 +331,12 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
             ),
           ],
         ),
-      ),
+
     );
   }
 
   Widget buildHomeContainer(BuildContext context, Size mq) {
-    return SafeArea(
-      child: Container(
+    return  Container(
         constraints: const BoxConstraints.expand(),
         decoration: boxImageDashboardBgDecoration(),
         child: Column(
@@ -384,7 +382,7 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
             )
           ],
         ),
-      ),
+
     );
   }
 

@@ -148,20 +148,10 @@ class HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
              Container(
-                height: 60,
-                decoration: kButtonBgDecoration,
-                child: AppBar(
-                  systemOverlayStyle: const SystemUiOverlayStyle(
-                    statusBarColor: appBaseColor,
-                    // <-- SEE HERE
-                    statusBarIconBrightness: Brightness.dark,
-                    //<-- For Android SEE HERE (dark icons)
-                    statusBarBrightness:
-                    Brightness.light, //<-- For iOS SEE HERE (dark icons)
-                  ),
-                  backgroundColor: appBaseColor,
-                  centerTitle: true,
-                  title: TopBarWidget(
+               padding: const EdgeInsets.symmetric(horizontal: 16),
+               height: 60,
+               decoration: kButtonBgDecoration,
+                child: TopBarWidget(
                   onTapLeft: () {
                     _scaffoldKey.currentState?.openDrawer();
                   },
@@ -171,11 +161,11 @@ class HomePageState extends State<HomePage> {
                   rightIcon: 'assets/icons/user.png',
                   title: "Home",
                   rightVisibility: true,
-                  leftVisibility: false,
+                  leftVisibility: true,
                   bottomTextVisibility: false,
                   subTitle: '',
                   screen: 'home',
-                ),
+
               ),),
 
             Container(

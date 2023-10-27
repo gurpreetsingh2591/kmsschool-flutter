@@ -180,11 +180,11 @@ List<String> photos = ["https://kmschool.observer.school/uploads/Sustainability-
 List<String> subjectList = ["Select Subject","Language Arts","Mathematics","French","punjabi","Sensorial"];
 
 
- launchUrl(Uri url) async {
+/* launchUrl(Uri url) async {
   if (!await launchUrl(url)) {
     throw Exception('Could not launch $url');
   }
-}
+}*/
 
 
 Map<String, String> splitName(String inputString) {

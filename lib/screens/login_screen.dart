@@ -13,8 +13,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-
-
 import '../app/AppLocalizations.dart';
 import '../app/router.dart';
 import '../bloc/event/login_event.dart';
@@ -81,16 +79,16 @@ class LoginPageState extends State<LoginPage> {
       });
     }
 
-
     FirebaseMessaging messaging = FirebaseMessaging.instance;
     messaging.getToken().then((token) {
       setState(() {
         fcmToken = token;
-
+        if (kDebugMode) {
+          print(fcmToken);
+        }
         SharedPrefs().setTokenKey(fcmToken!);
       });
     });
-
   }
 
   void passwordListener() {
@@ -190,7 +188,8 @@ class LoginPageState extends State<LoginPage> {
     else {
       passwordError = false;
       emailError = false;
-      loginBloc.add(LoginButtonPressed(username: userName, password: password, fcmToken: fcmToken!));
+      loginBloc.add(LoginButtonPressed(
+          username: userName, password: password, fcmToken: fcmToken!));
     }
   }
 
@@ -225,7 +224,6 @@ class LoginPageState extends State<LoginPage> {
           .setStudentCount(userData['result']['studuent_count'].toString());
       SharedPrefs().setStudentMomName(userData['result']['mom']);
 
-
       List<Map<String, dynamic>> students = [];
       if (userData['students_list'] != null) {
         if (userData['students_list'] is List) {
@@ -243,14 +241,12 @@ class LoginPageState extends State<LoginPage> {
         print("student---$students");
       }
 
-
       SharedPrefs().setIsLogin(true);
       Future.delayed(Duration.zero, () {
         context.go(Routes.mainHome);
       });
     }
   }
-
 
   showCustomToast() {
     setState(() {

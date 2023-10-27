@@ -13,10 +13,8 @@ import 'package:kmschool/utils/extensions/extensions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../model/BookedMeetingResponse.dart';
 import '../model/EventDatesResponse.dart';
 import '../utils/toast.dart';
-import '../widgets/BookingItemWidget.dart';
 import '../widgets/ColoredSafeArea.dart';
 import '../utils/constant.dart';
 import '../utils/shared_prefs.dart';
@@ -74,7 +72,8 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
       var eventDatesResponse = EventDatesResponse.fromJson(events);
       dynamic status = eventDatesResponse.status;
       String message = eventDatesResponse.message;
-
+      _markedDateMap.clear();
+      evenDatesList.clear();
       if (status == 200) {
         evenDatesList.addAll(eventDatesResponse.result);
         if (kDebugMode) {
@@ -91,9 +90,15 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
           int month = int.parse(dateParts[0]);
           int day = int.parse(dateParts[1]);
           DateTime convertedDate = DateTime(year, month, day);
+          final  formatted = DateFormat('yyyy,MM,dd').format(convertedDate);
 
-          //final DateTime startDate = DateTime.parse(eventData.start);
-         // final  formatted = DateFormat('yyyy,MM,dd').format(startDate);
+
+
+     /*     String formatDateTime(DateTime dateTime) {
+            return '${dateTime.year},${dateTime.month},${dateTime.day}';
+          }
+
+          formatDateTime(convertedDate);*/
 
           final String title = eventData.title;
           final String className = eventData.className;
@@ -101,16 +106,46 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
           if (kDebugMode) {
             print("eventData--$eventData");
             print("convertedDate--$convertedDate");
+            print("dateParts--$dateParts");
+            print("year--$year");
+            print("month--$month");
+            print("day--$day");
+            print("formatted--$formatted");
 
           }
           // Create an Event object and add it to the map
-          final event = Event(date:  convertedDate, title: title, dot: Container(
-            decoration: circleRedBox,
-            height: 35.0,
-            width: 35.0,
-          ), );
+          var event = Event(date: convertedDate);
+          if(className=="H") {
+             event = Event(
+              date: convertedDate, title: title, dot: Container(
+              decoration: circleRedBox,
+              height: 35.0,
+              width: 35.0,
+            ),);
+          }else if(className=="P"){
+            event = Event(
+              date: convertedDate, title: title, dot: Container(
+              decoration: circleYellowBox,
+              height: 35.0,
+              width: 35.0,
+            ),);
+          }else if(className=="M"){
+            event = Event(
+              date: convertedDate, title: title, dot: Container(
+              decoration: circleMitiBox,
+              height: 35.0,
+              width: 35.0,
+            ),);
+          }else if(className=="G"){
+            event = Event(
+              date: convertedDate, title: title, dot: Container(
+              decoration: circleGreenBox,
+              height: 35.0,
+              width: 35.0,
+            ),);
+          }
 
-          // Check if the date is already in the map; if not, create a new entry
+         /* // Check if the date is already in the map; if not, create a new entry
           if (dateTime == null) {
             dateTime = { convertedDate: [event]};
 
@@ -127,8 +162,8 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
               print("dateTime--$dateTime");
 
             }
-          }
-          _markedDateMap.add(convertedDate, events);
+          }*/
+          _markedDateMap.add(convertedDate, event);
           if (kDebugMode) {
             print("_markedDateMap$_markedDateMap");
             print("dateTime$dateTime");
@@ -188,11 +223,10 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
 
 
 
-/*
-  final EventList<Event> _markedDateMap = EventList<Event>(
+/*  final EventList<Event> _markedDateMap = EventList<Event>(
     events: {
 
-      DateTime(2023, 11, 20): [
+      DateTime(2023,11,20): [
         Event(
           date: DateTime(2023, 10, 10),
           title: 'Event 1',
@@ -217,8 +251,7 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
         ),
       ],
     },
-  )
-*/
+  );*/
 
   Future<void> initializePreference() async {
     SharedPrefs.init(await SharedPreferences.getInstance());
@@ -299,7 +332,8 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
            ListView(
                 shrinkWrap: true,
                 primary: true,
-                children: [buildBookingHistoryContainer()],
+                children: [   buildCalenderView(),
+                  100.height,buildBookingHistoryContainer()],
               ),
 
             Container(
@@ -359,8 +393,8 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
                 primary: false,
                 children: [
                   buildCalenderView(),
-              //  100.height,
-                //  buildBookingHistoryContainer()
+                100.height,
+                  buildBookingHistoryContainer()
                 ],
               ),
             ),

@@ -179,18 +179,7 @@ class SetReminderPageState extends State<SetReminderPage> {
         margin: const EdgeInsets.all(30),
         child: Stack(
           children: [
-            AppBar(
-              systemOverlayStyle: const SystemUiOverlayStyle(
-                statusBarColor: appBaseColor,
-                // <-- SEE HERE
-                statusBarIconBrightness: Brightness.dark,
-                //<-- For Android SEE HERE (dark icons)
-                statusBarBrightness:
-                    Brightness.light, //<-- For iOS SEE HERE (dark icons)
-              ),
-              backgroundColor: appBaseColor,
-              centerTitle: true,
-              title: TopBarWidget(
+           TopBarWidget(
                 onTapLeft: () {},
                 onTapRight: () {},
                 leftIcon: 'assets/icons/menu.png',
@@ -202,7 +191,7 @@ class SetReminderPageState extends State<SetReminderPage> {
                 subTitle: '',
                 screen: 'sr',
               ),
-            ),
+
             Container(
               height: 500,
               margin: const EdgeInsets.only(bottom: 20, top: 80),

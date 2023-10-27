@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="be1e7a7c-cf81-4d11-92da-a4a9d14712fb" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/kmsschool-flutter.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/libraries/Dart_SDK.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/libraries/Flutter_Plugins.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.flutter-plugins" beforeDir="false" afterPath="$PROJECT_DIR$/../.flutter-plugins" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.flutter-plugins-dependencies" beforeDir="false" afterPath="$PROJECT_DIR$/../.flutter-plugins-dependencies" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.5/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.5/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/.symlinks/plugins/cloud_firestore" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/.symlinks/plugins/cloud_firestore" afterDir="true" />
+      <change beforePath="$PROJECT_DIR$/../ios/.symlinks/plugins/firebase_core" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/.symlinks/plugins/firebase_core" afterDir="true" />
+      <change beforePath="$PROJECT_DIR$/../ios/.symlinks/plugins/firebase_database" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/.symlinks/plugins/firebase_database" afterDir="true" />
+      <change beforePath="$PROJECT_DIR$/../ios/.symlinks/plugins/fluttertoast" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/.symlinks/plugins/fluttertoast" afterDir="true" />
+      <change beforePath="$PROJECT_DIR$/../ios/.symlinks/plugins/path_provider_foundation" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/.symlinks/plugins/path_provider_foundation" afterDir="true" />
+      <change beforePath="$PROJECT_DIR$/../ios/.symlinks/plugins/permission_handler_apple" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/.symlinks/plugins/qr_code_scanner" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/.symlinks/plugins/shared_preferences_foundation" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/.symlinks/plugins/shared_preferences_foundation" afterDir="true" />
+      <change beforePath="$PROJECT_DIR$/../ios/.symlinks/plugins/wifi_scan" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Flutter/Generated.xcconfig" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Flutter/Generated.xcconfig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Flutter/flutter_export_environment.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Flutter/flutter_export_environment.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Podfile" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Podfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/Firebase/CoreOnly/Sources/Firebase.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/Firebase/CoreOnly/Sources/Firebase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/Firebase/CoreOnly/Sources/module.modulemap" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/Firebase/CoreOnly/Sources/module.modulemap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/Firebase/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/Firebase/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseCore/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/FirebaseCore/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseCoreInternal/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/FirebaseCoreInternal/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseDatabase/FirebaseAppCheck/Interop/FIRAppCheckInterop.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseDatabase/FirebaseAppCheck/Interop/FIRAppCheckTokenResultInterop.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseDatabase/FirebaseDatabase/Sources/Api/FIRDatabaseComponent.m" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/FirebaseDatabase/FirebaseDatabase/Sources/Api/FIRDatabaseComponent.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseDatabase/FirebaseDatabase/Sources/Login/FIRDatabaseConnectionContextProvider.m" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/FirebaseDatabase/FirebaseDatabase/Sources/Login/FIRDatabaseConnectionContextProvider.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseDatabase/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/FirebaseDatabase/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/api/query_core.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/api/query_core.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/api/query_core.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/api/query_core.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/core/composite_filter.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/core/composite_filter.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/core/composite_filter.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/core/composite_filter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/core/field_filter.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/core/field_filter.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/core/field_filter.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/core/field_filter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/core/filter.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/core/filter.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/core/filter.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/core/filter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/core/query.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/core/query.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/core/query.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/core/query.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/local/leveldb_index_manager.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/local/leveldb_index_manager.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/model/target_index_matcher.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/model/target_index_matcher.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/model/target_index_matcher.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/model/target_index_matcher.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/remote/remote_event.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/remote/remote_event.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/remote/remote_event.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/remote/remote_event.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/util/testing_hooks.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/Firestore/core/src/util/testing_hooks.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/FirebaseFirestore/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/Local Podspecs/cloud_firestore.podspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/Local Podspecs/cloud_firestore.podspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/Local Podspecs/firebase_core.podspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/Local Podspecs/firebase_core.podspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/Local Podspecs/firebase_database.podspec.json" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/Local Podspecs/firebase_database.podspec.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/channel.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/channel.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/create_channel.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/create_channel.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/generic/async_generic_service.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/generic/async_generic_service.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/call.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/call.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/call_hook.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/call_op_set_interface.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/async_generic_service.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/async_generic_service.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/async_stream.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/async_stream.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/async_unary_call.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/async_unary_call.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/byte_buffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/byte_buffer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/call.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/call.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/call_hook.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/call_hook.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/call_op_set.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/call_op_set.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/call_op_set_interface.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/call_op_set_interface.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/callback_common.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/callback_common.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/channel_interface.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/channel_interface.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/client_interceptor.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/client_interceptor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/interceptor.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/interceptor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/interceptor_common.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/interceptor_common.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/method_handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/method_handler.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/rpc_service_method.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/rpc_service_method.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/server_interface.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/server_interface.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/sync_stream.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/impl/codegen/sync_stream.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/security/credentials.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/security/credentials.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/server.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/server.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/support/async_stream.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/support/async_stream.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/support/async_unary_call.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/support/async_unary_call.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/support/byte_buffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/support/byte_buffer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/support/client_interceptor.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/include/grpcpp/support/client_interceptor.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/filters/client_channel/client_channel.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/filters/client_channel/client_channel.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/filters/client_channel/http_proxy.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/filters/client_channel/http_proxy.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/filters/client_channel/lb_policy/child_policy_handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/filters/client_channel/lb_policy/child_policy_handler.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/filters/client_channel/lb_policy/outlier_detection/outlier_detection.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/filters/client_channel/lb_policy/outlier_detection/outlier_detection.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/filters/client_channel/lb_policy/ring_hash/ring_hash.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/filters/client_channel/lb_policy/ring_hash/ring_hash.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/filters/client_channel/lb_policy/subchannel_list.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/filters/client_channel/lb_policy/subchannel_list.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/filters/client_channel/resolver/polling_resolver.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/filters/client_channel/resolver/polling_resolver.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/filters/client_channel/subchannel.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/filters/client_channel/subchannel.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/filters/fault_injection/fault_injection_filter.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/filters/fault_injection/fault_injection_filter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/transport/binder/transport/binder_transport.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/transport/binder/transport/binder_transport.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/transport/binder/wire_format/wire_reader_impl.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/transport/binder/wire_format/wire_reader_impl.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/transport/binder/wire_format/wire_reader_impl.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/transport/binder/wire_format/wire_reader_impl.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/transport/chttp2/transport/decode_huff.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/transport/chttp2/transport/flow_control.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/transport/chttp2/transport/flow_control.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/transport/chttp2/transport/hpack_parser_table.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/transport/chttp2/transport/hpack_parser_table.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/transport/chttp2/transport/internal.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/transport/chttp2/transport/internal.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/certificate_provider_store.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/certificate_provider_store.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/file_watcher_certificate_provider_factory.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/file_watcher_certificate_provider_factory.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/xds_api.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/xds_api.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/xds_bootstrap.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/xds_bootstrap.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/xds_bootstrap_grpc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/xds_client.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/xds_client.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/xds_client_grpc.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/xds_client_grpc.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/xds_cluster.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/xds_cluster.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/xds_endpoint.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/xds_endpoint.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/xds_listener.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/xds_listener.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/xds_resource_type.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/xds_resource_type.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/xds_route_config.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/ext/xds/xds_route_config.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/channel/call_finalization.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/channel/call_finalization.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/channel/channel_args.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/channel/channel_args.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/channel/status_util.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/channel/status_util.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/config/core_configuration.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/config/core_configuration.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/debug/stats.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/debug/stats.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/debug/stats_data.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/debug/stats_data.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/event_engine/channel_args_endpoint_config.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/event_engine/channel_args_endpoint_config.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/event_engine/poller.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/event_engine/poller.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/event_engine/posix_engine/timer_manager.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/event_engine/posix_engine/timer_manager.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/event_engine/thread_pool.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/event_engine/thread_pool.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/event_engine/time_util.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/event_engine/utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/event_engine/utils.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/event_engine/windows/iocp.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/event_engine/windows/iocp.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/experiments/config.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/experiments/experiments.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/gpr/time_precise.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/gpr/time_precise.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/gpr/useful.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/gpr/useful.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/gprpp/env.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/gprpp/fork.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/gprpp/fork.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/gprpp/notification.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/gprpp/packed_table.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/gprpp/ref_counted_ptr.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/gprpp/ref_counted_ptr.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/gprpp/sorted_pack.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/gprpp/status_helper.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/gprpp/status_helper.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/gprpp/table.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/gprpp/table.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/gprpp/tchar.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/gprpp/time.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/gprpp/time.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/gprpp/validation_errors.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/handshaker/proxy_mapper.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/handshaker/proxy_mapper_registry.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/closure.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/closure.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/exec_ctx.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/exec_ctx.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/iomgr_fwd.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/iomgr_fwd.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/pollset.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/pollset.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/pollset_set.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/pollset_set.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/resolve_address.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/resolve_address.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/resolve_address_impl.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/resolve_address_impl.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/socket_utils_posix.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/socket_utils_posix.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/tcp_client.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/tcp_client.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/tcp_client_posix.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/tcp_client_posix.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/tcp_posix.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/tcp_posix.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/tcp_server.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/tcp_server.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/tcp_server_utils_posix.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/tcp_server_utils_posix.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/tcp_windows.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/iomgr/tcp_windows.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/json/json_object_loader.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/json/json_object_loader.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/load_balancing/lb_policy.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/load_balancing/lb_policy.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/load_balancing/lb_policy_registry.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/load_balancing/lb_policy_registry.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/promise/activity.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/promise/activity.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/promise/context.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/promise/context.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/promise/sleep.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/promise/sleep.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/resolver/resolver.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/resolver/resolver.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/resource_quota/api.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/resource_quota/api.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/resource_quota/memory_quota.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/resource_quota/memory_quota.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/security/certificate_provider/certificate_provider_factory.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/security/certificate_provider/certificate_provider_registry.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/security/credentials/jwt/jwt_verifier.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/security/credentials/jwt/jwt_verifier.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/security/credentials/tls/grpc_tls_certificate_provider.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/security/credentials/tls/grpc_tls_certificate_provider.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/surface/completion_queue.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/surface/completion_queue.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/surface/init_internally.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/surface/server.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/surface/server.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/transport/metadata_batch.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/transport/metadata_batch.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/transport/parsed_metadata.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/transport/parsed_metadata.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/transport/transport.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/transport/transport.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/transport/transport_impl.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/core/lib/transport/transport_impl.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/cpp/client/channel_cc.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/cpp/client/channel_cc.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/cpp/client/secure_credentials.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/cpp/client/secure_credentials.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/cpp/common/version_cc.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/cpp/common/version_cc.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/cpp/server/server_cc.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/cpp/server/server_cc.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/cpp/server/server_context.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-C++/src/cpp/server/server_context.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/include/grpc/event_engine/endpoint_config.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/include/grpc/event_engine/endpoint_config.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/include/grpc/event_engine/event_engine.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/include/grpc/event_engine/event_engine.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/include/grpc/impl/codegen/atm_gcc_atomic.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/include/grpc/impl/codegen/atm_gcc_atomic.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/include/grpc/impl/codegen/atm_gcc_sync.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/include/grpc/impl/codegen/atm_gcc_sync.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/include/grpc/impl/codegen/atm_windows.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/include/grpc/impl/codegen/atm_windows.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/include/grpc/impl/codegen/grpc_types.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/include/grpc/impl/codegen/grpc_types.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/channel_idle/channel_idle_filter.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/channel_idle/channel_idle_filter.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/backup_poller.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/backup_poller.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/client_channel.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/client_channel.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/client_channel.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/client_channel.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/client_channel_plugin.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/client_channel_plugin.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/http_proxy.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/http_proxy.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/http_proxy.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/http_proxy.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/child_policy_handler.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/child_policy_handler.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/child_policy_handler.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/child_policy_handler.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/grpclb/client_load_reporting_filter.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/grpclb/client_load_reporting_filter.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/grpclb/grpclb.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/grpclb/grpclb.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/oob_backend_metric.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/oob_backend_metric.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/outlier_detection/outlier_detection.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/outlier_detection/outlier_detection.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/outlier_detection/outlier_detection.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/outlier_detection/outlier_detection.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/pick_first/pick_first.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/pick_first/pick_first.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/priority/priority.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/priority/priority.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/ring_hash/ring_hash.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/ring_hash/ring_hash.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/ring_hash/ring_hash.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/ring_hash/ring_hash.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/rls/rls.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/rls/rls.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/round_robin/round_robin.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/round_robin/round_robin.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/subchannel_list.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/subchannel_list.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/weighted_target/weighted_target.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/weighted_target/weighted_target.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/xds/cds.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/xds/cds.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/xds/xds_cluster_impl.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/xds/xds_cluster_impl.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/xds/xds_cluster_manager.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/xds/xds_cluster_manager.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/xds/xds_cluster_resolver.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/lb_policy/xds/xds_cluster_resolver.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/resolver/dns/c_ares/grpc_ares_wrapper.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/resolver/dns/c_ares/grpc_ares_wrapper.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/resolver/dns/native/dns_resolver.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/resolver/dns/native/dns_resolver.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/resolver/google_c2p/google_c2p_resolver.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/resolver/google_c2p/google_c2p_resolver.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/resolver/polling_resolver.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/resolver/polling_resolver.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/resolver/polling_resolver.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/resolver/polling_resolver.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/resolver/sockaddr/sockaddr_resolver.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/resolver/sockaddr/sockaddr_resolver.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/resolver/xds/xds_resolver.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/resolver/xds/xds_resolver.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/resolver_result_parsing.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/resolver_result_parsing.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/retry_filter.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/retry_filter.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/subchannel.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/subchannel.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/subchannel.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/subchannel.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/subchannel_stream_client.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/client_channel/subchannel_stream_client.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/fault_injection/fault_injection_filter.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/fault_injection/fault_injection_filter.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/fault_injection/fault_injection_filter.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/fault_injection/fault_injection_filter.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/http/client/http_client_filter.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/http/client/http_client_filter.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/http/message_compress/message_compress_filter.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/http/message_compress/message_compress_filter.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/http/message_compress/message_decompress_filter.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/http/message_compress/message_decompress_filter.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/http/server/http_server_filter.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/filters/http/server/http_server_filter.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/client/chttp2_connector.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/client/chttp2_connector.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/server/chttp2_server.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/server/chttp2_server.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/bin_encoder.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/bin_encoder.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/chttp2_transport.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/chttp2_transport.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/decode_huff.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/decode_huff.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/flow_control.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/flow_control.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/flow_control.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/flow_control.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/frame_ping.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/frame_ping.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/hpack_encoder.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/hpack_encoder.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/hpack_parser.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/hpack_parser.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/hpack_parser_table.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/hpack_parser_table.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/hpack_parser_table.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/hpack_parser_table.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/internal.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/internal.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/parsing.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/parsing.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/writing.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/chttp2/transport/writing.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/inproc/inproc_transport.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/transport/inproc/inproc_transport.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/certificate_provider_store.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/certificate_provider_store.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/certificate_provider_store.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/certificate_provider_store.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/file_watcher_certificate_provider_factory.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/file_watcher_certificate_provider_factory.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/file_watcher_certificate_provider_factory.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/file_watcher_certificate_provider_factory.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_api.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_api.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_api.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_api.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_bootstrap.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_bootstrap.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_bootstrap.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_bootstrap.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_bootstrap_grpc.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_bootstrap_grpc.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_client.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_client.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_client.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_client.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_client_grpc.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_client_grpc.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_client_grpc.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_client_grpc.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_client_stats.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_client_stats.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_cluster.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_cluster.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_cluster.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_cluster.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_cluster_specifier_plugin.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_cluster_specifier_plugin.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_common_types.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_common_types.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_endpoint.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_endpoint.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_endpoint.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_endpoint.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_lb_policy_registry.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_lb_policy_registry.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_listener.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_listener.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_listener.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_listener.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_resource_type.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_resource_type.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_route_config.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_route_config.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_route_config.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_route_config.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_server_config_fetcher.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_server_config_fetcher.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_transport_grpc.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/ext/xds/xds_transport_grpc.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/backoff/backoff.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/backoff/backoff.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/channel/call_finalization.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/channel/call_finalization.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/channel/channel_args.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/channel/channel_args.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/channel/channel_trace.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/channel/channel_trace.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/channel/promise_based_filter.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/channel/promise_based_filter.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/channel/status_util.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/channel/status_util.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/channel/status_util.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/channel/status_util.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/config/core_configuration.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/config/core_configuration.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/config/core_configuration.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/config/core_configuration.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/debug/stats.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/debug/stats.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/debug/stats.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/debug/stats.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/debug/stats_data.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/debug/stats_data.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/debug/stats_data.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/debug/stats_data.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/debug/trace.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/debug/trace.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/channel_args_endpoint_config.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/channel_args_endpoint_config.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/channel_args_endpoint_config.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/channel_args_endpoint_config.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/forkable.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/forkable.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/poller.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/poller.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/posix_engine/timer_manager.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/posix_engine/timer_manager.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/posix_engine/timer_manager.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/posix_engine/timer_manager.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/thread_pool.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/thread_pool.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/thread_pool.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/thread_pool.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/time_util.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/time_util.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/utils.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/utils.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/utils.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/utils.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/windows/iocp.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/windows/iocp.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/windows/iocp.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/windows/iocp.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/windows/win_socket.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/event_engine/windows/win_socket.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/experiments/config.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/experiments/config.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/experiments/experiments.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/experiments/experiments.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gpr/alloc.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gpr/alloc.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gpr/log_windows.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gpr/log_windows.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gpr/string_util_windows.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gpr/string_util_windows.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gpr/sync_abseil.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gpr/sync_abseil.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gpr/sync_posix.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gpr/sync_posix.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gpr/time_posix.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gpr/time_posix.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gpr/time_precise.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gpr/time_precise.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gpr/tmpfile_windows.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gpr/tmpfile_windows.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gpr/useful.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gpr/useful.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/env.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/env_linux.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/env_posix.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/env_windows.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/fork.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/fork.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/fork.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/fork.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/global_config_env.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/global_config_env.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/notification.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/packed_table.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/ref_counted_ptr.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/ref_counted_ptr.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/sorted_pack.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/status_helper.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/status_helper.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/table.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/table.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/tchar.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/tchar.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/time.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/time.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/time.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/time.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/validation_errors.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/gprpp/validation_errors.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/handshaker/proxy_mapper.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/handshaker/proxy_mapper_registry.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/handshaker/proxy_mapper_registry.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/call_combiner.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/call_combiner.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/closure.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/closure.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/endpoint_pair_posix.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/endpoint_pair_posix.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/endpoint_pair_windows.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/endpoint_pair_windows.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/ev_epoll1_linux.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/ev_epoll1_linux.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/ev_poll_posix.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/ev_poll_posix.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/exec_ctx.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/exec_ctx.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/exec_ctx.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/exec_ctx.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/iocp_windows.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/iocp_windows.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/iomgr.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/iomgr.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/iomgr_fwd.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/iomgr_fwd.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/pollset.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/pollset.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/pollset_set.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/pollset_set.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/resolve_address.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/resolve_address.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/resolve_address_impl.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/resolve_address_impl.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/resolve_address_posix.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/resolve_address_posix.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/resolve_address_windows.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/resolve_address_windows.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/sockaddr_utils_posix.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/sockaddr_utils_posix.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/socket_utils_common_posix.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/socket_utils_common_posix.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/socket_utils_posix.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/socket_utils_posix.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/socket_utils_posix.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/socket_utils_posix.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_client.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_client.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_client.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_client.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_client_cfstream.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_client_cfstream.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_client_posix.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_client_posix.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_client_posix.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_client_posix.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_client_windows.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_client_windows.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_posix.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_posix.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_posix.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_posix.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_server.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_server.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_server.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_server.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_server_posix.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_server_posix.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_server_utils_posix.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_server_utils_posix.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_server_utils_posix_common.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_server_utils_posix_common.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_server_windows.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_server_windows.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_windows.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_windows.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_windows.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/tcp_windows.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/timer_generic.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/timer_generic.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/timer_manager.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/timer_manager.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/wakeup_fd_eventfd.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/iomgr/wakeup_fd_eventfd.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/json/json_object_loader.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/json/json_object_loader.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/json/json_object_loader.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/json/json_object_loader.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/json/json_util.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/json/json_util.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/load_balancing/lb_policy.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/load_balancing/lb_policy.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/load_balancing/lb_policy_registry.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/load_balancing/lb_policy_registry.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/load_balancing/lb_policy_registry.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/load_balancing/lb_policy_registry.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/promise/activity.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/promise/activity.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/promise/context.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/promise/context.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/promise/sleep.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/promise/sleep.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/promise/sleep.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/promise/sleep.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/resolver/resolver.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/resolver/resolver.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/resource_quota/api.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/resource_quota/api.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/resource_quota/api.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/resource_quota/api.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/resource_quota/arena.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/resource_quota/arena.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/resource_quota/memory_quota.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/resource_quota/memory_quota.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/resource_quota/memory_quota.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/resource_quota/memory_quota.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/resource_quota/periodic_update.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/resource_quota/periodic_update.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/certificate_provider/certificate_provider_factory.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/certificate_provider/certificate_provider_registry.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/certificate_provider/certificate_provider_registry.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/credentials/channel_creds_registry_init.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/credentials/channel_creds_registry_init.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/credentials/external/aws_external_account_credentials.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/credentials/external/aws_external_account_credentials.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/credentials/external/external_account_credentials.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/credentials/external/external_account_credentials.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/credentials/google_default/credentials_generic.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/credentials/google_default/credentials_generic.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/credentials/google_default/google_default_credentials.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/credentials/google_default/google_default_credentials.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/credentials/jwt/jwt_verifier.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/credentials/jwt/jwt_verifier.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/credentials/jwt/jwt_verifier.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/credentials/jwt/jwt_verifier.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/credentials/oauth2/oauth2_credentials.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/credentials/oauth2/oauth2_credentials.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/credentials/tls/grpc_tls_certificate_provider.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/credentials/tls/grpc_tls_certificate_provider.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/credentials/tls/grpc_tls_certificate_provider.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/credentials/tls/grpc_tls_certificate_provider.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/credentials/tls/tls_utils.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/credentials/tls/tls_utils.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/transport/client_auth_filter.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/transport/client_auth_filter.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/transport/secure_endpoint.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/security/transport/secure_endpoint.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/surface/call.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/surface/call.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/surface/channel.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/surface/channel.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/surface/completion_queue.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/surface/completion_queue.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/surface/completion_queue.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/surface/completion_queue.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/surface/completion_queue_factory.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/surface/completion_queue_factory.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/surface/init.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/surface/init.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/surface/init_internally.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/surface/init_internally.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/surface/server.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/surface/server.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/surface/server.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/surface/server.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/surface/version.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/surface/version.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/transport/bdp_estimator.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/transport/bdp_estimator.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/transport/metadata_batch.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/transport/metadata_batch.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/transport/metadata_batch.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/transport/metadata_batch.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/transport/parsed_metadata.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/transport/parsed_metadata.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/transport/status_conversion.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/transport/status_conversion.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/transport/tcp_connect_handshaker.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/transport/tcp_connect_handshaker.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/transport/transport.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/transport/transport.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/transport/transport_impl.h" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/lib/transport/transport_impl.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/plugin_registry/grpc_plugin_registry.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/plugin_registry/grpc_plugin_registry.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/plugin_registry/grpc_plugin_registry_extra.cc" beforeDir="false" afterPath="$PROJECT_DIR$/../ios/Pods/gRPC-Core/src/core/plugin_registry/grpc_plugin_registry_extra.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/data/api/api_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/data/api/api_constants.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/home_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/home_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/lesson_progress_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/lesson_progress_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/login_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/login_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/lunch_menu_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/lunch_menu_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/meeting_with_teacher_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/meeting_with_teacher_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/school_calender_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/school_calender_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/set_remider_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/set_remider_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/snack_menu_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/snack_menu_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/screens/student_photo_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/screens/student_photo_screen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lib/utils/constant.dart" beforeDir="false" afterPath="$PROJECT_DIR$/../lib/utils/constant.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../pubspec.lock" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/gurpreetsingh/.android/avd/Pixel_XL_API_34.avd]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2XLayLYNS1ZYhBpkj73WFquuGS4" />
+  <component name="ProjectViewState">
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "show.migrate.to.gradle.popup": "false"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
+      <module name="android.app.main" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Hybrid>
+      <Java>
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Java>
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+        <option name="ATTACH_ON_WAIT_FOR_DEBUGGER" value="false" />
+        <option name="DEBUG_SANDBOX_SDK" value="false" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="be1e7a7c-cf81-4d11-92da-a4a9d14712fb" name="Changes" comment="" />
+      <created>1698411066326</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1698411066326</updated>
+    </task>
+    <servers />
+  </component>
+</project>
