@@ -171,51 +171,102 @@ class SetReminderPageState extends State<SetReminderPage> {
 
   Widget loaderBar(BuildContext context, Size mq) {
     return Container(
-      constraints: BoxConstraints(
-        maxHeight: mq.height,
-      ),
+      constraints: const BoxConstraints.expand(),
       decoration: boxImageDashboardBgDecoration(),
-      child: Container(
-        margin: const EdgeInsets.all(30),
-        child: Stack(
-          children: [
-           TopBarWidget(
-                onTapLeft: () {},
-                onTapRight: () {},
-                leftIcon: 'assets/icons/menu.png',
-                rightIcon: 'assets/icons/user.png',
-                title: "Reminder Setting",
-                rightVisibility: true,
-                leftVisibility: true,
-                bottomTextVisibility: false,
-                subTitle: '',
-                screen: 'sr',
-              ),
+      child: Stack(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            height: 60,
+            decoration: kButtonBgDecoration,
+            child: TopBarWidget(
+              onTapLeft: () {
+                _scaffoldKey.currentState?.openDrawer();
+              },
+              onTapRight: () {
 
-            Container(
-              height: 500,
-              margin: const EdgeInsets.only(bottom: 20, top: 80),
-              child: const Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Center(
-                      child: SpinKitFadingCircle(
-                    color: kLightGray,
-                    size: 80.0,
-                  ))
-                ],
-              ),
+              },
+              leftIcon: 'assets/icons/menu.png',
+              rightIcon: 'assets/icons/user.png',
+              title: "Reminder Setting",
+              rightVisibility: false,
+              leftVisibility: true,
+              bottomTextVisibility: false,
+              subTitle: '',
+              screen: 'mfs',
             ),
-          ],
-        ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(
+              bottom: 20,
+              top: 82,
+              left: 16,
+            ),
+            child: ListView(
+              shrinkWrap: true,
+              primary: false,
+              children: [
+                Text.rich(
+                  textAlign: TextAlign.left,
+                  TextSpan(
+                    text: "",
+                    style: textStyle(Colors.black, 14, 0, FontWeight.w500),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text: "You Can Choose Multiple Reminder",
+                        style:
+                        textStyle(appBaseColor, 14, 0, FontWeight.w500),
+                      ),
+                      // can add more TextSpans here...
+                    ],
+                  ),
+                ),
+                20.height,
+                buildCategoriesListWeb2000Container(context, mq),
+                40.height,
+                ButtonWidget(
+                  margin: 40,
+                  name: "Add Reminder".toUpperCase(),
+                  icon: "",
+                  visibility: false,
+                  padding: 0,
+                  onTap: () {
+                    callSetReminderApi();
+                  },
+                  size: 12,
+                  scale: 2,
+                  height: 50,
+                  decoration: kSelectedDecoration,
+                  textColors: Colors.white,
+                  rightVisibility: false,
+                  weight: FontWeight.w400,
+                  iconColor: Colors.white,
+                )
+              ],
+            ),
+          ),
+          Container(
+            height: 500,
+            margin: const EdgeInsets.only(bottom: 20, top: 80),
+            child: const Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Center(
+                    child: SpinKitFadingCircle(
+                      color: kLightGray,
+                      size: 80.0,
+                    ))
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
 
   Widget buildHomeContainer(BuildContext context, Size mq) {
-    return SafeArea(
-      child: Container(
+    return Container(
         constraints: const BoxConstraints.expand(),
         decoration: boxImageDashboardBgDecoration(),
         child: Column(
@@ -224,20 +275,10 @@ class SetReminderPageState extends State<SetReminderPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
               height: 60,
               decoration: kButtonBgDecoration,
-              child: AppBar(
-                systemOverlayStyle: const SystemUiOverlayStyle(
-                  statusBarColor: appBaseColor,
-                  // <-- SEE HERE
-                  statusBarIconBrightness: Brightness.dark,
-                  //<-- For Android SEE HERE (dark icons)
-                  statusBarBrightness:
-                  Brightness.light, //<-- For iOS SEE HERE (dark icons)
-                ),
-                backgroundColor: appBaseColor,
-                centerTitle: true,
-                title: TopBarWidget(
+              child:  TopBarWidget(
                 onTapLeft: () {
                   _scaffoldKey.currentState?.openDrawer();
                 },
@@ -245,13 +286,13 @@ class SetReminderPageState extends State<SetReminderPage> {
                 leftIcon: 'assets/icons/menu.png',
                 rightIcon: 'assets/icons/user.png',
                 title: "Reminder Setting",
-                rightVisibility: true,
-                leftVisibility: false,
+                rightVisibility: false,
+                leftVisibility: true,
                 bottomTextVisibility: false,
                 subTitle: '',
                 screen: 'sr',
               ),
-            ),),
+            ),
             Container(
               margin: const EdgeInsets.only(
                 bottom: 20,
@@ -303,7 +344,7 @@ class SetReminderPageState extends State<SetReminderPage> {
             ),
           ],
         ),
-      ),
+
     );
   }
 
@@ -322,6 +363,8 @@ class SetReminderPageState extends State<SetReminderPage> {
             return Card(
               color: appBaseColor,
               child: ListTile(
+                contentPadding: EdgeInsets.only(left: 20),
+               // visualDensity:   VisualDensity(horizontal: -4),
                 title: Text(
                   reminderList[index].daystext,
                   style: textStyle(Colors.white, 12, 0, FontWeight.normal),

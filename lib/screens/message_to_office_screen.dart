@@ -158,8 +158,7 @@ class MessageToOfficePageState extends State<MessageToOfficePage> {
   }
 
   Widget loaderBar(BuildContext context, Size mq) {
-    return SafeArea(
-      child: Container(
+    return  Container(
         constraints: const BoxConstraints.expand(),
         decoration: boxImageDashboardBgDecoration(),
         child: Stack(
@@ -217,13 +216,11 @@ class MessageToOfficePageState extends State<MessageToOfficePage> {
             ),
           ],
         ),
-      ),
     );
   }
 
   Widget buildHomeContainer(BuildContext context, Size mq) {
-    return SafeArea(
-      child: Container(
+    return Container(
         constraints: const BoxConstraints.expand(),
         decoration: boxImageDashboardBgDecoration(),
         child: Column(
@@ -257,10 +254,10 @@ class MessageToOfficePageState extends State<MessageToOfficePage> {
                     bottom: 20, top: 22, left: 16, right: 16),
                 child: ListView(
                   shrinkWrap: true,
-                  primary: true,
+                  primary: false,
                   children: [
                     buildSelectionTab(),
-                    40.height,
+                    30.height,
                     selection
                         ? buildComposeMessageContainer()
                         : buildMessageListContainer()
@@ -271,7 +268,7 @@ class MessageToOfficePageState extends State<MessageToOfficePage> {
             )
           ],
         ),
-      ),
+
     );
   }
 
@@ -295,7 +292,7 @@ class MessageToOfficePageState extends State<MessageToOfficePage> {
 
   Widget buildComposeMessageContainer() {
     return Column(
-        mainAxisSize: MainAxisSize.max,
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

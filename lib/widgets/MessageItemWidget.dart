@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:kmschool/utils/extensions/lib_extensions.dart';
 import '../utils/constant.dart';
 
-
 class MessageItemWidget extends StatelessWidget {
   final String subject;
   final String description;
@@ -39,16 +38,19 @@ class MessageItemWidget extends StatelessWidget {
               color: Colors.grey,
             ),
             5.height,
-            Text(
-              description,
-              style: textStyle(Colors.black87, 12, 0, FontWeight.w400),
-              textAlign: TextAlign.left,
+            Flexible(
+              child: Text(
+                description,
+                style: textStyle(Colors.black87, 12, 0, FontWeight.w400),
+                textAlign: TextAlign.left,
+              ),
             ),
             5.height,
             Container(
               alignment: Alignment.centerRight,
               child: Text(
                 date,
+                maxLines: 1,
                 style: textStyle(Colors.black, 12, 0, FontWeight.w500),
                 textAlign: TextAlign.right,
               ),
