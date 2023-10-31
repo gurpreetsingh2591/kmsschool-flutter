@@ -68,7 +68,4 @@ class ApiConstants {
   static String classId="classid";
   static String fcmToken="fcmToken";
   static String dayS="&days=";
-
-
-
 }

@@ -14,7 +14,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/logic_bloc/student_lesson_bloc.dart';
 import '../model/LessonRecordResponse.dart';
 import '../model/StudentSubjectResponse.dart';
-import '../widgets/BookingItemWidget.dart';
 import '../widgets/ColoredSafeArea.dart';
 import '../utils/constant.dart';
 import '../utils/shared_prefs.dart';
@@ -177,8 +176,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
   }
 
   Widget loaderBar(BuildContext context, Size mq) {
-    return SafeArea(
-      child: Container(
+    return  Container(
         constraints: const BoxConstraints.expand(),
         decoration: boxImageDashboardBgDecoration(),
         child: Stack(
@@ -187,18 +185,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               height: 60,
               decoration: kButtonBgDecoration,
-              child: AppBar(
-                systemOverlayStyle: const SystemUiOverlayStyle(
-                  statusBarColor: appBaseColor,
-                  // <-- SEE HERE
-                  statusBarIconBrightness: Brightness.dark,
-                  //<-- For Android SEE HERE (dark icons)
-                  statusBarBrightness:
-                  Brightness.light, //<-- For iOS SEE HERE (dark icons)
-                ),
-                backgroundColor: appBaseColor,
-                centerTitle: true,
-                title: TopBarWidget(
+              child: TopBarWidget(
                 onTapLeft: () {
                   _scaffoldKey.currentState?.openDrawer();
                 },
@@ -207,12 +194,12 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                 rightIcon: 'assets/icons/user.png',
                 title: "Lesson Progress",
                 rightVisibility: false,
-                leftVisibility: false,
+                leftVisibility: true,
                 bottomTextVisibility: false,
                 subTitle: '',
                 screen: 'mwt',
               ),
-            ),),
+            ),
             Container(
               margin: const EdgeInsets.only(
                   bottom: 20, top: 80, left: 16, right: 16),
@@ -243,13 +230,12 @@ class LessonProgressPageState extends State<LessonProgressPage> {
             ),
           ],
         ),
-      ),
+
     );
   }
 
   Widget buildHomeContainer(BuildContext context, Size mq) {
-    return SafeArea(
-      child: Container(
+    return  Container(
         constraints: const BoxConstraints.expand(),
         decoration: boxImageDashboardBgDecoration(),
         child: Column(
@@ -293,61 +279,48 @@ class LessonProgressPageState extends State<LessonProgressPage> {
             )
           ],
         ),
-      ),
+
     );
   }
 
   Widget selectSubjectDropDown() {
     return Container(
       height: 50,
-        decoration: kEditTextDecoration,
-        child:Row(children: [
-        Expanded(
-        flex: 5,
-        child: DropdownButton<String>(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          value: selectedValue,
-          isExpanded: true,
-          dropdownColor: Colors.white,
-          onChanged: (String? newValue) {
-            setState(() {
-              selectedValue = newValue!;
+      decoration: kEditTextDecoration,
+      child: DropdownButton<String>(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        value: selectedValue,
+        isExpanded: true,
+        dropdownColor: Colors.white,
+        onChanged: (String? newValue) {
+          setState(() {
+            selectedValue = newValue!;
 
-              for (int i = 0; i < subjectList.length; i++) {
-                if (selectedValue.toLowerCase() ==
-                    subjectList[i].name.toLowerCase()) {
-                  subjectId = subjectList[i].id;
-                  if (kDebugMode) {
-                    print("subjectId--$subjectId");
-                  }
+            for (int i = 0; i < subjectList.length; i++) {
+              if (selectedValue.toLowerCase() ==
+                  subjectList[i].name.toLowerCase()) {
+                subjectId = subjectList[i].id;
+                if (kDebugMode) {
+                  print("subjectId--$subjectId");
                 }
               }
-              studentLessonBloc.add(GetLessonRecordData(
-                  studentId: studentId, subjectId: subjectId));
-            });
-          },
-          items: subjectList.map((item) {
-            return DropdownMenuItem<String>(
-              value: item.name,
-              child: Text(
-                item.name,
-                style: textStyle(Colors.black, 14, 0, FontWeight.w400),
-              ),
-            );
-          }).toList(),
-          underline: Container(),
-        ),),
-      Expanded(
-        flex: 1,
-        child: Container(
-          alignment: Alignment.center,
-          child: Image.asset(
-            "assets/icons/ic_down.png",
-            scale: 2.5,
-          ),
-        ),
-      )
-    ]));
+            }
+            studentLessonBloc.add(GetLessonRecordData(
+                studentId: studentId, subjectId: subjectId));
+          });
+        },
+        items: subjectList.map((item) {
+          return DropdownMenuItem<String>(
+            value: item.name,
+            child: Text(
+              item.name,
+              style: textStyle(Colors.black, 14, 0, FontWeight.w400),
+            ),
+          );
+        }).toList(),
+        underline: Container(),
+      ),
+    );
   }
 
   Widget buildLessonListContainer() {

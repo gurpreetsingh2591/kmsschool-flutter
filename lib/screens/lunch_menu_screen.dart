@@ -154,18 +154,7 @@ class LunchMenuPageState extends State<LunchMenuPage> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               height: 60,
               decoration: kButtonBgDecoration,
-              child:AppBar(
-                systemOverlayStyle: const SystemUiOverlayStyle(
-                  statusBarColor: appBaseColor,
-                  // <-- SEE HERE
-                  statusBarIconBrightness: Brightness.dark,
-                  //<-- For Android SEE HERE (dark icons)
-                  statusBarBrightness:
-                  Brightness.light, //<-- For iOS SEE HERE (dark icons)
-                ),
-                backgroundColor: appBaseColor,
-                centerTitle: true,
-                title:  TopBarWidget(
+              child: TopBarWidget(
                 onTapLeft: () {
                   _scaffoldKey.currentState?.openDrawer();
                 },
@@ -180,7 +169,7 @@ class LunchMenuPageState extends State<LunchMenuPage> {
                 bottomTextVisibility: false,
                 subTitle: '',
                 screen: 'lm',
-              ),
+
             )),
             Container(
               height: 500,
@@ -219,18 +208,7 @@ class LunchMenuPageState extends State<LunchMenuPage> {
               padding: const EdgeInsets.symmetric(horizontal: 16),
               height: 60,
               decoration: kButtonBgDecoration,
-              child:AppBar(
-                systemOverlayStyle: const SystemUiOverlayStyle(
-                  statusBarColor: appBaseColor,
-                  // <-- SEE HERE
-                  statusBarIconBrightness: Brightness.dark,
-                  //<-- For Android SEE HERE (dark icons)
-                  statusBarBrightness:
-                  Brightness.light, //<-- For iOS SEE HERE (dark icons)
-                ),
-                backgroundColor: appBaseColor,
-                centerTitle: true,
-                title:  TopBarWidget(
+              child: TopBarWidget(
                 onTapLeft: () {
                   _scaffoldKey.currentState?.openDrawer();
                 },
@@ -241,11 +219,11 @@ class LunchMenuPageState extends State<LunchMenuPage> {
                 rightIcon: 'assets/icons/user.png',
                 title: "Lunch Menu",
                 rightVisibility: false,
-                leftVisibility: false,
+                leftVisibility: true,
                 bottomTextVisibility: false,
                 subTitle: '',
                 screen: 'lm',
-              ),
+
             )),
             Expanded(
               child: Container(
