@@ -281,6 +281,27 @@ class DrawerWidget extends StatelessWidget {
           10.height,
           SizedBox(
               height: 40,
+
+              child: ListTile(
+                leading: Image.asset(
+                  'assets/icons/user.png',
+                  scale: 12,
+                ),
+                title: Transform(
+                  transform: Matrix4.translationValues(-20, 0.0, 0.0),
+                  child: Text(
+                    'Reminder Setting',
+                    style: textStyle(Colors.black, 14, 0, FontWeight.normal),
+                  ),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  context.push(Routes.setReminder);
+                },
+              )),
+          10.height,
+          SizedBox(
+              height: 40,
               child: ListTile(
                 leading: Image.asset(
                   'assets/icons/remove.png',

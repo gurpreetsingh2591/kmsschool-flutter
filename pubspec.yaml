@@ -54,7 +54,6 @@ dependencies:
   provider: ^6.0.5
   easy_localization: ^3.0.2
   just_the_tooltip: ^0.0.12
-
   firebase_database: ^10.2.5
   cloud_firestore: ^4.9.1
   url_launcher: ^6.1.14

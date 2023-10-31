@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../bloc/logic_bloc/get_device_bloc.dart';
 import '../bloc/logic_bloc/student_lesson_bloc.dart';
 import '../bloc/state/common_state.dart';
+import '../model/CommonResponse.dart';
 import '../model/ReminderListResponse.dart';
 import '../utils/toast.dart';
 import '../widgets/ButtonWidget.dart';
@@ -96,14 +97,13 @@ class SetReminderPageState extends State<SetReminderPage> {
 
     selectedIds.isNotEmpty
         ? studentLessonBloc
-            .add(SetRemindersData(studentId: studentName, days: selectedIds))
+            .add(SetRemindersData(studentId: studentId, days: selectedIds))
         : toast("Please Select minimum one Reminders", false);
   }
 
   setReminderData(dynamic reminders) {
-    reminderList.clear();
     try {
-      var remindersResponse = ReminderListResponse.fromJson(reminders);
+      var remindersResponse = CommonResponse.fromJson(reminders);
       dynamic status = remindersResponse.status;
       String message = remindersResponse.message;
 
