@@ -75,3 +75,23 @@ class GetBookedTeacherSlotsList extends MeetingSlotEvent {
   @override
   List<Object> get props => [studentId];
 }
+class GetDeleteTeacherSlotsList extends MeetingSlotEvent {
+  final String meetId;
+
+  const GetDeleteTeacherSlotsList({
+    required this.meetId,
+  });
+
+  @override
+  List<Object> get props => [meetId];
+}
+class GetDeleteOfficeSlotsList extends MeetingSlotEvent {
+  final String meetId;
+
+  const GetDeleteOfficeSlotsList({
+    required this.meetId,
+  });
+
+  @override
+  List<Object> get props => [meetId];
+}

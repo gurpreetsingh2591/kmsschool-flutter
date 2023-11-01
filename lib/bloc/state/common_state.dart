@@ -57,3 +57,13 @@ class GetEventsListState extends CommonState {
 
   const GetEventsListState(this.response);
 }
+class GetProfileDataState extends CommonState {
+  final dynamic response;
+
+  const GetProfileDataState(this.response);
+}
+class GetUpdateProfileDataState extends CommonState {
+  final dynamic response;
+
+  const GetUpdateProfileDataState(this.response);
+}

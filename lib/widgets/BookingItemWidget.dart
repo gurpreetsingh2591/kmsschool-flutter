@@ -6,10 +6,11 @@ import '../utils/constant.dart';
 class BookingItemWidget extends StatelessWidget {
   final String time;
   final String date;
+  final VoidCallback onTap;
 
   const BookingItemWidget({
     Key? key,
-    required this.date, required this.time,
+    required this.date, required this.time, required this.onTap,
   }) : super(key: key);
 
   @override
@@ -52,13 +53,17 @@ class BookingItemWidget extends StatelessWidget {
                     maxLines: 1,
                   ),
                 ),
-                Expanded(
-                  flex: 1,
-                  child: Image.asset(
-                    "assets/icons/delete.png",
-                    color: Colors.red,
-                  ),
-                ),
+                GestureDetector(
+                  onTap:(){
+                    onTap();
+                  },
+                  child: Expanded(
+                    flex: 1,
+                    child: Image.asset(
+                      "assets/icons/delete.png",
+                      color: Colors.red,
+                    ),
+                  ),),
               ],
             )
           ],

@@ -590,6 +590,76 @@ class ApiService {
       log(e.toString());
     }
   }
+  /// Get Delete Booked Teacher Time Slots List*/
+  Future<dynamic> getTeacherDeleteBookedSlot(
+    String meetId,
+  ) async {
+    try {
+      var url = Uri.parse(
+          ApiConstants.baseUrl + ApiConstants.API_GET_DELETE_MEETING_WITH_TEACHER);
+
+      var request = http.MultipartRequest('POST', url);
+
+      request.fields.addAll({
+        ApiConstants.MEET_ID: meetId,
+      });
+
+      if (kDebugMode) {
+        print(request.fields);
+      }
+
+      var streamedResponse = await request.send();
+      var response = await http.Response.fromStream(streamedResponse);
+      if (kDebugMode) {
+        print(response.statusCode);
+        print("booking list${response.body}");
+      }
+      if (response.statusCode == 200) {
+        var result = jsonDecode(response.body);
+        return result;
+      } else {
+        var result = jsonDecode(response.body);
+        return result;
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+  /// Get Delete Booked office Time Slots List*/
+  Future<dynamic> getOfficeDeleteBookedSlot(
+    String meetId,
+  ) async {
+    try {
+      var url = Uri.parse(
+          ApiConstants.baseUrl + ApiConstants.API_GET_DELETE_MEETING);
+
+      var request = http.MultipartRequest('POST', url);
+
+      request.fields.addAll({
+        ApiConstants.MEET_ID: meetId,
+      });
+
+      if (kDebugMode) {
+        print(request.fields);
+      }
+
+      var streamedResponse = await request.send();
+      var response = await http.Response.fromStream(streamedResponse);
+      if (kDebugMode) {
+        print(response.statusCode);
+        print("booking list${response.body}");
+      }
+      if (response.statusCode == 200) {
+        var result = jsonDecode(response.body);
+        return result;
+      } else {
+        var result = jsonDecode(response.body);
+        return result;
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+  }
 
   /// Office Time Slots*/
   Future<dynamic> getOfficeTimeSlotListWithDate(
@@ -846,6 +916,73 @@ class ApiService {
         print("url$url");
         print(request);
         print(response.statusCode);
+        print(response.body);
+      }
+      if (response.statusCode == 200) {
+        var result = jsonDecode(response.body);
+        return result;
+      } else {
+        var result = jsonDecode(response.body);
+        return result;
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  /// Get profile  Data*/
+  Future<dynamic> getUserProfileData(String parentId) async {
+    try {
+      var url = Uri.parse(ApiConstants.baseUrl +
+          ApiConstants.API_GET_PARENT_PROFILE);
+
+      var request = http.MultipartRequest('POST', url);
+
+      request.fields.addAll({
+        ApiConstants.PARENT_ID: parentId,
+      });
+
+
+      var streamedResponse = await request.send();
+      var response = await http.Response.fromStream(streamedResponse);
+      if (kDebugMode) {
+        print(request.fields);
+        print(response.body);
+      }
+      if (response.statusCode == 200) {
+        var result = jsonDecode(response.body);
+        return result;
+      } else {
+        var result = jsonDecode(response.body);
+        return result;
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  /// Get update profile  Data*/
+  Future<dynamic> getUserUpdateProfileData(String parentId,Map<String, String> updateData) async {
+    try {
+      var url = Uri.parse(ApiConstants.baseUrl +
+          ApiConstants.API_GET_UPDATE_PARENT_PROFILE);
+
+      var request = http.MultipartRequest('POST', url);
+
+      request.fields.addAll({
+        ApiConstants.PARENT_ID: parentId,
+      });
+      updateData.forEach((key, value) {
+        request.fields[key] = value;
+      });
+
+
+      //final response = await http.post(url, body: updateData);
+
+      var streamedResponse = await request.send();
+      var response = await http.Response.fromStream(streamedResponse);
+      if (kDebugMode) {
+        print(request.fields);
         print(response.body);
       }
       if (response.statusCode == 200) {

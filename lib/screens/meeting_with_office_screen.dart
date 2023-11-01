@@ -71,8 +71,10 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
 
     formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate);
 
-    meetingBloc.add(GetOfficeTimeSlotsByDate(date: formattedDate, studentId: studentId));
-    meetingBloc.add(GetBookedOfficeSlotsList(studentId: studentId, parentId: parentId));
+    meetingBloc.add(
+        GetOfficeTimeSlotsByDate(date: formattedDate, studentId: studentId));
+    meetingBloc.add(
+        GetBookedOfficeSlotsList(studentId: studentId, parentId: parentId));
 
     // String selectedValue = bookingSlots[0].slot;
   }
@@ -88,7 +90,6 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
         bookingSlots.add(booking);
         bookingSlots.addAll(messagesResponse.result);
       }
-
     } catch (e) {
       if (kDebugMode) {
         print(e);
@@ -96,13 +97,14 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
     }
   }
 
-  slotBookingValidation(){
-    if(bookingSlots.isEmpty){
+  slotBookingValidation() {
+    if (bookingSlots.isEmpty) {
       toast("Sorry, slot is not available please change your date", false);
-    }else if(bookingSlots.isNotEmpty&&selectedValue=="Select Slot"){
+    } else if (bookingSlots.isNotEmpty && selectedValue == "Select Slot") {
       toast("Please Select Time slot", false);
-    }else{
-      showAlertDialog(context,"Book Meeting With Office","Your Selected Date: $formattedDate\nYour Time Slot:$selectedValue");
+    } else {
+      showAlertDialog(context, "Book Meeting With Office",
+          "Your Selected Date: $formattedDate\nYour Time Slot:$selectedValue");
     }
   }
 
@@ -113,7 +115,8 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop();
         setState(() {
-         meetingBloc.add(BookOfficeTimeSlotButtonPressed(date: formattedDate,  parentId: parentId, time: selectedValue));
+          meetingBloc.add(BookOfficeTimeSlotButtonPressed(
+              date: formattedDate, parentId: parentId, time: selectedValue));
         });
       },
     );
@@ -143,6 +146,48 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
     );
   }
 
+  showDeleteAlertDialog(BuildContext context, String meetId) {
+    // set up the button
+    Widget okButton = TextButton(
+      child: const Text("Yes"),
+      onPressed: () {
+        Navigator.of(context, rootNavigator: true).pop();
+        setState(() {
+          meetingBloc.add(GetDeleteOfficeSlotsList(
+            meetId: meetId,
+          ));
+        });
+      },
+    );
+    Widget cancelButton = TextButton(
+      child: const Text("Cancel"),
+      onPressed: () {
+        Navigator.of(context, rootNavigator: true).pop();
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text(
+        "Delete Meeting",
+        style: textStyle(Colors.black87, 18, 0, FontWeight.w500),
+      ),
+      content: Text("Are you sure to delete your meeting",
+          style: textStyle(Colors.black87, 14, 0, FontWeight.normal)),
+      actions: [
+        cancelButton,
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
 
   setBookedHistorySlotData(dynamic bookings) {
     bookedMeetings.clear();
@@ -163,6 +208,7 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
       }
     }
   }
+
   setBookSlotData(dynamic bookings) {
     try {
       var bookingResponse = CommonResponse.fromJson(bookings);
@@ -171,11 +217,11 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
 
       if (message != "Invalid") {
         toast("Slot booked successfully", false);
-        meetingBloc.add(GetBookedOfficeSlotsList(studentId: studentId, parentId: parentId));
-      }else{
+        meetingBloc.add(
+            GetBookedOfficeSlotsList(studentId: studentId, parentId: parentId));
+      } else {
         toast("Sorry, Slot is not booked, Please Try Again", false);
       }
-
     } catch (e) {
       if (kDebugMode) {
         print(e);
@@ -205,7 +251,8 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
         selectedDate = picked;
         formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate);
 
-        meetingBloc.add(GetOfficeTimeSlotsByDate(date: formattedDate, studentId: studentId));
+        meetingBloc.add(GetOfficeTimeSlotsByDate(
+            date: formattedDate, studentId: studentId));
       });
       if (kDebugMode) {
         print('Selected Date: $formattedDate');
@@ -219,13 +266,18 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
 
   @override
   Widget build(BuildContext context) {
-    final mq = MediaQuery.of(context).size;
+    final mq = MediaQuery
+        .of(context)
+        .size;
     return BlocProvider(
       create: (context) => meetingBloc,
       child: Scaffold(
         key: _scaffoldKey,
         drawer: SizedBox(
-          width: MediaQuery.of(context).size.width *
+          width: MediaQuery
+              .of(context)
+              .size
+              .width *
               0.75, // 75% of screen will be occupied
           child: Drawer(
             backgroundColor: Colors.white,
@@ -295,21 +347,21 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
                 screen: 'mwt',
               ),
             ),
-           Container(
-                margin: const EdgeInsets.only(
-                    bottom: 20, top: 90, left: 16, right: 16),
-                child: ListView(
-                  shrinkWrap: true,
-                  primary: true,
-                  children: [
-                    buildSelectionTab(),
-                    40.height,
-                    selection
-                        ? buildAddNewBookingContainer()
-                        : buildBookingHistoryContainer()
-                  ],
-                ),
+            Container(
+              margin: const EdgeInsets.only(
+                  bottom: 20, top: 90, left: 16, right: 16),
+              child: ListView(
+                shrinkWrap: true,
+                primary: true,
+                children: [
+                  buildSelectionTab(),
+                  40.height,
+                  selection
+                      ? buildAddNewBookingContainer()
+                      : buildBookingHistoryContainer()
+                ],
               ),
+            ),
 
             Container(
               height: 500,
@@ -320,9 +372,9 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
                 children: [
                   Center(
                       child: SpinKitFadingCircle(
-                    color: kLightGray,
-                    size: 80.0,
-                  ))
+                        color: kLightGray,
+                        size: 80.0,
+                      ))
                 ],
               ),
             ),
@@ -330,7 +382,6 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
         ),
       ),
     );
-
   }
 
   Widget buildHomeContainer(BuildContext context, Size mq) {
@@ -438,7 +489,7 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
                           }, // Specify the callback function here
                           child: Container(
                               margin:
-                                  const EdgeInsets.symmetric(horizontal: 20),
+                              const EdgeInsets.symmetric(horizontal: 20),
                               alignment: Alignment.centerLeft,
                               child: Text(
                                 formattedDate,
@@ -518,7 +569,6 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
             padding: 0,
             onTap: () {
               slotBookingValidation();
-
             },
             size: 12,
             scale: 2,
@@ -545,7 +595,9 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
             itemBuilder: (context, index) {
               return BookingItemWidget(
                 date: bookedMeetings[index].meetdate,
-                time: bookedMeetings[index].meettime,
+                time: bookedMeetings[index].meettime, onTap: () {
+                showDeleteAlertDialog(context,bookedMeetings[index].meet_id.toString());
+              },
               );
             },
           )

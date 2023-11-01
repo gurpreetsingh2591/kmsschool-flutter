@@ -233,7 +233,7 @@ class DrawerWidget extends StatelessWidget {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  context.push(Routes.signIn);
+                  context.push(Routes.accountInfo);
                 },
               )),
           10.height,

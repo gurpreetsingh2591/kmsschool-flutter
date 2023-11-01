@@ -156,6 +156,8 @@ class HomePageState extends State<HomePage> {
                     _scaffoldKey.currentState?.openDrawer();
                   },
                   onTapRight: () {
+                    context.push(Routes.accountInfo);
+
                   },
                   leftIcon: 'assets/icons/menu.png',
                   rightIcon: 'assets/icons/user.png',

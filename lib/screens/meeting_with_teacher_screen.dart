@@ -106,6 +106,49 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
     }
   }
 
+  showDeleteAlertDialog(BuildContext context, String meetId) {
+    // set up the button
+    Widget okButton = TextButton(
+      child: const Text("Yes"),
+      onPressed: () {
+        Navigator.of(context, rootNavigator: true).pop();
+        setState(() {
+          meetingBloc.add(GetDeleteTeacherSlotsList(
+            meetId: meetId,
+          ));
+        });
+      },
+    );
+    Widget cancelButton = TextButton(
+      child: const Text("Cancel"),
+      onPressed: () {
+        Navigator.of(context, rootNavigator: true).pop();
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text(
+        "Delete Meeting",
+        style: textStyle(Colors.black87, 18, 0, FontWeight.w500),
+      ),
+      content: Text("Are you sure to delete your meeting",
+          style: textStyle(Colors.black87, 14, 0, FontWeight.normal)),
+      actions: [
+        cancelButton,
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   showAlertDialog(BuildContext context, String title, String dateTime) {
     // set up the button
     Widget okButton = TextButton(
@@ -129,10 +172,10 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
     AlertDialog alert = AlertDialog(
       title: Text(
         title,
-        style: textStyle(Colors.white, 18, 0, FontWeight.w500),
+        style: textStyle(Colors.black87, 18, 0, FontWeight.w500),
       ),
       content: Text(dateTime,
-          style: textStyle(Colors.white, 14, 0, FontWeight.normal)),
+          style: textStyle(Colors.black87, 14, 0, FontWeight.normal)),
       actions: [
         cancelButton,
         okButton,
@@ -275,33 +318,97 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
   }
 
   Widget loaderBar(BuildContext context, Size mq) {
-    return  Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: boxImageDashboardBgDecoration(),
-        child: Stack(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              height: 60,
-              decoration: kButtonBgDecoration,
-              child: TopBarWidget(
-                onTapLeft: () {
-                  _scaffoldKey.currentState?.openDrawer();
-                },
-                onTapRight: () {},
-                leftIcon: 'assets/icons/menu.png',
-                rightIcon: 'assets/icons/user.png',
-                title: "Meeting with Teacher",
-                rightVisibility: false,
-                leftVisibility: true,
-                bottomTextVisibility: false,
-                subTitle: '',
-                screen: 'mwt',
-              ),
+    return Container(
+      constraints: const BoxConstraints.expand(),
+      decoration: boxImageDashboardBgDecoration(),
+      child: Stack(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            height: 60,
+            decoration: kButtonBgDecoration,
+            child: TopBarWidget(
+              onTapLeft: () {
+                _scaffoldKey.currentState?.openDrawer();
+              },
+              onTapRight: () {},
+              leftIcon: 'assets/icons/menu.png',
+              rightIcon: 'assets/icons/user.png',
+              title: "Meeting with Teacher",
+              rightVisibility: false,
+              leftVisibility: true,
+              bottomTextVisibility: false,
+              subTitle: '',
+              screen: 'mwt',
             ),
-            Container(
+          ),
+          Container(
+            margin:
+                const EdgeInsets.only(bottom: 20, top: 80, left: 16, right: 16),
+            child: ListView(
+              shrinkWrap: true,
+              primary: true,
+              children: [
+                buildSelectionTab(),
+                40.height,
+                selection
+                    ? buildAddNewBookingContainer()
+                    : buildBookingHistoryContainer()
+              ],
+            ),
+          ),
+          Container(
+            height: 500,
+            margin: const EdgeInsets.only(bottom: 20, top: 80),
+            child: const Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Center(
+                    child: SpinKitFadingCircle(
+                  color: kLightGray,
+                  size: 80.0,
+                ))
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildHomeContainer(BuildContext context, Size mq) {
+    return Container(
+      constraints: const BoxConstraints.expand(),
+      decoration: boxImageDashboardBgDecoration(),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            height: 60,
+            decoration: kButtonBgDecoration,
+            child: TopBarWidget(
+              onTapLeft: () {
+                _scaffoldKey.currentState?.openDrawer();
+              },
+              onTapRight: () {},
+              leftIcon: 'assets/icons/menu.png',
+              rightIcon: 'assets/icons/user.png',
+              title: "Meeting with Teacher",
+              rightVisibility: false,
+              leftVisibility: true,
+              bottomTextVisibility: false,
+              subTitle: '',
+              screen: 'mwt',
+            ),
+          ),
+          Expanded(
+            child: Container(
               margin: const EdgeInsets.only(
-                  bottom: 20, top: 80, left: 16, right: 16),
+                  bottom: 20, top: 22, left: 16, right: 16),
               child: ListView(
                 shrinkWrap: true,
                 primary: true,
@@ -314,75 +421,9 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
                 ],
               ),
             ),
-            Container(
-              height: 500,
-              margin: const EdgeInsets.only(bottom: 20, top: 80),
-              child: const Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Center(
-                      child: SpinKitFadingCircle(
-                    color: kLightGray,
-                    size: 80.0,
-                  ))
-                ],
-              ),
-            ),
-          ],
-        ),
-
-    );
-  }
-
-  Widget buildHomeContainer(BuildContext context, Size mq) {
-    return  Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: boxImageDashboardBgDecoration(),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              height: 60,
-              decoration: kButtonBgDecoration,
-              child: TopBarWidget(
-                onTapLeft: () {
-                  _scaffoldKey.currentState?.openDrawer();
-                },
-                onTapRight: () {},
-                leftIcon: 'assets/icons/menu.png',
-                rightIcon: 'assets/icons/user.png',
-                title: "Meeting with Teacher",
-                rightVisibility: false,
-                leftVisibility: true,
-                bottomTextVisibility: false,
-                subTitle: '',
-                screen: 'mwt',
-              ),
-            ),
-            Expanded(
-              child: Container(
-                margin: const EdgeInsets.only(
-                    bottom: 20, top: 22, left: 16, right: 16),
-                child: ListView(
-                  shrinkWrap: true,
-                  primary: true,
-                  children: [
-                    buildSelectionTab(),
-                    40.height,
-                    selection
-                        ? buildAddNewBookingContainer()
-                        : buildBookingHistoryContainer()
-                  ],
-                ),
-              ),
-            )
-          ],
-        ),
-
+          )
+        ],
+      ),
     );
   }
 
@@ -558,6 +599,10 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
               return BookingItemWidget(
                 date: bookedMeetings[index].meetdate,
                 time: bookedMeetings[index].meettime,
+                onTap: () {
+                  showDeleteAlertDialog(context,bookedMeetings[index].meet_id.toString());
+
+                },
               );
             },
           )

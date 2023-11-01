@@ -8,6 +8,7 @@ import 'package:kmschool/screens/meeting_with_teacher_screen.dart';
 import 'package:kmschool/screens/message_from_school_screen.dart';
 import 'package:kmschool/screens/message_to_office_screen.dart';
 import 'package:kmschool/screens/message_to_teacher_screen.dart';
+import 'package:kmschool/screens/profile_screen.dart';
 import 'package:kmschool/screens/school_calender_screen.dart';
 import 'package:kmschool/screens/set_remider_screen.dart';
 import 'package:kmschool/screens/snack_menu_screen.dart';
@@ -62,10 +63,7 @@ GoRouter buildRouter() {
         path: Routes.messageFromSchool,
         builder: (_, __) => const MessageFromSchoolPage(),
       ),
-      GoRoute(
-        path: Routes.accountInfo,
-        builder: (_, __) => const AccountInfoPage(),
-      ),
+
 
       GoRoute(
         path: Routes.messageToOffice,
@@ -115,6 +113,11 @@ GoRouter buildRouter() {
   GoRoute(
         path: Routes.setReminder,
         builder: (_, __) => const SetReminderPage(),
+      ),
+
+  GoRoute(
+        path: Routes.accountInfo,
+        builder: (_, __) => const ProfilePage(),
       ),
 
 

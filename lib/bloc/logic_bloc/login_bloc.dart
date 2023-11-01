@@ -9,6 +9,8 @@ class LoginBloc extends Bloc<LoginEvent, CommonState> {
   LoginBloc() : super(InitialState()) {
     on<LoginButtonPressed>(_onLoginButtonPressed);
     on<GetUserDataLogin>(_onGetUserData);
+    on<GetUserProfileData>(_onGetUserProfileData);
+    on<GetUserProfileDataUpdate>(_onGetUserProfileUpdateData);
   }
 
   Future<void> _onLoginButtonPressed(
@@ -45,6 +47,46 @@ class LoginBloc extends Bloc<LoginEvent, CommonState> {
         print(getUserData);
       }
       emit(UserDataSuccessState(getUserData));
+    } catch (error) {
+      // Emit a failure state
+      emit(FailureState(error.toString()));
+    }
+  }
+
+  /// get user profile data
+  Future<void> _onGetUserProfileData(
+      GetUserProfileData event, Emitter<CommonState> emit) async {
+    // Handle the Get User Data event
+    emit(LoadingState());
+
+    try {
+      dynamic getUserData = await ApiService().getUserProfileData(event.parentId);
+      // Process the API response
+      // Emit a success state
+      if (kDebugMode) {
+        print(getUserData);
+      }
+      emit(GetProfileDataState(getUserData));
+    } catch (error) {
+      // Emit a failure state
+      emit(FailureState(error.toString()));
+    }
+  }
+
+  /// get update user profile data
+  Future<void> _onGetUserProfileUpdateData(
+      GetUserProfileDataUpdate event, Emitter<CommonState> emit) async {
+    // Handle the Get User Data event
+    emit(LoadingState());
+
+    try {
+      dynamic getUserData = await ApiService().getUserUpdateProfileData(event.parentId,event.profileData);
+      // Process the API response
+      // Emit a success state
+      if (kDebugMode) {
+        print(getUserData);
+      }
+      emit(GetProfileDataState(getUserData));
     } catch (error) {
       // Emit a failure state
       emit(FailureState(error.toString()));

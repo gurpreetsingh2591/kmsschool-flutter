@@ -16,6 +16,8 @@ class MeetingBloc extends Bloc<MeetingSlotEvent, MeetingState> {
     on<GetTeacherTimeSlotsByDate>(_onGetTeacherTimeSlotsByDate);
     on<BookTeacherTimeSlotButtonPressed>(_onBookTeacherTimeSlotButtonPressed);
     on<GetBookedTeacherSlotsList>(_onGetBookedTeacherSlotsList);
+    on<GetDeleteTeacherSlotsList>(_onGetDeleteBookedTeacherSlotsList);
+    on<GetDeleteOfficeSlotsList>(_onGetDeleteOfficeSlotsList);
   }
 
   Future<void> _onGetOfficeTimeSlotsByDate(
@@ -124,6 +126,41 @@ class MeetingBloc extends Bloc<MeetingSlotEvent, MeetingState> {
       // Emit a success state
 
       emit(GetTeacherBookedSuccessState(getUserData));
+    } catch (error) {
+      // Emit a failure state
+      emit(FailureState(error.toString()));
+    }
+  }
+  Future<void> _onGetDeleteBookedTeacherSlotsList(
+      GetDeleteTeacherSlotsList event, Emitter<MeetingState> emit) async {
+    // Handle the Get User Data event
+    emit(LoadingState());
+
+    try {
+      dynamic getUserData =
+          await ApiService().getTeacherDeleteBookedSlot(event.meetId);
+      // Process the API response
+      // Emit a success state
+
+      emit(GetTeacherBookedSuccessState(getUserData));
+    } catch (error) {
+      // Emit a failure state
+      emit(FailureState(error.toString()));
+    }
+  }
+
+  Future<void> _onGetDeleteOfficeSlotsList(
+      GetDeleteOfficeSlotsList event, Emitter<MeetingState> emit) async {
+    // Handle the Get User Data event
+    emit(LoadingState());
+
+    try {
+      dynamic getUserData =
+          await ApiService().getOfficeDeleteBookedSlot(event.meetId);
+      // Process the API response
+      // Emit a success state
+
+      emit(GetOfficeBookedSuccessState(getUserData));
     } catch (error) {
       // Emit a failure state
       emit(FailureState(error.toString()));
