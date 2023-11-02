@@ -12,6 +12,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../app/AppLocalizations.dart';
 import '../app/router.dart';
@@ -450,17 +451,24 @@ class LoginPageState extends State<LoginPage> {
                       ],
                     )),
               ),
-              50.height,
+              20.height,
               GestureDetector(
-                onTap: () {
-                  context.pushReplacement(Routes.forgotPassword);
+                onTap: () async {
+                  Uri uri = Uri.parse(
+                      "http://kmschool.observer.school/parent/forgot-password.php");
+                  if (await canLaunchUrl(uri)) {
+                    await launchUrl(uri, mode: LaunchMode.platformDefault);
+                  } else {
+                    throw 'Could not launch $uri';
+                  }
                 },
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: Text(
-                      "${AppLocalizations.of(context).translate('forgot_password')}?",
+                child:  Container(
+                  padding: const EdgeInsets.all(10),
+                  alignment: Alignment.center,
+                  child: const Text(
+                      "Forgot Password?",
                       textAlign: TextAlign.right,
-                      style: const TextStyle(
+                      style: TextStyle(
                           decoration: TextDecoration.underline,
                           color: Colors.black,
                           fontSize: 16,

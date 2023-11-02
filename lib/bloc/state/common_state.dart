@@ -67,3 +67,9 @@ class GetUpdateProfileDataState extends CommonState {
 
   const GetUpdateProfileDataState(this.response);
 }
+
+class GetStudentPhotosState extends CommonState {
+  final dynamic response;
+
+  const GetStudentPhotosState(this.response);
+}

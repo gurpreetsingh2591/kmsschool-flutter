@@ -329,57 +329,109 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
   }
 
   Widget loaderBar(BuildContext context, Size mq) {
-    return SafeArea(
-      child: Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: boxImageDashboardBgDecoration(),
-        child: Stack(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              height: 60,
-              decoration: kButtonBgDecoration,
-              child: TopBarWidget(
-                onTapLeft: () {
-                  _scaffoldKey.currentState?.openDrawer();
-                },
-                onTapRight: () {},
-                leftIcon: 'assets/icons/menu.png',
-                rightIcon: 'assets/icons/user.png',
-                title: "Lesson Progress",
-                rightVisibility: false,
-                leftVisibility: true,
-                bottomTextVisibility: false,
-                subTitle: '',
-                screen: 'mwt',
-              ),
+    return Container(
+      constraints: const BoxConstraints.expand(),
+      decoration: boxImageDashboardBgDecoration(),
+      child: Stack(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            height: 60,
+            decoration: kButtonBgDecoration,
+            child: TopBarWidget(
+              onTapLeft: () {
+                _scaffoldKey.currentState?.openDrawer();
+              },
+              onTapRight: () {},
+              leftIcon: 'assets/icons/menu.png',
+              rightIcon: 'assets/icons/user.png',
+              title: "School Calender",
+              rightVisibility: false,
+              leftVisibility: true,
+              bottomTextVisibility: false,
+              subTitle: '',
+              screen: 'mwt',
             ),
-            ListView(
+          ),
+          Container(
+            margin: const EdgeInsets.only(
+              top: 60,
+            ),
+            child: ListView(
               shrinkWrap: true,
               primary: true,
               children: [
                 buildCalenderView(),
                 100.height,
-                buildBookingHistoryContainer()
+                buildBookingHistoryContainer(),
               ],
             ),
-            Container(
-              height: 500,
-              margin: const EdgeInsets.only(bottom: 20, top: 80),
-              child: const Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Center(
-                      child: SpinKitFadingCircle(
-                    color: kLightGray,
-                    size: 80.0,
-                  ))
-                ],
-              ),
+          ),
+          Container(
+            height: 500,
+            margin: const EdgeInsets.only(bottom: 20, top: 80),
+            child: const Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Center(
+                    child: SpinKitFadingCircle(
+                  color: kLightGray,
+                  size: 80.0,
+                ))
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
+      ),
+    );
+    Container(
+      constraints: const BoxConstraints.expand(),
+      decoration: boxImageDashboardBgDecoration(),
+      child: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            height: 60,
+            decoration: kButtonBgDecoration,
+            child: TopBarWidget(
+              onTapLeft: () {
+                _scaffoldKey.currentState?.openDrawer();
+              },
+              onTapRight: () {},
+              leftIcon: 'assets/icons/menu.png',
+              rightIcon: 'assets/icons/user.png',
+              title: "School Calender",
+              rightVisibility: false,
+              leftVisibility: true,
+              bottomTextVisibility: false,
+              subTitle: '',
+              screen: 'sc',
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(),
+            child: Stack(
+              children: [
+                Container(
+                  height: 500,
+                  margin: const EdgeInsets.only(bottom: 20, top: 80),
+                  child: const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Center(
+                          child: SpinKitFadingCircle(
+                        color: kLightGray,
+                        size: 80.0,
+                      ))
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -405,12 +457,12 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
                 onTapRight: () {},
                 leftIcon: 'assets/icons/menu.png',
                 rightIcon: 'assets/icons/user.png',
-                title: "Lesson Progress",
+                title: "School Calender",
                 rightVisibility: false,
                 leftVisibility: true,
                 bottomTextVisibility: false,
                 subTitle: '',
-                screen: 'mwt',
+                screen: 'sc',
               ),
             ),
             Container(
@@ -446,8 +498,9 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
 
           events.forEach((event) => eventName = event.title);
 
-
-          eventName!.isNotEmpty? showAlertDialog(context, eventName!, "$_startDate To $_endDate"):null;
+          eventName!.isNotEmpty
+              ? showAlertDialog(context, eventName!, "$_startDate To $_endDate")
+              : null;
         },
 
         weekendTextStyle: const TextStyle(

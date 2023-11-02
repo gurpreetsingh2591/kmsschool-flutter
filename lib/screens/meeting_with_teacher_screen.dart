@@ -109,7 +109,7 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
   showDeleteAlertDialog(BuildContext context, String meetId) {
     // set up the button
     Widget okButton = TextButton(
-      child: const Text("Yes"),
+      child:  Text("Yes",style:textStyle(appBaseColor, 18, 0, FontWeight.w500)),
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop();
         setState(() {
@@ -120,7 +120,7 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
       },
     );
     Widget cancelButton = TextButton(
-      child: const Text("Cancel"),
+      child:  Text("Cancel",style:textStyle(red, 18, 0, FontWeight.w500)),
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop();
       },
@@ -128,12 +128,13 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
+
       title: Text(
         "Delete Meeting",
-        style: textStyle(Colors.black87, 18, 0, FontWeight.w500),
+        style: textStyle(Colors.white, 18, 0, FontWeight.w500),
       ),
       content: Text("Are you sure to delete your meeting",
-          style: textStyle(Colors.black87, 14, 0, FontWeight.normal)),
+          style: textStyle(Colors.white, 14, 0, FontWeight.normal)),
       actions: [
         cancelButton,
         okButton,
@@ -152,7 +153,7 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
   showAlertDialog(BuildContext context, String title, String dateTime) {
     // set up the button
     Widget okButton = TextButton(
-      child: const Text("Yes"),
+      child:  Text("Yes",style: textStyle(appBaseColor, 18, 0, FontWeight.w500)),
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop();
         setState(() {
@@ -162,7 +163,7 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
       },
     );
     Widget cancelButton = TextButton(
-      child: const Text("Cancel"),
+      child:  Text("Cancel",style: textStyle(Colors.red, 18, 0, FontWeight.w500)),
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop();
       },
@@ -170,12 +171,14 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
+
       title: Text(
         title,
-        style: textStyle(Colors.black87, 18, 0, FontWeight.w500),
+        style: textStyle(Colors.white, 18, 0, FontWeight.w500),
       ),
+
       content: Text(dateTime,
-          style: textStyle(Colors.black87, 14, 0, FontWeight.normal)),
+          style: textStyle(Colors.white, 14, 0, FontWeight.normal)),
       actions: [
         cancelButton,
         okButton,
@@ -185,6 +188,7 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
     // show the dialog
     showDialog(
       context: context,
+
       builder: (BuildContext context) {
         return alert;
       },
@@ -344,7 +348,7 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
           ),
           Container(
             margin:
-                const EdgeInsets.only(bottom: 20, top: 80, left: 16, right: 16),
+                const EdgeInsets.only(bottom: 20, top: 82, left: 16, right: 16),
             child: ListView(
               shrinkWrap: true,
               primary: true,

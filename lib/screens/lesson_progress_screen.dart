@@ -176,33 +176,95 @@ class LessonProgressPageState extends State<LessonProgressPage> {
   }
 
   Widget loaderBar(BuildContext context, Size mq) {
-    return  Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: boxImageDashboardBgDecoration(),
-        child: Stack(
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              height: 60,
-              decoration: kButtonBgDecoration,
-              child: TopBarWidget(
-                onTapLeft: () {
-                  _scaffoldKey.currentState?.openDrawer();
-                },
-                onTapRight: () {},
-                leftIcon: 'assets/icons/menu.png',
-                rightIcon: 'assets/icons/user.png',
-                title: "Lesson Progress",
-                rightVisibility: false,
-                leftVisibility: true,
-                bottomTextVisibility: false,
-                subTitle: '',
-                screen: 'mwt',
-              ),
+    return Container(
+      constraints: const BoxConstraints.expand(),
+      decoration: boxImageDashboardBgDecoration(),
+      child: Stack(
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            height: 60,
+            decoration: kButtonBgDecoration,
+            child: TopBarWidget(
+              onTapLeft: () {
+                _scaffoldKey.currentState?.openDrawer();
+              },
+              onTapRight: () {},
+              leftIcon: 'assets/icons/menu.png',
+              rightIcon: 'assets/icons/user.png',
+              title: "Lesson Progress",
+              rightVisibility: false,
+              leftVisibility: true,
+              bottomTextVisibility: false,
+              subTitle: '',
+              screen: 'mwt',
             ),
-            Container(
+          ),
+          Container(
+            margin:
+                const EdgeInsets.only(bottom: 20, top: 82, left: 16, right: 16),
+            child: ListView(
+              shrinkWrap: true,
+              primary: true,
+              children: [
+                selectSubjectDropDown(),
+                20.height,
+                buildLessonListContainer()
+              ],
+            ),
+          ),
+          Container(
+            height: 500,
+            margin: const EdgeInsets.only(bottom: 20, top: 80),
+            child: const Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Center(
+                    child: SpinKitFadingCircle(
+                  color: kLightGray,
+                  size: 80.0,
+                ))
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildHomeContainer(BuildContext context, Size mq) {
+    return Container(
+      constraints: const BoxConstraints.expand(),
+      decoration: boxImageDashboardBgDecoration(),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            height: 60,
+            decoration: kButtonBgDecoration,
+            child: TopBarWidget(
+              onTapLeft: () {
+                _scaffoldKey.currentState?.openDrawer();
+              },
+              onTapRight: () {},
+              leftIcon: 'assets/icons/menu.png',
+              rightIcon: 'assets/icons/user.png',
+              title: "Lesson Progress",
+              rightVisibility: false,
+              leftVisibility: true,
+              bottomTextVisibility: false,
+              subTitle: '',
+              screen: 'mwt',
+            ),
+          ),
+          Expanded(
+            child: Container(
               margin: const EdgeInsets.only(
-                  bottom: 20, top: 80, left: 16, right: 16),
+                  bottom: 20, top: 22, left: 16, right: 16),
               child: ListView(
                 shrinkWrap: true,
                 primary: true,
@@ -213,73 +275,9 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                 ],
               ),
             ),
-            Container(
-              height: 500,
-              margin: const EdgeInsets.only(bottom: 20, top: 80),
-              child: const Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Center(
-                      child: SpinKitFadingCircle(
-                    color: kLightGray,
-                    size: 80.0,
-                  ))
-                ],
-              ),
-            ),
-          ],
-        ),
-
-    );
-  }
-
-  Widget buildHomeContainer(BuildContext context, Size mq) {
-    return  Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: boxImageDashboardBgDecoration(),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              height: 60,
-              decoration: kButtonBgDecoration,
-              child: TopBarWidget(
-                onTapLeft: () {
-                  _scaffoldKey.currentState?.openDrawer();
-                },
-                onTapRight: () {},
-                leftIcon: 'assets/icons/menu.png',
-                rightIcon: 'assets/icons/user.png',
-                title: "Lesson Progress",
-                rightVisibility: false,
-                leftVisibility: true,
-                bottomTextVisibility: false,
-                subTitle: '',
-                screen: 'mwt',
-              ),
-            ),
-            Expanded(
-              child: Container(
-                margin: const EdgeInsets.only(
-                    bottom: 20, top: 22, left: 16, right: 16),
-                child: ListView(
-                  shrinkWrap: true,
-                  primary: true,
-                  children: [
-                    selectSubjectDropDown(),
-                    20.height,
-                    buildLessonListContainer()
-                  ],
-                ),
-              ),
-            )
-          ],
-        ),
-
+          )
+        ],
+      ),
     );
   }
 
@@ -336,11 +334,14 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                   itemCount: lessonRecord.length,
                   itemBuilder: (context, index) {
                     return StudentLessonRecordWidget(
-                      lessonPlanId: lessonRecord[index].lessonplanid,
-                      classId: lessonRecord[index].classid,
-                      lessonStatus: lessonRecord[index].lessonstatus,
-                      statusNew: lessonRecord[index].statusnew,
-                      lessonName: lessonRecord[index].lessoname,
+                      lessonPlanId: lessonRecord[index].lessonPlanId??"",
+                      classId: lessonRecord[index].classId??"",
+                      lessonName: lessonRecord[index].lessonName??"",
+                      statusEd:  lessonRecord[index].statusEd??"0",
+                      statusPg:  lessonRecord[index].statusPg??"0",
+                      statusPi:  lessonRecord[index].statusPi??"0",
+                      lessonPlaned:  lessonRecord[index].lessonPlaned??"0",
+                      lessonPresented:  lessonRecord[index].lessonPresented??"0",
                     );
                   },
                 )

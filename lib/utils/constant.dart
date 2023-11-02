@@ -168,7 +168,16 @@ final dynamic dashboardList = [
     'image': 'assets/icons/exchange_child.png',
   },
 ];
-
+ThemeData dialogTheme = ThemeData(
+  dialogBackgroundColor: Colors.white, // Change the background color as needed
+  textTheme: const TextTheme(
+    bodyLarge: TextStyle(color: Colors.black), // Text color
+    // Customize other text styles as needed
+  ),
+  buttonTheme: const ButtonThemeData(
+    textTheme: ButtonTextTheme.primary, // Button text color
+  ),
+);
 List<String> photos = ["https://kmschool.observer.school/uploads/Sustainability-and-DFT-300x300.png",
   "https://kmschool.observer.school/uploads/1360x768-5634774-peaky-blinders-wallpapers.jpg",
   "https://kmschool.observer.school/uploads/earthmap.png",
@@ -308,6 +317,15 @@ final kEditTextDecoration = BoxDecoration(
 
 const kButtonBgDecoration = BoxDecoration(
   color: appBaseColor,
+);
+const kEDBgDecoration = BoxDecoration(
+  color: appHpRed,
+);
+const kPGBgDecoration = BoxDecoration(
+  color: appOrangeColor,
+);
+const kPIBgDecoration = BoxDecoration(
+  color: appHpGreen,
 );
 final kDialogBgDecoration = BoxDecoration(
   color: kDialogBgColor,

@@ -31,7 +31,19 @@ Future<void> main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]).then((value) => runApp(MaterialApp(
-    theme: ThemeData(appBarTheme: const AppBarTheme(color: appBaseColor)),
+        theme: ThemeData(
+          appBarTheme: const AppBarTheme(color: appBaseColor),
+          dialogBackgroundColor: Colors.black54,
+          // Set the background color for dialogs
+          textTheme: const TextTheme(
+            bodyLarge: TextStyle(
+                color: Colors.white), // Set the text color for dialogs
+            // Customize other text styles as needed
+          ),
+          buttonTheme: const ButtonThemeData(
+            textTheme: ButtonTextTheme.primary, // Set button text color
+          ),
+        ),
         debugShowCheckedModeBanner: false,
         home: MultiProvider(
           // Use MultiProvider to provide both LanguageProvider and MyApp

@@ -930,6 +930,35 @@ class ApiService {
     }
   }
 
+  /// Get Student Photos */
+  Future<dynamic> getStudentPhotosDates(String studentId) async {
+    try {
+      var url = Uri.parse(ApiConstants.baseUrl +
+          ApiConstants.API_SET_STUDENT_PHOTOS+studentId);
+      var request = http.Request('GET', url);
+      request.body = '''''';
+      //var request = http.StreamedRequest('GET', url);
+
+      var streamedResponse = await request.send();
+      var response = await http.Response.fromStream(streamedResponse);
+      if (kDebugMode) {
+        print("url$url");
+        print(request);
+        print(response.statusCode);
+        print(response.body);
+      }
+      if (response.statusCode == 200) {
+        var result = jsonDecode(response.body);
+        return result;
+      } else {
+        var result = jsonDecode(response.body);
+        return result;
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
   /// Get profile  Data*/
   Future<dynamic> getUserProfileData(String parentId) async {
     try {

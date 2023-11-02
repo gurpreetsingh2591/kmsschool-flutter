@@ -193,7 +193,7 @@ class MessageToOfficePageState extends State<MessageToOfficePage> {
                   primary: true,
                   children: [
                     buildSelectionTab(),
-                    40.height,
+                    30.height,
                     buildComposeMessageContainer()
                   ],
                 ),

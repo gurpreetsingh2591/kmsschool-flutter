@@ -14,6 +14,7 @@ class StudentLessonBloc extends Bloc<StudentLessonEvent, CommonState> {
     on<GetReminderListData>(_onGetReminderListData);
     on<SetRemindersData>(_onSetRemindersData);
     on<GetEventsData>(_onGetEventsData);
+    on<GetStudentPhotosData>(_onGetStudentPhotosData);
   }
 
   Future<void> _onGetSubjectData(
@@ -22,7 +23,8 @@ class StudentLessonBloc extends Bloc<StudentLessonEvent, CommonState> {
     emit(LoadingState());
 
     try {
-      dynamic getUserData = await ApiService().getSubjectListList(event.studentId,event.classId);
+      dynamic getUserData =
+          await ApiService().getSubjectListList(event.studentId, event.classId);
       // Process the API response
       // Emit a success state
       if (kDebugMode) {
@@ -41,7 +43,8 @@ class StudentLessonBloc extends Bloc<StudentLessonEvent, CommonState> {
     emit(LoadingState());
 
     try {
-      dynamic getUserData = await ApiService().getLessonRecordList(event.studentId,event.subjectId);
+      dynamic getUserData = await ApiService()
+          .getLessonRecordList(event.studentId, event.subjectId);
       // Process the API response
       // Emit a success state
       if (kDebugMode) {
@@ -53,6 +56,7 @@ class StudentLessonBloc extends Bloc<StudentLessonEvent, CommonState> {
       emit(FailureState(error.toString()));
     }
   }
+
   Future<void> _onGetReminderListData(
       GetReminderListData event, Emitter<CommonState> emit) async {
     // Handle the Get User Data event
@@ -79,7 +83,8 @@ class StudentLessonBloc extends Bloc<StudentLessonEvent, CommonState> {
     emit(LoadingState());
 
     try {
-      dynamic getUserData = await ApiService().setReminders(event.studentId,event.days);
+      dynamic getUserData =
+          await ApiService().setReminders(event.studentId, event.days);
       // Process the API response
       // Emit a success state
       if (kDebugMode) {
@@ -91,7 +96,8 @@ class StudentLessonBloc extends Bloc<StudentLessonEvent, CommonState> {
       emit(FailureState(error.toString()));
     }
   }
- ///Get Events
+
+  ///Get Events
   Future<void> _onGetEventsData(
       GetEventsData event, Emitter<CommonState> emit) async {
     // Handle the Get User Data event
@@ -105,6 +111,26 @@ class StudentLessonBloc extends Bloc<StudentLessonEvent, CommonState> {
         print(getUserData);
       }
       emit(GetEventsListState(getUserData));
+    } catch (error) {
+      // Emit a failure state
+      emit(FailureState(error.toString()));
+    }
+  }
+
+  ///Get Photos
+  Future<void> _onGetStudentPhotosData(
+      GetStudentPhotosData event, Emitter<CommonState> emit) async {
+    // Handle the Get User Data event
+    emit(LoadingState());
+
+    try {
+      dynamic getUserData = await ApiService().getStudentPhotosDates(event.studentId);
+      // Process the API response
+      // Emit a success state
+      if (kDebugMode) {
+        print(getUserData);
+      }
+      emit(GetStudentPhotosState(getUserData));
     } catch (error) {
       // Emit a failure state
       emit(FailureState(error.toString()));

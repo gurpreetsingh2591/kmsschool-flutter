@@ -52,5 +52,12 @@ class GetEventsData extends StudentLessonEvent {
   List<Object> get props => [];
 }
 
+class GetStudentPhotosData extends StudentLessonEvent {
+  final String studentId;
+  const GetStudentPhotosData({required this.studentId});
+  @override
+  List<Object> get props => [studentId];
+}
+
 
 

@@ -322,8 +322,7 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
   }
 
   Widget loaderBar(BuildContext context, Size mq) {
-    return SafeArea(
-      child: Container(
+    return  Container(
         constraints: const BoxConstraints.expand(),
         decoration: boxImageDashboardBgDecoration(),
         child: Stack(
@@ -349,7 +348,7 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
             ),
             Container(
               margin: const EdgeInsets.only(
-                  bottom: 20, top: 90, left: 16, right: 16),
+                  bottom: 20, top: 82, left: 16, right: 16),
               child: ListView(
                 shrinkWrap: true,
                 primary: true,
@@ -380,7 +379,7 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
             ),
           ],
         ),
-      ),
+
     );
   }
 
