@@ -114,13 +114,14 @@ class ProfilePageState extends State<ProfilePage> {
   bool isLoading = false;
   bool isLogin = false;
   bool selection = true;
+  bool isUpdated = false;
   ProfileData? profileData;
   final loginBloc = LoginBloc();
   DateTime selectedDate = DateTime.now();
   String formattedDate = "";
 
-  List<Map<String,dynamic>> updateProfileData=[];
-  
+  List<Map<String, dynamic>> updateProfileData = [];
+
   @override
   void initState() {
     super.initState();
@@ -148,8 +149,6 @@ class ProfilePageState extends State<ProfilePage> {
       String message = messagesResponse.message;
       if (status == 200) {
         profileData = messagesResponse.result;
-
-
 
         _addressText.text = profileData!.vchaddress;
         _postalCodeText.text = profileData!.vchpostalcode;
@@ -193,7 +192,7 @@ class ProfilePageState extends State<ProfilePage> {
     }
   }
 
-  callUpdate(){
+  callUpdate() {
     final Map<String, String> updatedData = {
       'vchaddress': _addressText.text,
       'vchpostalcode': _postalCodeText.text,
@@ -231,11 +230,10 @@ class ProfilePageState extends State<ProfilePage> {
       'vchaltercontacthomephone2': _alterHomePhone2Text.text,
     };
 
-    
-    loginBloc.add(GetUserProfileDataUpdate(parentId: parentId, profileData:updatedData));
+    loginBloc.add(
+        GetUserProfileDataUpdate(parentId: parentId, profileData: updatedData));
   }
-  
-  
+
   Future<void> initializePreference() async {
     SharedPrefs.init(await SharedPreferences.getInstance());
   }
@@ -266,8 +264,12 @@ class ProfilePageState extends State<ProfilePage> {
                 setProfileData(state.response);
                 return buildHomeContainer(context, mq);
               } else if (state is GetUpdateProfileDataState) {
-                loginBloc.add(GetUserProfileData(parentId: parentId));
-                toast("Data Updated successfully", false);
+
+
+                !isUpdated? toast("Profile Detail have been Updated", false):null;
+                isUpdated=true;
+               // loginBloc.add(GetUserProfileData(parentId: parentId));
+
                 return buildHomeContainer(context, mq);
               } else if (state is FailureState) {
                 return Center(
@@ -317,11 +319,13 @@ class ProfilePageState extends State<ProfilePage> {
           ),
           Container(
             margin:
-                const EdgeInsets.only(bottom: 20, top: 90, left: 16, right: 16),
+                const EdgeInsets.only(bottom: 20, top: 82, left: 16, right: 16),
             child: ListView(
               shrinkWrap: true,
               primary: true,
-              children: [],
+              children: [
+                buildTextFieldContainer(context),
+              ],
             ),
           ),
           Container(
@@ -372,160 +376,165 @@ class ProfilePageState extends State<ProfilePage> {
               screen: 'mwt',
             ),
           ),
-          Expanded(
-            child: Container(
-              margin: const EdgeInsets.only(
-                  bottom: 20, top: 22, left: 16, right: 16),
-              child: ListView(
-                shrinkWrap: true,
-                primary: true,
-                children: [
-                  buildBookingHistoryContainer(
-                      "Address",
-                      "Postal Code",
-                      _addressText,
-                      _postalCodeText,
-                      _addressFocus,
-                      _postalCodeFocus),
-                  10.height,
-                  buildBookingHistoryContainer("City", "Phone", _cityText,
-                      _phoneText, _cityFocus, _phoneFocus),
-                  10.height,
-                  buildBookingHistoryContainer(
-                      "Mom's Name",
-                      "Mom's SurName",
-                      _momNameText,
-                      _momSurNameText,
-                      _momNameFocus,
-                      _momSurNameFocus),
-                  10.height,
-                  buildBookingHistoryContainer(
-                      "Mom's Phone",
-                      "Mom's Address",
-                      _momPhoneText,
-                      _momAddressText,
-                      _momPhoneFocus,
-                      _momAddressFocus),
-                  10.height,
-                  buildBookingHistoryContainer(
-                      "Mom's Occupation",
-                      "Home Phone",
-                      _momOccupationText,
-                      _homePhoneText,
-                      _momOccupationFocus,
-                      _homePhoneFocus),
-                  10.height,
-                  buildBookingHistoryContainer(
-                      "Mom's Email",
-                      "Mom's work Phone",
-                      _momEmailText,
-                      _momWorkPhoneText,
-                      _momEmailFocus,
-                      _momWorkPhoneFocus),
-                  10.height,
-                  buildBookingHistoryContainer(
-                      "Mom's City",
-                      "Mom's work Pc",
-                      _momCityText,
-                      _momWorkPCText,
-                      _momCityFocus,
-                      _momWorkPCFocus),
-                  10.height,
-                  buildBookingHistoryContainer(
-                      "Father's Name",
-                      "Father's SurName",
-                      _fatherNameText,
-                      _fatherSurNameText,
-                      _fatherNameFocus,
-                      _fatherSurNameFocus),
-                  10.height,
-                  buildBookingHistoryContainer(
-                      "Father's Phone",
-                      "Father's Address",
-                      _fatherPhoneText,
-                      _fatherAddressText,
-                      _fatherPhoneFocus,
-                      _fatherAddressFocus),
-                  10.height,
-                  buildBookingHistoryContainer(
-                      "Father's Occupation",
-                      "Father's Work Phone",
-                      _fatherOccupationText,
-                      _fatherWorkPhoneText,
-                      _fatherOccupationFocus,
-                      _fatherWorkPhoneFocus),
-                  10.height,
-                  buildBookingHistoryContainer(
-                      "Father's Email",
-                      "Father's work Pc",
-                      _fatherEmailText,
-                      _fatherWorkPCText,
-                      _fatherEmailFocus,
-                      _fatherWorkPCFocus),
-                  10.height,
-                  buildBookingHistoryContainer(
-                      "Doctor's Name",
-                      "Doctor's Address",
-                      _doctorNameText,
-                      _doctorAddressText,
-                      _doctorNameFocus,
-                      _doctorAddressFocus),
-                  10.height,
-                  buildBookingHistoryContainer(
-                      "Doctor's Phone",
-                      "Doctor's Postal Code",
-                      _doctorPhoneText,
-                      _doctorPostalCodeText,
-                      _doctorPhoneFocus,
-                      _doctorPostalCodeFocus),
-                  10.height,
-                  buildBookingHistoryContainer(
-                      "Alter Contact Name 1",
-                      "Alter Contact Name 2",
-                      _alterName1Text,
-                      _alterName2Text,
-                      _alterName1Focus,
-                      _alterName2Focus),
-                  10.height,
-                  buildBookingHistoryContainer(
-                      "Alter Contact Phone 1",
-                      "Alter Contact Phone 2",
-                      _alterHomePhone1Text,
-                      _alterHomePhone2Text,
-                      _alterHomePhone1Focus,
-                      _alterHomePhone2Focus),
-                  10.height,
-                  buildBookingHistoryContainer(
-                      "Alter Relation 1",
-                      "Alter Relation 2",
-                      _alterRelation1Text,
-                      _alterRelation2Text,
-                      _alterRelation1Focus,
-                      _alterRelation2Focus),
-                  20.height,
-                  ButtonWidget(
-                      name: "Update Profile",
-                      icon: "",
-                      visibility: false,
-                      padding: 0,
-                      onTap: () {
-callUpdate();
-                      },
-                      size: 14,
-                      scale: 0,
-                      height: 40,
-                      decoration: kButtonBoxDecoration,
-                      textColors: Colors.white,
-                      rightVisibility: false,
-                      weight: FontWeight.w400,
-                      iconColor: Colors.black,
-                      margin: 0),
-                  20.height,
-                ],
-              ),
-            ),
-          )
+          buildTextFieldContainer(context)
         ],
+      ),
+    );
+  }
+
+  Widget buildTextFieldContainer(BuildContext context){
+    return   Expanded(
+      child: Container(
+        margin: const EdgeInsets.only(
+            bottom: 20, top: 22, left: 16, right: 16),
+        child: ListView(
+          shrinkWrap: true,
+          primary: true,
+          children: [
+            buildBookingHistoryContainer(
+                "Address",
+                "Postal Code",
+                _addressText,
+                _postalCodeText,
+                _addressFocus,
+                _postalCodeFocus),
+            10.height,
+            buildBookingHistoryContainer("City", "Phone", _cityText,
+                _phoneText, _cityFocus, _phoneFocus),
+            10.height,
+            buildBookingHistoryContainer(
+                "Mom's Name",
+                "Mom's SurName",
+                _momNameText,
+                _momSurNameText,
+                _momNameFocus,
+                _momSurNameFocus),
+            10.height,
+            buildBookingHistoryContainer(
+                "Mom's Phone",
+                "Mom's Address",
+                _momPhoneText,
+                _momAddressText,
+                _momPhoneFocus,
+                _momAddressFocus),
+            10.height,
+            buildBookingHistoryContainer(
+                "Mom's Occupation",
+                "Home Phone",
+                _momOccupationText,
+                _homePhoneText,
+                _momOccupationFocus,
+                _homePhoneFocus),
+            10.height,
+            buildBookingHistoryContainer(
+                "Mom's Email",
+                "Mom's work Phone",
+                _momEmailText,
+                _momWorkPhoneText,
+                _momEmailFocus,
+                _momWorkPhoneFocus),
+            10.height,
+            buildBookingHistoryContainer(
+                "Mom's City",
+                "Mom's work Pc",
+                _momCityText,
+                _momWorkPCText,
+                _momCityFocus,
+                _momWorkPCFocus),
+            10.height,
+            buildBookingHistoryContainer(
+                "Father's Name",
+                "Father's SurName",
+                _fatherNameText,
+                _fatherSurNameText,
+                _fatherNameFocus,
+                _fatherSurNameFocus),
+            10.height,
+            buildBookingHistoryContainer(
+                "Father's Phone",
+                "Father's Address",
+                _fatherPhoneText,
+                _fatherAddressText,
+                _fatherPhoneFocus,
+                _fatherAddressFocus),
+            10.height,
+            buildBookingHistoryContainer(
+                "Father's Occupation",
+                "Father's Work Phone",
+                _fatherOccupationText,
+                _fatherWorkPhoneText,
+                _fatherOccupationFocus,
+                _fatherWorkPhoneFocus),
+            10.height,
+            buildBookingHistoryContainer(
+                "Father's Email",
+                "Father's work Pc",
+                _fatherEmailText,
+                _fatherWorkPCText,
+                _fatherEmailFocus,
+                _fatherWorkPCFocus),
+            10.height,
+            buildBookingHistoryContainer(
+                "Doctor's Name",
+                "Doctor's Address",
+                _doctorNameText,
+                _doctorAddressText,
+                _doctorNameFocus,
+                _doctorAddressFocus),
+            10.height,
+            buildBookingHistoryContainer(
+                "Doctor's Phone",
+                "Doctor's Postal Code",
+                _doctorPhoneText,
+                _doctorPostalCodeText,
+                _doctorPhoneFocus,
+                _doctorPostalCodeFocus),
+            10.height,
+            buildBookingHistoryContainer(
+                "Alter Contact Name 1",
+                "Alter Contact Name 2",
+                _alterName1Text,
+                _alterName2Text,
+                _alterName1Focus,
+                _alterName2Focus),
+            10.height,
+            buildBookingHistoryContainer(
+                "Alter Contact Phone 1",
+                "Alter Contact Phone 2",
+                _alterHomePhone1Text,
+                _alterHomePhone2Text,
+                _alterHomePhone1Focus,
+                _alterHomePhone2Focus),
+            10.height,
+            buildBookingHistoryContainer(
+                "Alter Relation 1",
+                "Alter Relation 2",
+                _alterRelation1Text,
+                _alterRelation2Text,
+                _alterRelation1Focus,
+                _alterRelation2Focus),
+            20.height,
+            ButtonWidget(
+                name: "Update Profile",
+                icon: "",
+                visibility: false,
+                padding: 0,
+                onTap: () {
+                  isUpdated=false;
+                  callUpdate();
+                },
+                size: 14,
+                scale: 0,
+                height: 40,
+                decoration: kButtonBoxDecoration,
+                textColors: Colors.white,
+                rightVisibility: false,
+                weight: FontWeight.w400,
+                iconColor: Colors.black,
+                margin: 0),
+            20.height,
+          ],
+        ),
       ),
     );
   }

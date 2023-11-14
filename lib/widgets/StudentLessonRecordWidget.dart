@@ -27,80 +27,118 @@ class StudentLessonRecordWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.only(bottom: 15),
-        padding: const EdgeInsets.all(15),
+        margin: const EdgeInsets.only(bottom: 10),
+        padding: const EdgeInsets.all(10),
         decoration: kMessageItemDecoration,
-        child: Column(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Flexible(
-              child: Text(
-                "Lesson Title: $lessonName",
-                textAlign: TextAlign.left,
-                style: textStyle(Colors.black87, 14, 0, FontWeight.w500),
-              ),
-            ),
-            5.height,
-            Text(
-              "Lesson Planned: $lessonPlaned",
-              style: textStyle(Colors.black87, 14, 0, FontWeight.w500),
-              textAlign: TextAlign.left,
-            ),
-            5.height,
-            Container(
-              alignment: Alignment.centerLeft,
-              child: Text(
-                "Lesson Presented: $lessonPresented",
-                style: textStyle(Colors.black87, 14, 0, FontWeight.w500),
-                textAlign: TextAlign.left,
-              ),
-            ),
-            5.height,
-            Container(
-              alignment: Alignment.centerLeft,
-              child: Row(
-                children: [
-                  Text(
-                    "Status:",
-                    style: textStyle(Colors.black87, 14, 0, FontWeight.w500),
-                    textAlign: TextAlign.left,
-                  ),
-                  10.width,
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 5),
-                    decoration: kEDBgDecoration,
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "ED:$statusEd",
-                      style: textStyle(Colors.black87, 14, 0, FontWeight.w500),
+            Expanded(
+              flex: 2,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+
+                    Text(
+                      lessonName,
+                      style: textStyle(Colors.black87, 12, 0, FontWeight.w400),
                       textAlign: TextAlign.left,
-                    ),
-                  ),
-                  10.width,
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 5),
-                    decoration: kPGBgDecoration,
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "PG:$statusPg",
-                      style: textStyle(Colors.black87, 14, 0, FontWeight.w500),
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
-                  10.width,
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 5),
-                    decoration: kPIBgDecoration,
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      "PI:$statusPi",
-                      style: textStyle(Colors.black87, 14, 0, FontWeight.w500),
-                      textAlign: TextAlign.left,
-                    ),
-                  )
-                ],
+                    )
+
+                  ]),
+            ),
+
+            5.width,
+            Expanded(
+              flex: 1,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+
+                Text(
+                  lessonPlaned,
+                  style: textStyle(Colors.black87, 12, 0, FontWeight.w400),
+                  textAlign: TextAlign.left,
+                )
+
+              ]),
+            ),
+            5.width,
+            Expanded(
+              flex: 1,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+
+                Text(
+                  lessonPresented,
+                  style: textStyle(Colors.black87, 12, 0, FontWeight.w400),
+                  textAlign: TextAlign.left,
+                )
+
+              ]),
+            ),
+            5.width,
+            Expanded(
+              flex: 2,
+              child: Container(
+                alignment: Alignment.centerLeft,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      decoration: kEDBgDecoration,
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "ED:$statusEd",
+                        style:
+                            textStyle(Colors.black87, 12, 0, FontWeight.w400),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),),
+                    5.width,
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      decoration: kPGBgDecoration,
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "PG:$statusPg",
+                        style:
+                            textStyle(Colors.black87, 12, 0, FontWeight.w400),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),),
+                    5.width,
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      decoration: kPIBgDecoration,
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "PI:$statusPi",
+                        style:
+                            textStyle(Colors.black87, 12, 0, FontWeight.w400),
+                        textAlign: TextAlign.left,
+                      ),
+                    ),),
+                  ],
+                ),
               ),
             ),
           ],

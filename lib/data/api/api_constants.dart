@@ -18,7 +18,7 @@ class ApiConstants {
   static String API_GET_LUNCH_MENU = "lunchmenu.php";
   static String API_GET_SNACK_MENU="snackmenu.php";
   static String API_GET_MESSAGESFROMSCHOOL="msgfromschool.php";
-  static String API_GET_MESSAGES_FROM_TEACHER="msgfromteacher.php";
+  static String API_GET_MESSAGESFROMTEACHER="msgfromteacher.php";
   static String API_GET_MESSAGE_TO_OFFICE_DATA="msgoffice.php";
   static String API_GET_MESSAGE_TO_TEACHER_DATA="msgteacher.php";
   static String API_GET_MESSAGE_SENT_TO_TEACHER_LIST="msgsendteacher.php";

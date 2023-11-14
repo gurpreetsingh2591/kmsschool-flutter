@@ -20,9 +20,9 @@ class MessagesBloc extends Bloc<MessageMenuEvent, CommonState> {
       dynamic getUserData = await ApiService().getSchoolMessages(event.studentId);
       // Process the API response
       // Emit a success state
-     /* if (kDebugMode) {
+      if (kDebugMode) {
         print(getUserData);
-      }*/
+      }
       emit(SuccessState(getUserData));
     } catch (error) {
       // Emit a failure state
@@ -39,9 +39,9 @@ class MessagesBloc extends Bloc<MessageMenuEvent, CommonState> {
       dynamic getUserData = await ApiService().getTeacherMessages(event.studentId);
       // Process the API response
       // Emit a success state
-      /*if (kDebugMode) {
+      if (kDebugMode) {
         print(getUserData);
-      }*/
+      }
       emit(UserDataSuccessState(getUserData));
     } catch (error) {
       // Emit a failure state

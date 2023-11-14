@@ -52,7 +52,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
   final studentLessonBloc = StudentLessonBloc();
   DateTime selectedDate = DateTime.now();
   String formattedDate = "";
-  String selectedValue = "Select Subject";
+  String selectedValue = "Select Subject to view the lesson's status";
   String subjectId = "";
 
   List<StudentSubject> subjectList = [];
@@ -109,7 +109,8 @@ class LessonProgressPageState extends State<LessonProgressPage> {
       String message = bookingResponse.message;
 
       if (status == 200) {
-        final subject = StudentSubject(name: "Select Subject", id: '0');
+        final subject = StudentSubject(
+            name: "Select Subject to view the lesson's status", id: '0');
         subjectList.add(subject);
         subjectList.addAll(bookingResponse.result);
       } else {
@@ -307,6 +308,8 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                 studentId: studentId, subjectId: subjectId));
           });
         },
+        icon: const Icon(Icons.arrow_drop_down,color: Colors.black,), // Ensure this line is included
+
         items: subjectList.map((item) {
           return DropdownMenuItem<String>(
             value: item.name,
@@ -322,11 +325,74 @@ class LessonProgressPageState extends State<LessonProgressPage> {
   }
 
   Widget buildLessonListContainer() {
-    return Column(
+    return Container(
+        margin: const EdgeInsets.only(bottom: 15),
+    padding: const EdgeInsets.all(15),
+    decoration: kMessageItemDecoration,
+    child:Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          Container(
+              margin: const EdgeInsets.only(bottom: 15),
+              padding: const EdgeInsets.all(15),
+              decoration: kMessageItemDecoration,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child:Container(
+                      alignment: Alignment.centerLeft,
+                      child: Flexible(
+                      child: Text(
+                        "Lesson Title",
+                        textAlign: TextAlign.center,
+                        style:
+                            textStyle(Colors.black87, 14, 0, FontWeight.w500),
+                      ),
+                    ),
+                  ),),
+                  5.width,
+                  Expanded(
+                    flex: 1,
+                    child:Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                      "PL",
+                      style: textStyle(Colors.black87, 14, 0, FontWeight.w500),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),),
+                  5.width,
+                  Expanded(
+                    flex: 1,
+                    child:Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                      "PR",
+                      style: textStyle(Colors.black87, 14, 0, FontWeight.w500),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),),
+                  5.width,
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Status",
+                        style:
+                            textStyle(Colors.black87, 14, 0, FontWeight.w500),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ),
+                ],
+              )),
           lessonRecord.isNotEmpty
               ? ListView.builder(
                   primary: false,
@@ -334,14 +400,15 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                   itemCount: lessonRecord.length,
                   itemBuilder: (context, index) {
                     return StudentLessonRecordWidget(
-                      lessonPlanId: lessonRecord[index].lessonPlanId??"",
-                      classId: lessonRecord[index].classId??"",
-                      lessonName: lessonRecord[index].lessonName??"",
-                      statusEd:  lessonRecord[index].statusEd??"0",
-                      statusPg:  lessonRecord[index].statusPg??"0",
-                      statusPi:  lessonRecord[index].statusPi??"0",
-                      lessonPlaned:  lessonRecord[index].lessonPlaned??"0",
-                      lessonPresented:  lessonRecord[index].lessonPresented??"0",
+                      lessonPlanId: lessonRecord[index].lessonPlanId ?? "",
+                      classId: lessonRecord[index].classId ?? "",
+                      lessonName: lessonRecord[index].lessonName ?? "",
+                      statusEd: lessonRecord[index].statusEd ?? "0",
+                      statusPg: lessonRecord[index].statusPg ?? "0",
+                      statusPi: lessonRecord[index].statusPi ?? "0",
+                      lessonPlaned: lessonRecord[index].lessonPlaned ?? "0",
+                      lessonPresented:
+                          lessonRecord[index].lessonPresented ?? "0",
                     );
                   },
                 )
@@ -352,6 +419,6 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                     style: textStyle(Colors.black54, 18, 0, FontWeight.w400),
                   ),
                 ),
-        ]);
+        ]));
   }
 }

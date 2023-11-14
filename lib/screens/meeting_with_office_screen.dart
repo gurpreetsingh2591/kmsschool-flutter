@@ -89,6 +89,10 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
         final booking = BookingSlots(slot: "Select Slot");
         bookingSlots.add(booking);
         bookingSlots.addAll(messagesResponse.result);
+      }else{
+        final booking = BookingSlots(slot: "Slot Unavailable ");
+        bookingSlots.add(booking);
+        bookingSlots.addAll(messagesResponse.result);
       }
     } catch (e) {
       if (kDebugMode) {
@@ -520,7 +524,7 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
                     color: Colors.black26, // Set the color of the line
                   ),
                   Expanded(
-                    flex: 6,
+                    flex: 7,
                     child: Container(
                       alignment: Alignment.centerLeft,
                       child: DropdownButton<String>(
@@ -534,6 +538,8 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
                             selectedValue = newValue!;
                           });
                         },
+                        icon: const Icon(Icons.arrow_drop_down,color: Colors.black,), // Ensure this line is included
+
                         items: bookingSlots.map((item) {
                           return DropdownMenuItem<String>(
                             value: item.slot,
@@ -548,7 +554,7 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
                       ),
                     ),
                   ),
-                  Expanded(
+/*                  Expanded(
                       flex: 1,
                       child: Container(
                         alignment: Alignment.center,
@@ -556,7 +562,7 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
                           "assets/icons/ic_down.png",
                           scale: 2.5,
                         ),
-                      )),
+                      ))*/
                 ],
               )),
           40.height,
@@ -587,7 +593,7 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ListView.builder(
+          bookedMeetings.isNotEmpty?ListView.builder(
             primary: false,
             shrinkWrap: true,
             itemCount: bookedMeetings.length,
@@ -599,7 +605,13 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
               },
               );
             },
-          )
+          ):Container(
+            margin: const EdgeInsets.only(top: 50),
+            child: Text(
+              "No Meeting has been booked yet.",
+              style: textStyle(Colors.black54, 18, 0, FontWeight.w400),
+            ),
+          ),
         ]);
   }
 }

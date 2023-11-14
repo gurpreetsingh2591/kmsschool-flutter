@@ -85,8 +85,10 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
         final booking = BookingSlots(slot: "Select Slot");
         bookingSlots.add(booking);
         bookingSlots.addAll(messagesResponse.result);
-      } else {
-        toast(message, false);
+      }else{
+        final booking = BookingSlots(slot: "Slot Unavailable ");
+        bookingSlots.add(booking);
+        bookingSlots.addAll(messagesResponse.result);
       }
     } catch (e) {
       if (kDebugMode) {
@@ -102,7 +104,7 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
       toast("Please Select Time slot", false);
     } else {
       showAlertDialog(context, "Book Meeting With Teacher",
-          "Your Selected Date: $formattedDate\nYour Time Slot: $selectedValue");
+          "Your Selected Date: $formattedDate\nYour Time Slot: $selectedValue\n\nConfirm Book meeting");
     }
   }
 
@@ -133,7 +135,7 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
         "Delete Meeting",
         style: textStyle(Colors.white, 18, 0, FontWeight.w500),
       ),
-      content: Text("Are you sure to delete your meeting",
+      content: Text("Are you sure you want to delete your meeting",
           style: textStyle(Colors.white, 14, 0, FontWeight.normal)),
       actions: [
         cancelButton,
@@ -529,10 +531,11 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
                     color: Colors.black26, // Set the color of the line
                   ),
                   Expanded(
-                    flex: 6,
+                    flex: 7,
                     child: Container(
                       alignment: Alignment.centerLeft,
                       child: DropdownButton<String>(
+
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         value: selectedValue,
                         isExpanded: true,
@@ -542,6 +545,8 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
                             selectedValue = newValue!;
                           });
                         },
+                        icon: const Icon(Icons.arrow_drop_down,color: Colors.black,), // Ensure this line is included
+
                         items: bookingSlots.map((item) {
                           return DropdownMenuItem<String>(
                             value: item.slot,
@@ -556,7 +561,7 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
                       ),
                     ),
                   ),
-                  Expanded(
+                 /* Expanded(
                       flex: 1,
                       child: Container(
                         alignment: Alignment.center,
@@ -564,7 +569,7 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
                           "assets/icons/ic_down.png",
                           scale: 2.5,
                         ),
-                      )),
+                      )),*/
                 ],
               )),
           40.height,
@@ -595,7 +600,7 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          ListView.builder(
+          bookedMeetings.isNotEmpty? ListView.builder(
             primary: false,
             shrinkWrap: true,
             itemCount: bookedMeetings.length,
@@ -609,7 +614,13 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
                 },
               );
             },
-          )
+          ):Container(
+            margin: const EdgeInsets.only(top: 50),
+            child: Text(
+              "No Meeting has been booked yet.",
+              style: textStyle(Colors.black54, 18, 0, FontWeight.w400),
+            ),
+          ),
         ]);
   }
 }

@@ -385,55 +385,7 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
         ],
       ),
     );
-    Container(
-      constraints: const BoxConstraints.expand(),
-      decoration: boxImageDashboardBgDecoration(),
-      child: Column(
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            height: 60,
-            decoration: kButtonBgDecoration,
-            child: TopBarWidget(
-              onTapLeft: () {
-                _scaffoldKey.currentState?.openDrawer();
-              },
-              onTapRight: () {},
-              leftIcon: 'assets/icons/menu.png',
-              rightIcon: 'assets/icons/user.png',
-              title: "School Calender",
-              rightVisibility: false,
-              leftVisibility: true,
-              bottomTextVisibility: false,
-              subTitle: '',
-              screen: 'sc',
-            ),
-          ),
-          Container(
-            margin: EdgeInsets.only(),
-            child: Stack(
-              children: [
-                Container(
-                  height: 500,
-                  margin: const EdgeInsets.only(bottom: 20, top: 80),
-                  child: const Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Center(
-                          child: SpinKitFadingCircle(
-                        color: kLightGray,
-                        size: 80.0,
-                      ))
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
+
   }
 
   Widget buildHomeContainer(BuildContext context, Size mq) {
@@ -483,9 +435,6 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
     );
   }
 
-  /*Widget buildCalenderView() {
-    return Container(child: const Text(""));
-  }*/
 
   Widget buildCalenderView() {
     return Container(

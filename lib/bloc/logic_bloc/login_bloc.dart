@@ -86,7 +86,7 @@ class LoginBloc extends Bloc<LoginEvent, CommonState> {
       if (kDebugMode) {
         print(getUserData);
       }
-      emit(GetProfileDataState(getUserData));
+      emit(GetUpdateProfileDataState(getUserData));
     } catch (error) {
       // Emit a failure state
       emit(FailureState(error.toString()));

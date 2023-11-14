@@ -1,14 +1,12 @@
 class TeacherMessages {
   String currtime;
-  String vchsubject;
   String txtmessage;
 
-  TeacherMessages({required this.currtime, required this.vchsubject, required this.txtmessage});
+  TeacherMessages({required this.currtime, required this.txtmessage});
 
   factory TeacherMessages.fromJson(Map<String, dynamic> json) {
     return TeacherMessages(
       currtime: json['currtime'],
-      vchsubject: json['vchsubject'],
       txtmessage: json['txtmessage'],
     );
   }

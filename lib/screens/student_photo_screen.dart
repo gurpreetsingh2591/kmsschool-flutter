@@ -14,6 +14,7 @@ import '../utils/constant.dart';
 import '../utils/shared_prefs.dart';
 import '../utils/themes/colors.dart';
 import '../widgets/DrawerWidget.dart';
+import '../widgets/ImageViewerDialog.dart';
 import '../widgets/StudentPhotosWidget.dart';
 import '../widgets/TopBarWidget.dart';
 
@@ -175,7 +176,7 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             height: 60,
             decoration: kButtonBgDecoration,
             child: TopBarWidget(
@@ -272,7 +273,18 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
             return StudentPhotosWidget(
               driveLink: driveLink,
               image: studentPhotos[index],
-              click: () {},
+              click: () {
+                showDialog(
+                  context: context,
+                  builder: (context) {
+                    return ImageViewerDialog(
+                      imageUrls: studentPhotos,
+                      initialIndex: index,
+                    );
+                  },
+                );
+
+              },
             );
           },
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

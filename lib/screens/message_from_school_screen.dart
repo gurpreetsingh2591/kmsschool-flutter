@@ -6,6 +6,7 @@ import 'package:kmschool/bloc/event/get_messages_event.dart';
 import 'package:kmschool/bloc/state/common_state.dart';
 import 'package:kmschool/model/TeacherMessageResponse.dart';
 import 'package:kmschool/utils/extensions/lib_extensions.dart';
+import 'package:kmschool/utils/toast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,8 +48,7 @@ class MessageFromSchoolPageState extends State<MessageFromSchoolPage> {
       isLogin = SharedPrefs().isLogin();
     });
 
-    messagesBloc.add(GetSchoolMessageData(
-        studentId: SharedPrefs().getStudentId().toString()));
+    messagesBloc.add(GetSchoolMessageData(studentId: SharedPrefs().getStudentId().toString()));
     messagesBloc.add(GetTeacherMessageData(
         studentId: SharedPrefs().getStudentId().toString()));
   }
@@ -79,8 +79,15 @@ class MessageFromSchoolPageState extends State<MessageFromSchoolPage> {
       var messagesResponse = TeacherMessagesResponse.fromJson(messages);
       int status = messagesResponse.status;
       String message = messagesResponse.message;
+
+      if (kDebugMode) {
+        print("messages$messagesResponse");
+      }
       if (status == 200) {
-        teacherMessages.addAll(messagesResponse.result);
+        setState(() {
+          teacherMessages.addAll(messagesResponse.result);
+
+        });
       }
 
       if (kDebugMode) {
@@ -120,10 +127,12 @@ class MessageFromSchoolPageState extends State<MessageFromSchoolPage> {
               if (state is LoadingState) {
                 return loaderBar(context, mq);
               } else if (state is SuccessState) {
+               // toast("school data get", false);
                 setSchoolData(state.response);
 
                 return buildHomeContainer(context, mq);
               } else if (state is UserDataSuccessState) {
+               // toast("teacher data get", false);
                 setTeacherData(state.response);
                 return buildHomeContainer(context, mq);
               } else if (state is FailureState) {
@@ -272,6 +281,8 @@ class MessageFromSchoolPageState extends State<MessageFromSchoolPage> {
   }
 
   Widget buildTeacherMessageContainer() {
+
+    print(teacherMessages.length);
     return Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -284,7 +295,7 @@ class MessageFromSchoolPageState extends State<MessageFromSchoolPage> {
                   itemCount: teacherMessages.length,
                   itemBuilder: (context, index) {
                     return MessageItemWidget(
-                      subject: "Subject: ${teacherMessages[index].vchsubject}",
+                      subject: "Subject: ",
                       description: teacherMessages[index].txtmessage,
                       date: teacherMessages[index].currtime,
                     );
@@ -301,6 +312,8 @@ class MessageFromSchoolPageState extends State<MessageFromSchoolPage> {
   }
 
   Widget buildSchoolMessageContainer() {
+
+    print(schoolMessages.length);
     return Column(
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.start,

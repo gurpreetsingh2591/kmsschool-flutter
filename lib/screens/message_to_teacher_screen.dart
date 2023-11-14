@@ -134,7 +134,7 @@ class MessageToTeacherPageState extends State<MessageToTeacherPage> {
                       studentId: SharedPrefs().getStudentId().toString()));
                   _subjectText.text = "";
                   _descriptionText.text = "";
-                  toast("Message Sent", true);
+                  toast("Message has been Sent", true);
                 }catch(e){
                   if (kDebugMode) {
                     print(e);

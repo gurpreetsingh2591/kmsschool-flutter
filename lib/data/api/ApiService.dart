@@ -286,6 +286,7 @@ class ApiService {
 
       if (kDebugMode) {
         print(request.fields);
+        print(url);
       }
 
       var streamedResponse = await request.send();
@@ -310,7 +311,7 @@ class ApiService {
   Future<dynamic> getTeacherMessages(String studentId) async {
     try {
       var url = Uri.parse(
-          ApiConstants.baseUrl + ApiConstants.API_GET_MESSAGES_FROM_TEACHER);
+          ApiConstants.baseUrl + ApiConstants.API_GET_MESSAGESFROMTEACHER);
 
       var request = http.MultipartRequest('POST', url);
 
@@ -320,6 +321,7 @@ class ApiService {
 
       if (kDebugMode) {
         print(request.fields);
+        print(url);
       }
 
       var streamedResponse = await request.send();
