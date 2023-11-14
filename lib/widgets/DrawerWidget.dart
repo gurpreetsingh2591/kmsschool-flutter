@@ -22,13 +22,14 @@ class DrawerWidget extends StatelessWidget {
       decoration: boxImageDrawerBgDecoration(),
       child: ListView(
         padding: const EdgeInsets.only(
-          top: 50,left: 10
+          top: 40,left: 10
         ),
         children: [
-          Align(
+          Container(
+            margin: const EdgeInsets.only(left: 15,bottom: 7),
             alignment: Alignment.topLeft,
             child: Image.asset(
-              'assets/icons/app_logo.png',
+              'assets/icons/app_logo_new.png',
               scale: 4,
             ),
           ),
@@ -51,7 +52,7 @@ class DrawerWidget extends StatelessWidget {
                   context.push(Routes.mainHome);
                 },
               )),
-          10.height,
+          7.height,
           SizedBox(
             height: 40,
               child: ListTile(
@@ -71,7 +72,7 @@ class DrawerWidget extends StatelessWidget {
                   context.push(Routes.lunchMenu);
                 },
               )),
-          10.height,
+          7.height,
           SizedBox(
             height: 40,
             child: ListTile(
@@ -92,7 +93,7 @@ class DrawerWidget extends StatelessWidget {
               },
             ),
           ),
-          10.height,
+          7.height,
           SizedBox(
             height: 40,
             child: ListTile(
@@ -114,7 +115,7 @@ class DrawerWidget extends StatelessWidget {
               },
             ),
           ),
-          10.height,
+          7.height,
           SizedBox(
             height: 40,
               child: ListTile(
@@ -134,7 +135,7 @@ class DrawerWidget extends StatelessWidget {
                   context.push(Routes.messageFromSchool);
                 },
               ),),
-          10.height,
+          7.height,
           SizedBox(
               height: 40,
               child: ListTile(
@@ -154,7 +155,7 @@ class DrawerWidget extends StatelessWidget {
                   context.push(Routes.meetingWithTeacher);
                 },
               )),
-          10.height,
+          7.height,
           SizedBox(
               height: 40,
 
@@ -175,7 +176,7 @@ class DrawerWidget extends StatelessWidget {
                   context.push(Routes.meetingWithOffice);
                 },
               )),
-          10.height,
+          7.height,
           SizedBox(
               height: 40,
               child: ListTile(
@@ -195,7 +196,7 @@ class DrawerWidget extends StatelessWidget {
                   context.push(Routes.messageToTeacher);
                 },
               )),
-          10.height,
+         7.height,
           SizedBox(
               height: 40,
               child: ListTile(
@@ -215,7 +216,70 @@ class DrawerWidget extends StatelessWidget {
                   context.push(Routes.messageToOffice);
                 },
               )),
-          10.height,
+          7.height,
+          SizedBox(
+              height: 40,
+
+              child: ListTile(
+                leading: Image.asset(
+                  'assets/icons/user.png',
+                  scale: 12,
+                ),
+                title: Transform(
+                  transform: Matrix4.translationValues(-20, 0.0, 0.0),
+                  child: Text(
+                    'Lessons',
+                    style: textStyle(Colors.black, 14, 0, FontWeight.normal),
+                  ),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  context.push(Routes.lessonProgress);
+                },
+              )),
+         7.height,
+          SizedBox(
+              height: 40,
+
+              child: ListTile(
+                leading: Image.asset(
+                  'assets/icons/user.png',
+                  scale: 12,
+                ),
+                title: Transform(
+                  transform: Matrix4.translationValues(-20, 0.0, 0.0),
+                  child: Text(
+                    'Photos',
+                    style: textStyle(Colors.black, 14, 0, FontWeight.normal),
+                  ),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  context.push(Routes.studentPhotos);
+                },
+              )),
+         7.height,
+          SizedBox(
+              height: 40,
+
+              child: ListTile(
+                leading: Image.asset(
+                  'assets/icons/user.png',
+                  scale: 12,
+                ),
+                title: Transform(
+                  transform: Matrix4.translationValues(-20, 0.0, 0.0),
+                  child: Text(
+                    'Event Reminders',
+                    style: textStyle(Colors.black, 14, 0, FontWeight.normal),
+                  ),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  context.push(Routes.setReminder);
+                },
+              )),
+          7.height,
           SizedBox(
               height: 40,
 
@@ -236,70 +300,7 @@ class DrawerWidget extends StatelessWidget {
                   context.push(Routes.accountInfo);
                 },
               )),
-          10.height,
-          SizedBox(
-              height: 40,
-
-              child: ListTile(
-                leading: Image.asset(
-                  'assets/icons/user.png',
-                  scale: 12,
-                ),
-                title: Transform(
-                  transform: Matrix4.translationValues(-20, 0.0, 0.0),
-                  child: Text(
-                    'Lesson Progress',
-                    style: textStyle(Colors.black, 14, 0, FontWeight.normal),
-                  ),
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  context.push(Routes.lessonProgress);
-                },
-              )),
-          10.height,
-          SizedBox(
-              height: 40,
-
-              child: ListTile(
-                leading: Image.asset(
-                  'assets/icons/user.png',
-                  scale: 12,
-                ),
-                title: Transform(
-                  transform: Matrix4.translationValues(-20, 0.0, 0.0),
-                  child: Text(
-                    'Student Photos',
-                    style: textStyle(Colors.black, 14, 0, FontWeight.normal),
-                  ),
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  context.push(Routes.studentPhotos);
-                },
-              )),
-          10.height,
-          SizedBox(
-              height: 40,
-
-              child: ListTile(
-                leading: Image.asset(
-                  'assets/icons/user.png',
-                  scale: 12,
-                ),
-                title: Transform(
-                  transform: Matrix4.translationValues(-20, 0.0, 0.0),
-                  child: Text(
-                    'Reminder Setting',
-                    style: textStyle(Colors.black, 14, 0, FontWeight.normal),
-                  ),
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  context.push(Routes.setReminder);
-                },
-              )),
-          10.height,
+         7.height,
           SizedBox(
               height: 40,
               child: ListTile(
@@ -321,7 +322,7 @@ class DrawerWidget extends StatelessWidget {
                   context.go(Routes.signIn);
                 },
               )),
-          10.height,
+          7.height,
           SizedBox(
               height: 40,
               child: ListTile(
@@ -345,6 +346,7 @@ class DrawerWidget extends StatelessWidget {
 
                 },
               )),
+          7.height,
         ],
       ),
     );

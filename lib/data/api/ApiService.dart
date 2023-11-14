@@ -901,6 +901,35 @@ class ApiService {
       log(e.toString());
     }
   }
+  /// Set Already Reminder*/
+  Future<dynamic> alreadySetReminders(String studentId, String days) async {
+    try {
+      var url = Uri.parse(ApiConstants.baseUrl +
+          ApiConstants.API_SET_ALREADY_PARENT_REMINDER +
+          studentId);
+      var request = http.Request('GET', url);
+      request.body = '''''';
+      //var request = http.StreamedRequest('GET', url);
+
+      var streamedResponse = await request.send();
+      var response = await http.Response.fromStream(streamedResponse);
+      if (kDebugMode) {
+        print("url$url");
+        print(request);
+        print(response.statusCode);
+        print(response.body);
+      }
+      if (response.statusCode == 200) {
+        var result = jsonDecode(response.body);
+        return result;
+      } else {
+        var result = jsonDecode(response.body);
+        return result;
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+  }
 
 
   /// Get Event Dates*/

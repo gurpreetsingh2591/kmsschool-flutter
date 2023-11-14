@@ -151,6 +151,7 @@ flutter:
     - assets/icons/ic_clock.png
     - assets/icons/delete.png
     - assets/icons/ic_down.png
+    - assets/icons/app_logo_new.png
 
   fonts:
     - family: poppins

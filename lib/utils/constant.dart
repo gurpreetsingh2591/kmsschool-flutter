@@ -152,15 +152,15 @@ final dynamic dashboardList = [
     'image': 'assets/icons/message_to_teacher.png',
   },
   {
-    'name': 'Student Gallery',
+    'name': 'Photos',
     'image': 'assets/icons/meeting_with_office.png',
   },
   {
-    'name': 'Lesson Status',
+    'name': 'Lessons',
     'image': 'assets/icons/message_to_teacher.png',
   },
   {
-    'name': 'Set Reminder',
+    'name': 'Event Reminders',
     'image': 'assets/icons/calender.png',
   },
   {

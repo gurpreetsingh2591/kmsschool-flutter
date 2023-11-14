@@ -193,7 +193,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
               onTapRight: () {},
               leftIcon: 'assets/icons/menu.png',
               rightIcon: 'assets/icons/user.png',
-              title: "Lesson Progress",
+              title: "Lessons",
               rightVisibility: false,
               leftVisibility: true,
               bottomTextVisibility: false,
@@ -254,7 +254,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
               onTapRight: () {},
               leftIcon: 'assets/icons/menu.png',
               rightIcon: 'assets/icons/user.png',
-              title: "Lesson Progress",
+              title: "Lessons",
               rightVisibility: false,
               leftVisibility: true,
               bottomTextVisibility: false,
@@ -272,7 +272,17 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                 children: [
                   selectSubjectDropDown(),
                   20.height,
-                  buildLessonListContainer()
+                  lessonRecord.isNotEmpty
+                      ? buildLessonListContainer()
+                      : Container(
+                          alignment: Alignment.center,
+                          margin: const EdgeInsets.only(top: 50),
+                          child: Text(
+                            kData,
+                            style: textStyle(
+                                Colors.black54, 18, 0, FontWeight.w400),
+                          ),
+                        ),
                 ],
               ),
             ),
@@ -308,7 +318,11 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                 studentId: studentId, subjectId: subjectId));
           });
         },
-        icon: const Icon(Icons.arrow_drop_down,color: Colors.black,), // Ensure this line is included
+        icon: const Icon(
+          Icons.arrow_drop_down,
+          color: Colors.black,
+        ),
+        // Ensure this line is included
 
         items: subjectList.map((item) {
           return DropdownMenuItem<String>(
@@ -327,98 +341,94 @@ class LessonProgressPageState extends State<LessonProgressPage> {
   Widget buildLessonListContainer() {
     return Container(
         margin: const EdgeInsets.only(bottom: 15),
-    padding: const EdgeInsets.all(15),
-    decoration: kMessageItemDecoration,
-    child:Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-              margin: const EdgeInsets.only(bottom: 15),
-              padding: const EdgeInsets.all(15),
-              decoration: kMessageItemDecoration,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Expanded(
-                    flex: 2,
-                    child:Container(
-                      alignment: Alignment.centerLeft,
-                      child: Flexible(
-                      child: Text(
-                        "Lesson Title",
-                        textAlign: TextAlign.center,
-                        style:
-                            textStyle(Colors.black87, 14, 0, FontWeight.w500),
+        padding: const EdgeInsets.all(15),
+        decoration: kMessageItemDecoration,
+        child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                  margin: const EdgeInsets.only(bottom: 15),
+                  padding: const EdgeInsets.all(15),
+                  decoration: kMessageItemDecoration,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Expanded(
+                        flex: 2,
+                        child: Container(
+                          alignment: Alignment.centerLeft,
+                          child: Flexible(
+                            child: Text(
+                              "Lesson Title",
+                              textAlign: TextAlign.center,
+                              style: textStyle(
+                                  Colors.black87, 14, 0, FontWeight.w500),
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),),
-                  5.width,
-                  Expanded(
-                    flex: 1,
-                    child:Container(
-                      alignment: Alignment.center,
-                      child: Text(
-                      "PL",
-                      style: textStyle(Colors.black87, 14, 0, FontWeight.w500),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),),
-                  5.width,
-                  Expanded(
-                    flex: 1,
-                    child:Container(
-                      alignment: Alignment.center,
-                      child: Text(
-                      "PR",
-                      style: textStyle(Colors.black87, 14, 0, FontWeight.w500),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),),
-                  5.width,
-                  Expanded(
-                    flex: 2,
-                    child: Container(
-                      alignment: Alignment.center,
-                      child: Text(
-                        "Status",
-                        style:
-                            textStyle(Colors.black87, 14, 0, FontWeight.w500),
-                        textAlign: TextAlign.center,
+                      5.width,
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "PL",
+                            style: textStyle(
+                                Colors.black87, 14, 0, FontWeight.w500),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ],
-              )),
-          lessonRecord.isNotEmpty
-              ? ListView.builder(
-                  primary: false,
-                  shrinkWrap: true,
-                  itemCount: lessonRecord.length,
-                  itemBuilder: (context, index) {
-                    return StudentLessonRecordWidget(
-                      lessonPlanId: lessonRecord[index].lessonPlanId ?? "",
-                      classId: lessonRecord[index].classId ?? "",
-                      lessonName: lessonRecord[index].lessonName ?? "",
-                      statusEd: lessonRecord[index].statusEd ?? "0",
-                      statusPg: lessonRecord[index].statusPg ?? "0",
-                      statusPi: lessonRecord[index].statusPi ?? "0",
-                      lessonPlaned: lessonRecord[index].lessonPlaned ?? "0",
-                      lessonPresented:
-                          lessonRecord[index].lessonPresented ?? "0",
-                    );
-                  },
-                )
-              : Container(
-                  margin: const EdgeInsets.only(top: 50),
-                  child: Text(
-                    kData,
-                    style: textStyle(Colors.black54, 18, 0, FontWeight.w400),
-                  ),
-                ),
-        ]));
+                      5.width,
+                      Expanded(
+                        flex: 1,
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "PR",
+                            style: textStyle(
+                                Colors.black87, 14, 0, FontWeight.w500),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                      5.width,
+                      Expanded(
+                        flex: 2,
+                        child: Container(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Status",
+                            style: textStyle(
+                                Colors.black87, 14, 0, FontWeight.w500),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )),
+              ListView.builder(
+                primary: false,
+                shrinkWrap: true,
+                itemCount: lessonRecord.length,
+                itemBuilder: (context, index) {
+                  return StudentLessonRecordWidget(
+                    lessonPlanId: lessonRecord[index].lessonPlanId ?? "",
+                    classId: lessonRecord[index].classId ?? "",
+                    lessonName: lessonRecord[index].lessonName ?? "",
+                    statusEd: lessonRecord[index].statusEd ?? "0",
+                    statusPg: lessonRecord[index].statusPg ?? "0",
+                    statusPi: lessonRecord[index].statusPi ?? "0",
+                    lessonPlaned: lessonRecord[index].lessonPlaned ?? "0",
+                    lessonPresented: lessonRecord[index].lessonPresented ?? "0",
+                  );
+                },
+              )
+            ]));
   }
 }

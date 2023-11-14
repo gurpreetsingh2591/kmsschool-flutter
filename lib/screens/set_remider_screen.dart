@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,6 +14,7 @@ import '../bloc/logic_bloc/student_lesson_bloc.dart';
 import '../bloc/state/common_state.dart';
 import '../model/CommonResponse.dart';
 import '../model/ReminderListResponse.dart';
+import '../model/ReminderResponse.dart';
 import '../utils/toast.dart';
 import '../widgets/ButtonWidget.dart';
 import '../widgets/ColoredSafeArea.dart';
@@ -56,6 +58,7 @@ class SetReminderPageState extends State<SetReminderPage> {
       studentId = SharedPrefs().getStudentId().toString();
     });
     studentLessonBloc.add(const GetReminderListData());
+    studentLessonBloc.add( SetAlreadyRemindersData(studentId: studentId, days: "getbyid"));
   }
 
   Future<void> initializePreference() async {
@@ -80,7 +83,70 @@ class SetReminderPageState extends State<SetReminderPage> {
       }
     }
   }
+/*  List<ReminderResponse> parseReminderResponse(String responseBody) {
+    final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
 
+    return parsed
+        .map<ReminderResponse>((json) => ReminderResponse.fromJson(json))
+        .toList();
+  }*/
+
+
+  List<ReminderResponse> parseReminderResponse(dynamic responseBody) {
+    final parsed = (responseBody as List<dynamic>)
+        .cast<Map<String, dynamic>>()
+        .map<ReminderResponse>((json) => ReminderResponse.fromJson(json))
+        .toList();
+
+    return parsed;
+  }
+
+
+  setReminderListData(dynamic reminders) {
+    // Parse the response
+    List<ReminderResponse> reminderResponses = parseReminderResponse(reminders['result']);
+
+
+
+    // Update the UI with the selected days
+    setState(() {
+      // Iterate through the response data and update the selectedItems list
+      for (var response in reminderResponses) {
+        List<String> selectedDays = response.days.split(',');
+        for (int i = 0; i < reminderList.length; i++) {
+          if (selectedDays.contains(reminderList[i].days)) {
+            selectedItems[i] = true;
+          }
+        }
+      }
+    });
+  }
+  callSetReminderApi() {
+    // Create a list to store selected days
+    List<String> selectedDays = [];
+
+    for (int i = 0; i < reminderList.length; i++) {
+      if (selectedItems[i]) {
+        selectedDays.add(reminderList[i].days);
+      }
+    }
+
+    // Join the selected days into a comma-separated string
+    String selectedDaysString = selectedDays.join(',');
+
+    if (kDebugMode) {
+      print("Selected Days: $selectedDaysString");
+    }
+
+    // Check if any days are selected before making the API call
+    if (selectedDays.isNotEmpty) {
+      // Call the API with the selected days
+      studentLessonBloc.add(SetRemindersData(studentId: studentId, days: selectedDaysString));
+    } else {
+      toast("Please select at least one reminder", false);
+    }
+  }
+/*
   callSetReminderApi() {
     String selectedIds = "";
     for (int i = 0; i < reminderList.length; i++) {
@@ -88,7 +154,7 @@ class SetReminderPageState extends State<SetReminderPage> {
         if (selectedIds.isNotEmpty) {
           selectedIds += ",";
         }
-        selectedIds += reminderList[i].id;
+        selectedIds += reminderList[i].days;
       }
     }
     if (kDebugMode) {
@@ -100,6 +166,7 @@ class SetReminderPageState extends State<SetReminderPage> {
             .add(SetRemindersData(studentId: studentId, days: selectedIds))
         : toast("Please Select minimum one Reminders", false);
   }
+*/
 
   setReminderData(dynamic reminders) {
     try {
@@ -143,6 +210,10 @@ class SetReminderPageState extends State<SetReminderPage> {
                 return loaderBar(context, mq);
               } else if (state is ReminderListState) {
                 getReminderListData(state.response);
+                return buildHomeContainer(context, mq);
+              } else if (state is AlreadySetReminderListState) {
+                setReminderListData(state.response);
+
                 return buildHomeContainer(context, mq);
               } else if (state is SetReminderListState) {
                 setReminderData(state.response);
@@ -188,7 +259,7 @@ class SetReminderPageState extends State<SetReminderPage> {
               },
               leftIcon: 'assets/icons/menu.png',
               rightIcon: 'assets/icons/user.png',
-              title: "Reminder Setting",
+              title: "Event Reminders",
               rightVisibility: false,
               leftVisibility: true,
               bottomTextVisibility: false,
@@ -285,7 +356,7 @@ class SetReminderPageState extends State<SetReminderPage> {
                 onTapRight: () {},
                 leftIcon: 'assets/icons/menu.png',
                 rightIcon: 'assets/icons/user.png',
-                title: "Reminder Setting",
+                title: "Event Reminders",
                 rightVisibility: false,
                 leftVisibility: true,
                 bottomTextVisibility: false,
@@ -363,7 +434,7 @@ class SetReminderPageState extends State<SetReminderPage> {
             return Card(
               color: appBaseColor,
               child: ListTile(
-                contentPadding: EdgeInsets.only(left: 20),
+                contentPadding: const EdgeInsets.only(left: 20),
                // visualDensity:   VisualDensity(horizontal: -4),
                 title: Text(
                   reminderList[index].daystext,
