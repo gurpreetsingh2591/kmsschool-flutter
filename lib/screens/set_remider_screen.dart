@@ -83,13 +83,7 @@ class SetReminderPageState extends State<SetReminderPage> {
       }
     }
   }
-/*  List<ReminderResponse> parseReminderResponse(String responseBody) {
-    final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
 
-    return parsed
-        .map<ReminderResponse>((json) => ReminderResponse.fromJson(json))
-        .toList();
-  }*/
 
 
   List<ReminderResponse> parseReminderResponse(dynamic responseBody) {
@@ -102,25 +96,26 @@ class SetReminderPageState extends State<SetReminderPage> {
   }
 
 
-  setReminderListData(dynamic reminders) {
+ /* setReminderListData(dynamic reminders) {
     // Parse the response
     List<ReminderResponse> reminderResponses = parseReminderResponse(reminders['result']);
 
-
-
     // Update the UI with the selected days
-    setState(() {
+
       // Iterate through the response data and update the selectedItems list
       for (var response in reminderResponses) {
         List<String> selectedDays = response.days.split(',');
         for (int i = 0; i < reminderList.length; i++) {
           if (selectedDays.contains(reminderList[i].days)) {
-            selectedItems[i] = true;
+
+              selectedItems[i] = true;
+
+
           }
         }
       }
-    });
-  }
+
+  }*/
   callSetReminderApi() {
     // Create a list to store selected days
     List<String> selectedDays = [];
@@ -212,7 +207,10 @@ class SetReminderPageState extends State<SetReminderPage> {
                 getReminderListData(state.response);
                 return buildHomeContainer(context, mq);
               } else if (state is AlreadySetReminderListState) {
-                setReminderListData(state.response);
+                if (kDebugMode) {
+                  print("object${state.response}");
+                }
+                //setReminderListData(state.response);
 
                 return buildHomeContainer(context, mq);
               } else if (state is SetReminderListState) {

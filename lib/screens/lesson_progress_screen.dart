@@ -52,7 +52,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
   final studentLessonBloc = StudentLessonBloc();
   DateTime selectedDate = DateTime.now();
   String formattedDate = "";
-  String selectedValue = "Select Subject to view the lesson's status";
+  String selectedValue = "Select Subject";
   String subjectId = "";
 
   List<StudentSubject> subjectList = [];
@@ -110,7 +110,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
 
       if (status == 200) {
         final subject = StudentSubject(
-            name: "Select Subject to view the lesson's status", id: '0');
+            name: "Select Subject", id: '0');
         subjectList.add(subject);
         subjectList.addAll(bookingResponse.result);
       } else {

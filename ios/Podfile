@@ -31,6 +31,7 @@ pod 'FirebaseFirestore'
 pod 'FirebaseMessaging'
 pod 'FirebaseDatabase'
 pod 'FirebaseCore'
+pod 'Firebase/Analytics'
 
 target 'Runner' do
   use_frameworks!
