@@ -156,11 +156,11 @@ final dynamic dashboardList = [
     'image': 'assets/icons/meeting_with_office.png',
   },
   {
-    'name': 'Lessons',
+    'name': 'Work in Progress',
     'image': 'assets/icons/message_to_teacher.png',
   },
   {
-    'name': 'Event Reminders',
+    'name': 'Settings',
     'image': 'assets/icons/calender.png',
   },
   {

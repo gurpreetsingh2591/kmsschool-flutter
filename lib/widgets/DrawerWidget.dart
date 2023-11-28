@@ -228,7 +228,7 @@ class DrawerWidget extends StatelessWidget {
                 title: Transform(
                   transform: Matrix4.translationValues(-20, 0.0, 0.0),
                   child: Text(
-                    'Lessons',
+                    'Work in Progress',
                     style: textStyle(Colors.black, 14, 0, FontWeight.normal),
                   ),
                 ),
@@ -270,7 +270,7 @@ class DrawerWidget extends StatelessWidget {
                 title: Transform(
                   transform: Matrix4.translationValues(-20, 0.0, 0.0),
                   child: Text(
-                    'Event Reminders',
+                    'Settings',
                     style: textStyle(Colors.black, 14, 0, FontWeight.normal),
                   ),
                 ),

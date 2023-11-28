@@ -239,7 +239,7 @@ class LunchMenuPageState extends State<LunchMenuPage> {
                       child: Text.rich(
                         textAlign: TextAlign.left,
                         TextSpan(
-                          text: "Today's Meal:  ",
+                          text: "Today's Menu:  ",
                           style:
                               textStyle(Colors.black, 14, 0, FontWeight.w500),
                           children: <TextSpan>[

@@ -14,6 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../bloc/logic_bloc/student_lesson_bloc.dart';
 import '../model/LessonRecordResponse.dart';
 import '../model/StudentSubjectResponse.dart';
+import '../widgets/ButtonWidget.dart';
 import '../widgets/ColoredSafeArea.dart';
 import '../utils/constant.dart';
 import '../utils/shared_prefs.dart';
@@ -129,13 +130,18 @@ class LessonProgressPageState extends State<LessonProgressPage> {
 
   @override
   Widget build(BuildContext context) {
-    final mq = MediaQuery.of(context).size;
+    final mq = MediaQuery
+        .of(context)
+        .size;
     return BlocProvider(
       create: (context) => studentLessonBloc,
       child: Scaffold(
         key: _scaffoldKey,
         drawer: SizedBox(
-          width: MediaQuery.of(context).size.width *
+          width: MediaQuery
+              .of(context)
+              .size
+              .width *
               0.75, // 75% of screen will be occupied
           child: Drawer(
             backgroundColor: Colors.white,
@@ -193,7 +199,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
               onTapRight: () {},
               leftIcon: 'assets/icons/menu.png',
               rightIcon: 'assets/icons/user.png',
-              title: "Lessons",
+              title: "Work in Progress",
               rightVisibility: false,
               leftVisibility: true,
               bottomTextVisibility: false,
@@ -203,7 +209,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
           ),
           Container(
             margin:
-                const EdgeInsets.only(bottom: 20, top: 82, left: 16, right: 16),
+            const EdgeInsets.only(bottom: 20, top: 82, left: 16, right: 16),
             child: ListView(
               shrinkWrap: true,
               primary: true,
@@ -223,9 +229,9 @@ class LessonProgressPageState extends State<LessonProgressPage> {
               children: [
                 Center(
                     child: SpinKitFadingCircle(
-                  color: kLightGray,
-                  size: 80.0,
-                ))
+                      color: kLightGray,
+                      size: 80.0,
+                    ))
               ],
             ),
           ),
@@ -236,60 +242,80 @@ class LessonProgressPageState extends State<LessonProgressPage> {
 
   Widget buildHomeContainer(BuildContext context, Size mq) {
     return Container(
-      constraints: const BoxConstraints.expand(),
-      decoration: boxImageDashboardBgDecoration(),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            height: 60,
-            decoration: kButtonBgDecoration,
-            child: TopBarWidget(
-              onTapLeft: () {
-                _scaffoldKey.currentState?.openDrawer();
-              },
-              onTapRight: () {},
-              leftIcon: 'assets/icons/menu.png',
-              rightIcon: 'assets/icons/user.png',
-              title: "Lessons",
-              rightVisibility: false,
-              leftVisibility: true,
-              bottomTextVisibility: false,
-              subTitle: '',
-              screen: 'mwt',
-            ),
-          ),
-          Expanded(
-            child: Container(
-              margin: const EdgeInsets.only(
-                  bottom: 20, top: 22, left: 16, right: 16),
-              child: ListView(
-                shrinkWrap: true,
-                primary: true,
-                children: [
-                  selectSubjectDropDown(),
-                  20.height,
-                  lessonRecord.isNotEmpty
-                      ? buildLessonListContainer()
-                      : Container(
-                          alignment: Alignment.center,
-                          margin: const EdgeInsets.only(top: 50),
-                          child: Text(
-                            kData,
-                            style: textStyle(
-                                Colors.black54, 18, 0, FontWeight.w400),
-                          ),
-                        ),
-                ],
+        constraints: const BoxConstraints.expand(),
+        decoration: boxImageDashboardBgDecoration(),
+        child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                height: 60,
+                decoration: kButtonBgDecoration,
+                child: TopBarWidget(
+                  onTapLeft: () {
+                    _scaffoldKey.currentState?.openDrawer();
+                  },
+                  onTapRight: () {},
+                  leftIcon: 'assets/icons/menu.png',
+                  rightIcon: 'assets/icons/user.png',
+                  title: "Work in Progress",
+                  rightVisibility: false,
+                  leftVisibility: true,
+                  bottomTextVisibility: false,
+                  subTitle: '',
+                  screen: 'mwt',
+                ),
               ),
-            ),
-          )
-        ],
-      ),
-    );
+              Expanded(
+                child: Container(
+                  margin: const EdgeInsets.only(
+                      bottom: 50, top: 22, left: 16, right: 16),
+                  child: ListView(
+                    shrinkWrap: true,
+                    primary: true,
+                    children: [
+                      selectSubjectDropDown(),
+                      20.height,
+                      lessonRecord.isNotEmpty
+                          ? buildLessonListContainer()
+                          : Container(
+                        alignment: Alignment.center,
+                        margin: const EdgeInsets.only(top: 50),
+                        child: Text(
+                          kData,
+                          style: textStyle(
+                              Colors.black54, 18, 0, FontWeight.w400),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              Positioned(
+                child: Align(
+                  alignment: FractionalOffset.bottomCenter,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Container(
+                          height: 50,
+                          decoration: kInnerDecoration,
+                          alignment: Alignment.bottomCenter,
+                          child:  Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text("${SharedPrefs().getUserFullName()} Entries",style: textStyle(Colors.white, 16, 0,FontWeight.normal),)
+                              ]),
+                        ),
+                      ]),
+                ),
+              )
+
+            ]));
   }
 
   Widget selectSubjectDropDown() {
