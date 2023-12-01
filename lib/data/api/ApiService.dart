@@ -821,6 +821,9 @@ class ApiService {
       request.body = '''''';
       //var request = http.StreamedRequest('GET', url);
 
+      if (kDebugMode) {
+        print(url);
+      }
       var streamedResponse = await request.send();
       var response = await http.Response.fromStream(streamedResponse);
       if (kDebugMode) {

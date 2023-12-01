@@ -53,7 +53,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
   final studentLessonBloc = StudentLessonBloc();
   DateTime selectedDate = DateTime.now();
   String formattedDate = "";
-  String selectedValue = "Select Subject";
+  String selectedValue = "All";
   String subjectId = "";
 
   List<StudentSubject> subjectList = [];
@@ -111,7 +111,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
 
       if (status == 200) {
         final subject = StudentSubject(
-            name: "Select Subject", id: '0');
+            name: "All", id: 'all');
         subjectList.add(subject);
         subjectList.addAll(bookingResponse.result);
       } else {
@@ -339,6 +339,9 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                   print("subjectId--$subjectId");
                 }
               }
+            }
+            if (kDebugMode) {
+              print("subjectId--$subjectId");
             }
             studentLessonBloc.add(GetLessonRecordData(
                 studentId: studentId, subjectId: subjectId));

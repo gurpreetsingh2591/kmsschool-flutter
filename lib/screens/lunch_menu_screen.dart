@@ -65,7 +65,8 @@ class LunchMenuPageState extends State<LunchMenuPage> {
     if (response['todaysmeal'] == null) {
       todayMeal ="Today school is OFF";
     } else {
-      todayMeal=response['todaysmeal'];
+      todayMeal=response['todaysmeal']+ "\n"+ response['currentweek'];
+
     }
 
     monday.add(response['result']['Week1'][0]['lunchmenu']);

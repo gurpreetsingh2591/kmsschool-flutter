@@ -81,7 +81,7 @@ class SnackMenuPageState extends State<SnackMenuPage> {
     if (response['todaysmeal'] == null) {
      todayMeal ="Today school is OFF";
     } else {
-      todayMeal=response['todaysmeal'];
+      todayMeal=response['todaysmeal']+ "\n"+ response['currentweek'];
     }
 
 
