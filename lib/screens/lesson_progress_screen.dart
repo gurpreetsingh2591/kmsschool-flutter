@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:get/get.dart';
 import 'package:kmschool/bloc/event/student_lesson_event.dart';
 import 'package:kmschool/bloc/state/common_state.dart';
 
@@ -35,6 +36,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
 
   String studentId = "";
   String parentId = "";
+  String studentJournal = "";
 
 /*  List<String> subjectList = [
     "Select Subject",
@@ -86,6 +88,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
       var lesson = LessonRecordResponse.fromJson(lessonRecordData);
       int status = lesson.status;
       String message = lesson.message;
+      studentJournal=lesson.draft[0].description.toString();
       if (kDebugMode) {
         print("status----$status");
       }
@@ -114,6 +117,8 @@ class LessonProgressPageState extends State<LessonProgressPage> {
             name: "All", id: 'all');
         subjectList.add(subject);
         subjectList.addAll(bookingResponse.result);
+        studentLessonBloc.add(GetLessonRecordData(
+            studentId: studentId, subjectId: "all"));
       } else {
         toast("Subject Not available", false);
       }
@@ -308,7 +313,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               mainAxisSize: MainAxisSize.max,
                               children: [
-                                Text("${SharedPrefs().getUserFullName()} Entries",style: textStyle(Colors.white, 16, 0,FontWeight.normal),)
+                                Text("Student Journal:$studentJournal",style: textStyle(Colors.white, 16, 0,FontWeight.normal),)
                               ]),
                         ),
                       ]),
@@ -427,7 +432,10 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                         ),
                       ),
                       5.width,
-                      Expanded(
+                     Visibility(
+                       visible: false,
+                       child:  Expanded(
+
                         flex: 2,
                         child: Container(
                           alignment: Alignment.center,
@@ -438,7 +446,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                      ),
+                      ),),
                     ],
                   )),
               ListView.builder(

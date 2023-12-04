@@ -32,13 +32,30 @@ class LessonRecord {
     );
   }
 }
+
+class DraftRecord {
+  final String description;// This field is nullable
+
+  DraftRecord({
+    required this.description,
+
+  });
+
+  factory DraftRecord.fromJson(Map<String, dynamic> json) {
+    return DraftRecord(
+      description: json['description'] ?? "",
+
+    );
+  }
+}
 class LessonRecordResponse {
   int status;
   String message;
   List<LessonRecord> result;
+  List<DraftRecord> draft;
 
   LessonRecordResponse(
-      {required this.status, required this.message, required this.result});
+      {required this.status, required this.message, required this.result, required this.draft});
 
   factory LessonRecordResponse.fromJson(Map<String, dynamic> json) {
     var result = json['result'] as List;
@@ -46,10 +63,16 @@ class LessonRecordResponse {
       return LessonRecord.fromJson(messageJson);
     }).toList();
 
+    var draftJson = json['draft'] as List;
+    List<DraftRecord> draft = draftJson.map((messageJson) {
+      return DraftRecord.fromJson(messageJson);
+    }).toList();
+
     return LessonRecordResponse(
       status: json['status'],
       message: json['message'],
       result: lessonRecord,
+      draft: draft,
     );
   }
 }

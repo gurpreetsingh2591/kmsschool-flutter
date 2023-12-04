@@ -87,7 +87,9 @@ class StudentLessonRecordWidget extends StatelessWidget {
               ]),
             ),
             5.width,
-            Expanded(
+            Visibility(
+              visible: false,
+              child: Expanded(
               flex: 2,
               child: Container(
                 alignment: Alignment.centerLeft,
@@ -140,7 +142,7 @@ class StudentLessonRecordWidget extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
+            ),),
           ],
         ));
   }
