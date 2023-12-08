@@ -29,7 +29,7 @@ class DrawerWidget extends StatelessWidget {
             margin: const EdgeInsets.only(left: 15,bottom: 7),
             alignment: Alignment.topLeft,
             child: Image.asset(
-              'assets/icons/app_logo_new.png',
+              'assets/icons/app_logo.png',
               scale: 4,
             ),
           ),
