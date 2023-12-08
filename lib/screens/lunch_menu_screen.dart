@@ -65,7 +65,7 @@ class LunchMenuPageState extends State<LunchMenuPage> {
     if (response['todaysmeal'] == null) {
       todayMeal ="Today school is OFF";
     } else {
-      todayMeal=response['todaysmeal']+ "\n"+ response['currentweek'];
+      todayMeal="${"( "+response['currentweek']} ): "+response['todaysmeal'];
 
     }
 
@@ -240,7 +240,7 @@ class LunchMenuPageState extends State<LunchMenuPage> {
                       child: Text.rich(
                         textAlign: TextAlign.left,
                         TextSpan(
-                          text: "Today's Menu:  ",
+                          text: "Today's Menu ",
                           style:
                               textStyle(Colors.black, 14, 0, FontWeight.w500),
                           children: <TextSpan>[

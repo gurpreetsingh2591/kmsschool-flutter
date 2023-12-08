@@ -41,7 +41,7 @@ class DrawerWidget extends StatelessWidget {
                   scale: 12,
                 ),
                 title: Transform(
-                  transform: Matrix4.translationValues(-20, 0.0, 0.0),
+                  transform: Matrix4.translationValues(-10, 0.0, 0.0),
                   child: Text(
                     'Home',
                     style: textStyle(Colors.black, 14, 0, FontWeight.normal),
@@ -61,7 +61,7 @@ class DrawerWidget extends StatelessWidget {
                   scale: 12,
                 ),
                 title: Transform(
-                  transform: Matrix4.translationValues(-20, 0.0, 0.0),
+                  transform: Matrix4.translationValues(-10, 0.0, 0.0),
                   child: Text(
                     'Lunch Menu',
                     style: textStyle(Colors.black, 14, 0, FontWeight.normal),
@@ -81,7 +81,7 @@ class DrawerWidget extends StatelessWidget {
                 scale: 12,
               ),
               title: Transform(
-                transform: Matrix4.translationValues(-20, 0.0, 0.0),
+                transform: Matrix4.translationValues(-10, 0.0, 0.0),
                 child: Text(
                   'Snacks Menu',
                   style: textStyle(Colors.black, 14, 0, FontWeight.normal),
@@ -102,7 +102,7 @@ class DrawerWidget extends StatelessWidget {
                 scale: 12,
               ),
               title: Transform(
-                transform: Matrix4.translationValues(-20, 0.0, 0.0),
+                transform: Matrix4.translationValues(-10, 0.0, 0.0),
                 child: Text(
                   'School Calender',
                   style: textStyle(Colors.black, 14, 0, FontWeight.normal),
@@ -124,7 +124,7 @@ class DrawerWidget extends StatelessWidget {
                   scale: 12,
                 ),
                 title: Transform(
-                  transform: Matrix4.translationValues(-20, 0.0, 0.0),
+                  transform: Matrix4.translationValues(-10, 0.0, 0.0),
                   child: Text(
                     'Message From School',
                     style: textStyle(Colors.black, 14, 0, FontWeight.normal),
@@ -144,7 +144,7 @@ class DrawerWidget extends StatelessWidget {
                   scale: 12,
                 ),
                 title: Transform(
-                  transform: Matrix4.translationValues(-20, 0.0, 0.0),
+                  transform: Matrix4.translationValues(-10, 0.0, 0.0),
                   child: Text(
                     'Meeting With Teacher',
                     style: textStyle(Colors.black, 14, 0, FontWeight.normal),
@@ -165,7 +165,7 @@ class DrawerWidget extends StatelessWidget {
                   scale: 12,
                 ),
                 title: Transform(
-                  transform: Matrix4.translationValues(-20, 0.0, 0.0),
+                  transform: Matrix4.translationValues(-10, 0.0, 0.0),
                   child: Text(
                     'Meeting With Office',
                     style: textStyle(Colors.black, 14, 0, FontWeight.normal),
@@ -185,7 +185,7 @@ class DrawerWidget extends StatelessWidget {
                   scale: 12,
                 ),
                 title: Transform(
-                  transform: Matrix4.translationValues(-20, 0.0, 0.0),
+                  transform: Matrix4.translationValues(-10, 0.0, 0.0),
                   child: Text(
                     'Message To Teacher',
                     style: textStyle(Colors.black, 14, 0, FontWeight.normal),
@@ -205,7 +205,7 @@ class DrawerWidget extends StatelessWidget {
                   scale: 12,
                 ),
                 title: Transform(
-                  transform: Matrix4.translationValues(-20, 0.0, 0.0),
+                  transform: Matrix4.translationValues(-10, 0.0, 0.0),
                   child: Text(
                     'Message To Office',
                     style: textStyle(Colors.black, 14, 0, FontWeight.normal),
@@ -226,7 +226,7 @@ class DrawerWidget extends StatelessWidget {
                   scale: 12,
                 ),
                 title: Transform(
-                  transform: Matrix4.translationValues(-20, 0.0, 0.0),
+                  transform: Matrix4.translationValues(-10, 0.0, 0.0),
                   child: Text(
                     'Work in Progress',
                     style: textStyle(Colors.black, 14, 0, FontWeight.normal),
@@ -247,7 +247,7 @@ class DrawerWidget extends StatelessWidget {
                   scale: 12,
                 ),
                 title: Transform(
-                  transform: Matrix4.translationValues(-20, 0.0, 0.0),
+                  transform: Matrix4.translationValues(-10, 0.0, 0.0),
                   child: Text(
                     'Photos',
                     style: textStyle(Colors.black, 14, 0, FontWeight.normal),
@@ -268,7 +268,7 @@ class DrawerWidget extends StatelessWidget {
                   scale: 12,
                 ),
                 title: Transform(
-                  transform: Matrix4.translationValues(-20, 0.0, 0.0),
+                  transform: Matrix4.translationValues(-10, 0.0, 0.0),
                   child: Text(
                     'Settings',
                     style: textStyle(Colors.black, 14, 0, FontWeight.normal),
@@ -289,7 +289,7 @@ class DrawerWidget extends StatelessWidget {
                   scale: 12,
                 ),
                 title: Transform(
-                  transform: Matrix4.translationValues(-20, 0.0, 0.0),
+                  transform: Matrix4.translationValues(-10, 0.0, 0.0),
                   child: Text(
                     'Profile',
                     style: textStyle(Colors.black, 14, 0, FontWeight.normal),
@@ -309,7 +309,7 @@ class DrawerWidget extends StatelessWidget {
                   scale: 12,
                 ),
                 title: Transform(
-                  transform: Matrix4.translationValues(-20, 0.0, 0.0),
+                  transform: Matrix4.translationValues(-10, 0.0, 0.0),
                   child: Text(
                     'Delete Account',
                     style: textStyle(Colors.black, 14, 0, FontWeight.normal),
@@ -331,7 +331,7 @@ class DrawerWidget extends StatelessWidget {
                   scale: 12,
                 ),
                 title: Transform(
-                  transform: Matrix4.translationValues(-20, 0.0, 0.0),
+                  transform: Matrix4.translationValues(-10, 0.0, 0.0),
                   child: Text(
                     'Logout',
                     style: textStyle(Colors.black, 14, 0, FontWeight.normal),

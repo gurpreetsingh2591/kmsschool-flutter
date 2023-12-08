@@ -55,8 +55,9 @@ class LessonProgressPageState extends State<LessonProgressPage> {
   final studentLessonBloc = StudentLessonBloc();
   DateTime selectedDate = DateTime.now();
   String formattedDate = "";
-  String selectedValue = "All";
+  String selectedValue = "All Subjects";
   String subjectId = "";
+  String subjectName = "";
 
   List<StudentSubject> subjectList = [];
 
@@ -114,7 +115,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
 
       if (status == 200) {
         final subject = StudentSubject(
-            name: "All", id: 'all');
+            name: "All Subjects", id: 'all');
         subjectList.add(subject);
         subjectList.addAll(bookingResponse.result);
         studentLessonBloc.add(GetLessonRecordData(
@@ -219,6 +220,8 @@ class LessonProgressPageState extends State<LessonProgressPage> {
               shrinkWrap: true,
               primary: true,
               children: [
+                Text("Select a subject below to view the progress.",style: textStyle(Colors.black, 14, 0, FontWeight.w400),),
+                10.height,
                 selectSubjectDropDown(),
                 20.height,
                 buildLessonListContainer()
@@ -340,6 +343,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
               if (selectedValue.toLowerCase() ==
                   subjectList[i].name.toLowerCase()) {
                 subjectId = subjectList[i].id;
+                subjectName=subjectList[i].name;
                 if (kDebugMode) {
                   print("subjectId--$subjectId");
                 }
@@ -397,7 +401,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                           alignment: Alignment.centerLeft,
                           child: Flexible(
                             child: Text(
-                              "Lesson Title",
+                              "Primary Subject",
                               textAlign: TextAlign.center,
                               style: textStyle(
                                   Colors.black87, 14, 0, FontWeight.w500),
@@ -407,6 +411,23 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                       ),
                       5.width,
                       Expanded(
+                        flex: 2,
+                        child: Container(
+                          alignment: Alignment.centerLeft,
+                          child: Flexible(
+                            child: Text(
+                              "Lesson Title",
+                              textAlign: TextAlign.center,
+                              style: textStyle(
+                                  Colors.black87, 14, 0, FontWeight.w500),
+                            ),
+                          ),
+                        ),
+                      ),
+                      5.width,
+                  Visibility(
+                    visible: false,
+                    child:  Expanded(
                         flex: 1,
                         child: Container(
                           alignment: Alignment.center,
@@ -417,9 +438,11 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                      ),
+                      ),),
                       5.width,
-                      Expanded(
+                  Visibility(
+                    visible: false,
+                    child:  Expanded(
                         flex: 1,
                         child: Container(
                           alignment: Alignment.center,
@@ -430,7 +453,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                             textAlign: TextAlign.center,
                           ),
                         ),
-                      ),
+                      ),),
                       5.width,
                      Visibility(
                        visible: false,
@@ -462,7 +485,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                     statusPg: lessonRecord[index].statusPg ?? "0",
                     statusPi: lessonRecord[index].statusPi ?? "0",
                     lessonPlaned: lessonRecord[index].lessonPlaned ?? "0",
-                    lessonPresented: lessonRecord[index].lessonPresented ?? "0",
+                    lessonPresented: lessonRecord[index].lessonPresented ?? "0", primarySubject: lessonRecord[index].primarySubject??subjectName,
                   );
                 },
               )

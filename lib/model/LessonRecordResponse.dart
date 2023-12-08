@@ -7,6 +7,7 @@ class LessonRecord {
   final String lessonName;
   final String lessonPlaned;
   final String? lessonPresented; // This field is nullable
+  final String? primarySubject; // This field is nullable
 
   LessonRecord({
     required this.lessonPlanId,
@@ -17,6 +18,7 @@ class LessonRecord {
     required this.lessonName,
     required this.lessonPlaned,
     this.lessonPresented, // Mark this field as nullable
+    this.primarySubject, // Mark this field as nullable
   });
 
   factory LessonRecord.fromJson(Map<String, dynamic> json) {
@@ -29,6 +31,7 @@ class LessonRecord {
       lessonName: json['lessoname'] ?? "",
       lessonPlaned: json['lesson_planed'] ?? 0,
       lessonPresented: json['lesson_presented'], // This is nullable, so don't use the null-aware operator
+      primarySubject: json['primary_subject'], // This is nullable, so don't use the null-aware operator
     );
   }
 }

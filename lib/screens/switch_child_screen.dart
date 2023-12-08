@@ -253,7 +253,7 @@ class SwitchChildPageState extends State<SwitchChildPage> {
       },
     );
     Widget cancelButton = TextButton(
-      child: const Text("Cancel"),
+      child:  const Text("Cancel"),
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop();
       },
@@ -261,8 +261,8 @@ class SwitchChildPageState extends State<SwitchChildPage> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: const Text("Switch Child!"),
-      content: const Text("Do you want to check another child's profile?"),
+      title:  Text("Switch Child!",style: textStyle(Colors.black, 18, 0, FontWeight.w500)),
+      content:  Text("Do you want to check another child's profile?",style: textStyle(Colors.black, 18, 0, FontWeight.w500)),
       actions: [
         cancelButton,
         okButton,

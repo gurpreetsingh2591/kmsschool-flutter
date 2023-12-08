@@ -10,6 +10,7 @@ class StudentLessonRecordWidget extends StatelessWidget {
   final String statusPi;
   final String lessonName;
   final String lessonPlaned;
+  final String primarySubject;
   final dynamic lessonPresented;
 
   const StudentLessonRecordWidget({
@@ -21,7 +22,7 @@ class StudentLessonRecordWidget extends StatelessWidget {
     required this.statusPg,
     required this.statusPi,
     required this.lessonPlaned,
-    required this.lessonPresented,
+    required this.lessonPresented, required this.primarySubject,
   }) : super(key: key);
 
   @override
@@ -44,6 +45,22 @@ class StudentLessonRecordWidget extends StatelessWidget {
                   children: [
 
                     Text(
+                      primarySubject,
+                      style: textStyle(Colors.black87, 12, 0, FontWeight.w400),
+                      textAlign: TextAlign.left,
+                    )
+
+                  ]),
+            ), 5.width,
+            Expanded(
+              flex: 2,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+
+                    Text(
                       lessonName,
                       style: textStyle(Colors.black87, 12, 0, FontWeight.w400),
                       textAlign: TextAlign.left,
@@ -53,7 +70,9 @@ class StudentLessonRecordWidget extends StatelessWidget {
             ),
 
             5.width,
-            Expanded(
+        Visibility(
+          visible: false,
+          child: Expanded(
               flex: 1,
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -68,9 +87,11 @@ class StudentLessonRecordWidget extends StatelessWidget {
                 )
 
               ]),
-            ),
+            ),),
             5.width,
-            Expanded(
+        Visibility(
+          visible: false,
+          child: Expanded(
               flex: 1,
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -85,7 +106,7 @@ class StudentLessonRecordWidget extends StatelessWidget {
                 )
 
               ]),
-            ),
+            )),
             5.width,
             Visibility(
               visible: false,
