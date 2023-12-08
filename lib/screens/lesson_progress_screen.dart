@@ -284,6 +284,8 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                     shrinkWrap: true,
                     primary: true,
                     children: [
+                      Text("Select a subject below to view the progress.",style: textStyle(Colors.black, 14, 0, FontWeight.w400),),
+                      10.height,
                       selectSubjectDropDown(),
                       20.height,
                       lessonRecord.isNotEmpty

@@ -282,7 +282,7 @@ class SetReminderPageState extends State<SetReminderPage> {
                     style: textStyle(Colors.black, 14, 0, FontWeight.w500),
                     children: <TextSpan>[
                       TextSpan(
-                        text: "You Can Choose Multiple Reminder",
+                        text: "Select the event reminder options for the days before you want to receive",
                         style:
                         textStyle(appBaseColor, 14, 0, FontWeight.w500),
                       ),
@@ -367,6 +367,7 @@ class SetReminderPageState extends State<SetReminderPage> {
                 bottom: 20,
                 top: 22,
                 left: 16,
+                right: 16
               ),
               child: ListView(
                 shrinkWrap: true,
