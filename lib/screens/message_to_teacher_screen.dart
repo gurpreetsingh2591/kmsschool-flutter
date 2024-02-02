@@ -162,8 +162,7 @@ class MessageToTeacherPageState extends State<MessageToTeacherPage> {
   }
 
   Widget loaderBar(BuildContext context, Size mq) {
-    return SafeArea(
-      child: Container(
+    return  Container(
         constraints: const BoxConstraints.expand(),
         decoration: boxImageDashboardBgDecoration(),
         child: Stack(
@@ -189,8 +188,7 @@ class MessageToTeacherPageState extends State<MessageToTeacherPage> {
                 screen: 'mfs',
               ),
             ),
-            Expanded(
-              child: Container(
+            Container(
                 margin: const EdgeInsets.only(
                     bottom: 20, top: 82, left: 16, right: 16),
                 child: ListView(
@@ -202,7 +200,7 @@ class MessageToTeacherPageState extends State<MessageToTeacherPage> {
                     buildComposeMessageContainer()
                   ],
                 ),
-              ),
+
             ),
             Container(
               height: 500,
@@ -221,13 +219,12 @@ class MessageToTeacherPageState extends State<MessageToTeacherPage> {
             ),
           ],
         ),
-      ),
+
     );
   }
 
   Widget buildHomeContainer(BuildContext context, Size mq) {
-    return SafeArea(
-      child: Container(
+    return  Container(
         constraints: const BoxConstraints.expand(),
         decoration: boxImageDashboardBgDecoration(),
         child: Column(
@@ -274,7 +271,7 @@ class MessageToTeacherPageState extends State<MessageToTeacherPage> {
             )
           ],
         ),
-      ),
+
     );
   }
 

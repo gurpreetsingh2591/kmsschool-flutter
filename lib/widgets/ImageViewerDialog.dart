@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:photo_view/photo_view_gallery.dart';
 
+import '../model/PhotosResponse.dart';
+
 class ImageViewerDialog extends StatelessWidget {
-  final List<String> imageUrls;
+  final List<PhotosResponse> imageUrls;
   final int initialIndex;
 
   const ImageViewerDialog({super.key,
@@ -20,7 +22,7 @@ class ImageViewerDialog extends StatelessWidget {
           itemCount: imageUrls.length,
           builder: (context, index) {
             return PhotoViewGalleryPageOptions(
-              imageProvider: NetworkImage(imageUrls[index]),
+              imageProvider: NetworkImage(imageUrls[index].imageurl),
               minScale: PhotoViewComputedScale.contained,
               maxScale: PhotoViewComputedScale.covered * 2,
             );

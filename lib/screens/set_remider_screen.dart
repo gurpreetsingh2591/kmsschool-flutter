@@ -58,7 +58,6 @@ class SetReminderPageState extends State<SetReminderPage> {
       studentId = SharedPrefs().getStudentId().toString();
     });
     studentLessonBloc.add(const GetReminderListData());
-    studentLessonBloc.add( SetAlreadyRemindersData(studentId: studentId, days: "getbyid"));
   }
 
   Future<void> initializePreference() async {
@@ -74,6 +73,8 @@ class SetReminderPageState extends State<SetReminderPage> {
 
       if (status == 200) {
         reminderList.addAll(remindersResponse.result);
+        studentLessonBloc.add(
+            SetAlreadyRemindersData(studentId: studentId, days: "getbyid"));
       } else {
         toast("Data Not available", false);
       }
@@ -84,8 +85,6 @@ class SetReminderPageState extends State<SetReminderPage> {
     }
   }
 
-
-
   List<ReminderResponse> parseReminderResponse(dynamic responseBody) {
     final parsed = (responseBody as List<dynamic>)
         .cast<Map<String, dynamic>>()
@@ -95,27 +94,31 @@ class SetReminderPageState extends State<SetReminderPage> {
     return parsed;
   }
 
-
- /* setReminderListData(dynamic reminders) {
+  setReminderListData(dynamic reminders) {
     // Parse the response
-    List<ReminderResponse> reminderResponses = parseReminderResponse(reminders['result']);
+    List<ReminderResponse> reminderResponses =
+        parseReminderResponse(reminders['result']);
 
     // Update the UI with the selected days
 
-      // Iterate through the response data and update the selectedItems list
-      for (var response in reminderResponses) {
-        List<String> selectedDays = response.days.split(',');
-        for (int i = 0; i < reminderList.length; i++) {
-          if (selectedDays.contains(reminderList[i].days)) {
+    // Iterate through the response data and update the selectedItems list
+    for (var response in reminderResponses) {
+      List<String> selectedDays = response.days.split(',');
 
-              selectedItems[i] = true;
-
-
+      for (int i = 0; i < reminderList.length; i++) {
+        if (selectedDays.contains(reminderList[i].days)) {
+          selectedItems[i] = true;
+        }
+      } /*for (int i = 0; i < reminderList.length; i++) {
+        for (int j = 0; j < selectedDays.length; j++) {
+          if (selectedDays[j] == reminderList[i].days) {
+            selectedItems[i] = true;
           }
         }
-      }
+      }*/
+    }
+  }
 
-  }*/
   callSetReminderApi() {
     // Create a list to store selected days
     List<String> selectedDays = [];
@@ -136,11 +139,13 @@ class SetReminderPageState extends State<SetReminderPage> {
     // Check if any days are selected before making the API call
     if (selectedDays.isNotEmpty) {
       // Call the API with the selected days
-      studentLessonBloc.add(SetRemindersData(studentId: studentId, days: selectedDaysString));
+      studentLessonBloc.add(
+          SetRemindersData(studentId: studentId, days: selectedDaysString));
     } else {
       toast("Please select at least one reminder", false);
     }
   }
+
 /*
   callSetReminderApi() {
     String selectedIds = "";
@@ -210,7 +215,7 @@ class SetReminderPageState extends State<SetReminderPage> {
                 if (kDebugMode) {
                   print("object${state.response}");
                 }
-                //setReminderListData(state.response);
+                setReminderListData(state.response);
 
                 return buildHomeContainer(context, mq);
               } else if (state is SetReminderListState) {
@@ -252,9 +257,7 @@ class SetReminderPageState extends State<SetReminderPage> {
               onTapLeft: () {
                 _scaffoldKey.currentState?.openDrawer();
               },
-              onTapRight: () {
-
-              },
+              onTapRight: () {},
               leftIcon: 'assets/icons/menu.png',
               rightIcon: 'assets/icons/user.png',
               title: "Settings",
@@ -270,6 +273,7 @@ class SetReminderPageState extends State<SetReminderPage> {
               bottom: 20,
               top: 82,
               left: 16,
+              right: 16
             ),
             child: ListView(
               shrinkWrap: true,
@@ -282,9 +286,9 @@ class SetReminderPageState extends State<SetReminderPage> {
                     style: textStyle(Colors.black, 14, 0, FontWeight.w500),
                     children: <TextSpan>[
                       TextSpan(
-                        text: "Select the event reminder options for the days before you want to receive",
-                        style:
-                        textStyle(appBaseColor, 14, 0, FontWeight.w500),
+                        text:
+                            "Select the event reminder options for the days before you want to receive",
+                        style: textStyle(appBaseColor, 14, 0, FontWeight.w500),
                       ),
                       // can add more TextSpans here...
                     ],
@@ -323,9 +327,9 @@ class SetReminderPageState extends State<SetReminderPage> {
               children: [
                 Center(
                     child: SpinKitFadingCircle(
-                      color: kLightGray,
-                      size: 80.0,
-                    ))
+                  color: kLightGray,
+                  size: 80.0,
+                ))
               ],
             ),
           ),
@@ -336,85 +340,80 @@ class SetReminderPageState extends State<SetReminderPage> {
 
   Widget buildHomeContainer(BuildContext context, Size mq) {
     return Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: boxImageDashboardBgDecoration(),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              height: 60,
-              decoration: kButtonBgDecoration,
-              child:  TopBarWidget(
-                onTapLeft: () {
-                  _scaffoldKey.currentState?.openDrawer();
-                },
-                onTapRight: () {},
-                leftIcon: 'assets/icons/menu.png',
-                rightIcon: 'assets/icons/user.png',
-                title: "Settings",
-                rightVisibility: false,
-                leftVisibility: true,
-                bottomTextVisibility: false,
-                subTitle: '',
-                screen: 'sr',
-              ),
+      constraints: const BoxConstraints.expand(),
+      decoration: boxImageDashboardBgDecoration(),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            height: 60,
+            decoration: kButtonBgDecoration,
+            child: TopBarWidget(
+              onTapLeft: () {
+                _scaffoldKey.currentState?.openDrawer();
+              },
+              onTapRight: () {},
+              leftIcon: 'assets/icons/menu.png',
+              rightIcon: 'assets/icons/user.png',
+              title: "Settings",
+              rightVisibility: false,
+              leftVisibility: true,
+              bottomTextVisibility: false,
+              subTitle: '',
+              screen: 'sr',
             ),
-            Container(
-              margin: const EdgeInsets.only(
-                bottom: 20,
-                top: 22,
-                left: 16,
-                right: 16
-              ),
-              child: ListView(
-                shrinkWrap: true,
-                primary: false,
-                children: [
-                  Text.rich(
-                    textAlign: TextAlign.left,
-                    TextSpan(
-                      text: "",
-                      style: textStyle(Colors.black, 14, 0, FontWeight.w500),
-                      children: <TextSpan>[
-                        TextSpan(
-                          text: "Select the event reminder options for the days before you want to receive",
-                          style:
-                              textStyle(appBaseColor, 14, 0, FontWeight.w500),
-                        ),
-                        // can add more TextSpans here...
-                      ],
-                    ),
+          ),
+          Container(
+            margin:
+                const EdgeInsets.only(bottom: 20, top: 22, left: 16, right: 16),
+            child: ListView(
+              shrinkWrap: true,
+              primary: false,
+              children: [
+                Text.rich(
+                  textAlign: TextAlign.left,
+                  TextSpan(
+                    text: "",
+                    style: textStyle(Colors.black, 14, 0, FontWeight.w500),
+                    children: <TextSpan>[
+                      TextSpan(
+                        text:
+                            "Select the event reminder options for the days before you want to receive",
+                        style: textStyle(appBaseColor, 14, 0, FontWeight.w500),
+                      ),
+                      // can add more TextSpans here...
+                    ],
                   ),
-                  20.height,
-                  buildCategoriesListWeb2000Container(context, mq),
-                  40.height,
-                  ButtonWidget(
-                    margin: 40,
-                    name: "Save".toUpperCase(),
-                    icon: "",
-                    visibility: false,
-                    padding: 0,
-                    onTap: () {
-                      callSetReminderApi();
-                    },
-                    size: 12,
-                    scale: 2,
-                    height: 50,
-                    decoration: kSelectedDecoration,
-                    textColors: Colors.white,
-                    rightVisibility: false,
-                    weight: FontWeight.w400,
-                    iconColor: Colors.white,
-                  )
-                ],
-              ),
+                ),
+                20.height,
+                buildCategoriesListWeb2000Container(context, mq),
+                40.height,
+                ButtonWidget(
+                  margin: 40,
+                  name: "Save".toUpperCase(),
+                  icon: "",
+                  visibility: false,
+                  padding: 0,
+                  onTap: () {
+                    callSetReminderApi();
+                  },
+                  size: 12,
+                  scale: 2,
+                  height: 50,
+                  decoration: kSelectedDecoration,
+                  textColors: Colors.white,
+                  rightVisibility: false,
+                  weight: FontWeight.w400,
+                  iconColor: Colors.white,
+                )
+              ],
             ),
-          ],
-        ),
-
+          ),
+        ],
+      ),
     );
   }
 
@@ -434,7 +433,7 @@ class SetReminderPageState extends State<SetReminderPage> {
               color: appBaseColor,
               child: ListTile(
                 contentPadding: const EdgeInsets.only(left: 20),
-               // visualDensity:   VisualDensity(horizontal: -4),
+                // visualDensity:   VisualDensity(horizontal: -4),
                 title: Text(
                   reminderList[index].daystext,
                   style: textStyle(Colors.white, 12, 0, FontWeight.normal),

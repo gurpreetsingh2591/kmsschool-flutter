@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../bloc/logic_bloc/student_lesson_bloc.dart';
 import '../bloc/state/common_state.dart';
+import '../model/PhotosResponse.dart';
 import '../widgets/ColoredSafeArea.dart';
 import '../utils/constant.dart';
 import '../utils/shared_prefs.dart';
@@ -31,7 +32,7 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
   bool isLoading = false;
   bool isLogin = false;
   final studentLessonBloc = StudentLessonBloc();
-  List<String> studentPhotos = [];
+  List<PhotosResponse> studentPhotos = [];
   String studentName = "";
   String studentId = "";
   String driveLink = "";
@@ -58,13 +59,17 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
   getStudentPhotos(dynamic data) {
 
     try {
-      studentPhotos = (data['photos'] as List).cast<String>();
-      driveLink = data['students_data'][0]['onedrivelink'];
+      var  studentPhotosResponse = StudentPhotosResponse.fromJson(data);
+      dynamic status = studentPhotosResponse.status;
+      String message = studentPhotosResponse.message;
 
-      if (kDebugMode) {
-        print(studentPhotos);
-        print(driveLink);
-      }
+      if (status == 200) {
+        studentPhotos.addAll(studentPhotosResponse.photos);
+        if (kDebugMode) {
+          print("evenDatesList--$studentPhotos");
+        }
+
+        }
     } catch (e) {
       if (kDebugMode) {
         print("Error:$e");
@@ -166,9 +171,7 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
 
   Widget buildHomeContainer(BuildContext context, Size mq) {
     return Container(
-      constraints: BoxConstraints(
-        maxHeight: mq.height,
-      ),
+      constraints: const BoxConstraints.expand(),
       decoration: boxImageDashboardBgDecoration(),
       child: Column(
         mainAxisSize: MainAxisSize.min,
@@ -259,20 +262,14 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
   }
 
   Widget buildCategoriesListWeb2000Container(BuildContext context, Size mq) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        GridView.builder(
-          reverse: false,
+    return Expanded(child: GridView.builder(
           shrinkWrap: true,
           primary: false,
           itemCount: studentPhotos.length,
           itemBuilder: (BuildContext context, int index) {
             return StudentPhotosWidget(
               driveLink: driveLink,
-              image: studentPhotos[index],
+              image: studentPhotos[index].imageurl.toString().toString().replaceAll("file:///", ""),
               click: () {
                 showDialog(
                   context: context,
@@ -288,11 +285,10 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
             );
           },
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 3,
+            crossAxisCount: 2,
             childAspectRatio: 2 / 2,
           ),
         )
-      ],
-    );
+        );
   }
 }

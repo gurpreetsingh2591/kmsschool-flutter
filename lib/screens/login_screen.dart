@@ -189,8 +189,10 @@ class LoginPageState extends State<LoginPage> {
     else {
       passwordError = false;
       emailError = false;
-      loginBloc.add(LoginButtonPressed(
-          username: userName, password: password, fcmToken: fcmToken!));
+      if (fcmToken != null) {
+        loginBloc.add(LoginButtonPressed(
+            username: userName, password: password, fcmToken: fcmToken!));
+      }
     }
   }
 

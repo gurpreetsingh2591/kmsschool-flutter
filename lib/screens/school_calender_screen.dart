@@ -385,7 +385,6 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
         ],
       ),
     );
-
   }
 
   Widget buildHomeContainer(BuildContext context, Size mq) {
@@ -435,7 +434,6 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
     );
   }
 
-
   Widget buildCalenderView() {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -445,10 +443,13 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
 
           String? eventName = "";
 
-          events.forEach((event) => eventName = event.title);
+          for (var event in events) {
+            eventName = event.title;
+
+          }
 
           eventName!.isNotEmpty
-              ? showAlertDialog(context, eventName!, "$_startDate To $_endDate")
+              ? showAlertDialog(context, eventName, "$_startDate To $_endDate")
               : null;
         },
 
@@ -472,7 +473,7 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
           // Example: every 15th of month, we have a flight, we can place an icon in the container like that:
         },
         selectedDayButtonColor: Colors.transparent,
-        selectedDayTextStyle: TextStyle(color: Colors.black),
+        selectedDayTextStyle: const TextStyle(color: Colors.black),
         weekDayFormat: WeekdayFormat.short,
         weekdayTextStyle: const TextStyle(color: appBaseColor),
         weekFormat: false,
@@ -504,8 +505,8 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text(title),
-      content: Text(msg),
+      title: Text(title,style: textStyle(Colors.black, 16, 0, FontWeight.w500),),
+      content: Text(msg,style: textStyle(Colors.black, 16, 0, FontWeight.w500)),
       actions: [
         okButton,
       ],

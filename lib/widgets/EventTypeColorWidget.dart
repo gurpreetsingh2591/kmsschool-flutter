@@ -9,9 +9,7 @@ class EventTypeColorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      bottom: 0,
-        child: Align(
+    return  Align(
             alignment: FractionalOffset.bottomCenter,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -22,30 +20,42 @@ class EventTypeColorWidget extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Container(
+                      Flexible(
+                        flex: 1,
+                        child: Container(
                         width: MediaQuery.of(context).size.width / 6,
                         color: Colors.red,
-                      ),
-                      Container(
+                      ),),
+                  Flexible(
+                    flex: 1,
+                    child:  Container(
                         width: MediaQuery.of(context).size.width / 6,
                         color: Colors.lightBlue[600],
-                      ),
-                      Container(
+                    )),
+                  Flexible(
+                    flex: 1,
+                    child: Container(
                         width: MediaQuery.of(context).size.width / 6,
                         color: Colors.red,
-                      ),
-                      Container(
+                    )),
+                  Flexible(
+                    flex: 1,
+                    child:  Container(
                         width: MediaQuery.of(context).size.width / 6,
                         color: Colors.orange,
-                      ),
-                      Container(
+                    )),
+                  Flexible(
+                    flex: 1,
+                    child:  Container(
                         width: MediaQuery.of(context).size.width / 6,
                         color: Colors.yellow,
-                      ),
-                      Container(
+                    ) ),
+                  Flexible(
+                    flex: 1,
+                    child:   Container(
                         width: MediaQuery.of(context).size.width / 6,
                         color: Colors.orange,
-                      ),
+                    ) ),
                     ],
                   ),
                 ),
@@ -55,7 +65,9 @@ class EventTypeColorWidget extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
-                      Container(
+                    Flexible(
+                    flex: 1,
+                    child: Container(
                         width: MediaQuery.of(context).size.width / 6,
                         padding: const EdgeInsets.all(2),
                         child: Center(
@@ -66,8 +78,10 @@ class EventTypeColorWidget extends StatelessWidget {
                                 Colors.black87, 8, 0, FontWeight.normal),
                           ),
                         ),
-                      ),
-                      SizedBox(
+                    ) ),
+                  Flexible(
+                    flex: 1,
+                    child:  SizedBox(
                         width: MediaQuery.of(context).size.width / 6,
                         child: Center(
                           child: Text("Parent Teacher Meeting day",
@@ -75,8 +89,10 @@ class EventTypeColorWidget extends StatelessWidget {
                               style: textStyle(
                                   Colors.black87, 8, 0, FontWeight.normal)),
                         ),
-                      ),
-                      Container(
+                    )),
+                  Flexible(
+                    flex: 1,
+                    child: Container(
                         width: MediaQuery.of(context).size.width / 6,
                         padding: const EdgeInsets.all(2),
                         child: Center(
@@ -87,8 +103,10 @@ class EventTypeColorWidget extends StatelessWidget {
                                 Colors.black87, 8, 0, FontWeight.normal),
                           ),
                         ),
-                      ),
-                      Container(
+                    ) ),
+                  Flexible(
+                    flex: 1,
+                    child: Container(
                         width: MediaQuery.of(context).size.width / 6,
                         padding: const EdgeInsets.all(2),
                         child: Center(
@@ -99,8 +117,10 @@ class EventTypeColorWidget extends StatelessWidget {
                                 Colors.black87, 8, 0, FontWeight.normal),
                           ),
                         ),
-                      ),
-                      Container(
+                    ) ),
+                  Flexible(
+                    flex: 1,
+                    child:  Container(
                         width: MediaQuery.of(context).size.width / 6,
                         padding: const EdgeInsets.all(2),
                         child: Center(
@@ -111,8 +131,10 @@ class EventTypeColorWidget extends StatelessWidget {
                                 Colors.black87, 8, 0, FontWeight.normal),
                           ),
                         ),
-                      ),
-                      Container(
+                    )),
+                  Flexible(
+                    flex: 1,
+                    child: Container(
                         width: MediaQuery.of(context).size.width / 6,
                         padding: const EdgeInsets.all(2),
                         child: Center(
@@ -122,12 +144,12 @@ class EventTypeColorWidget extends StatelessWidget {
                             style: textStyle(
                                 Colors.black87, 8, 0, FontWeight.normal),
                           ),
-                        ),
+                        )   ),
                       ),
                     ],
                   ),
                 ),
               ],
-            )));
+            ));
   }
 }

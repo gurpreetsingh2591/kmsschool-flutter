@@ -224,7 +224,8 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                 10.height,
                 selectSubjectDropDown(),
                 20.height,
-                buildLessonListContainer()
+                lessonRecord.isNotEmpty
+                    ?buildLessonListContainer():SizedBox()
               ],
             ),
           ),
@@ -253,7 +254,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
         constraints: const BoxConstraints.expand(),
         decoration: boxImageDashboardBgDecoration(),
         child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -277,12 +278,13 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                 ),
               ),
               Expanded(
+                flex: 1,
                 child: Container(
                   margin: const EdgeInsets.only(
-                      bottom: 50, top: 22, left: 16, right: 16),
+                      bottom: 40, top: 22, left: 16, right: 16),
                   child: ListView(
                     shrinkWrap: true,
-                    primary: true,
+                    primary: false,
                     children: [
                       Text("Select a subject below to view the progress.",style: textStyle(Colors.black, 14, 0, FontWeight.w400),),
                       10.height,
@@ -303,8 +305,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                   ),
                 ),
               ),
-              Positioned(
-                child: Align(
+              Align(
                   alignment: FractionalOffset.bottomCenter,
                   child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -323,7 +324,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                         ),
                       ]),
                 ),
-              )
+
 
             ]));
   }
@@ -389,8 +390,8 @@ class LessonProgressPageState extends State<LessonProgressPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                  margin: const EdgeInsets.only(bottom: 15),
-                  padding: const EdgeInsets.all(15),
+
+                  padding: const EdgeInsets.all(10),
                   decoration: kMessageItemDecoration,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -401,29 +402,27 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                         flex: 2,
                         child: Container(
                           alignment: Alignment.centerLeft,
-                          child: Flexible(
-                            child: Text(
+                          child:  Text(
                               "Primary Subject",
                               textAlign: TextAlign.center,
                               style: textStyle(
-                                  Colors.black87, 14, 0, FontWeight.w500),
+                                  Colors.black, 15, 0, FontWeight.w500),
                             ),
                           ),
-                        ),
+
                       ),
                       5.width,
                       Expanded(
                         flex: 2,
                         child: Container(
                           alignment: Alignment.centerLeft,
-                          child: Flexible(
-                            child: Text(
+                          child:  Text(
                               "Lesson Title",
                               textAlign: TextAlign.center,
                               style: textStyle(
-                                  Colors.black87, 14, 0, FontWeight.w500),
+                                  Colors.black, 15, 0, FontWeight.w500),
                             ),
-                          ),
+
                         ),
                       ),
                       5.width,
@@ -460,7 +459,6 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                      Visibility(
                        visible: false,
                        child:  Expanded(
-
                         flex: 2,
                         child: Container(
                           alignment: Alignment.center,

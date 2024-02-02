@@ -184,8 +184,7 @@ class MessageToOfficePageState extends State<MessageToOfficePage> {
                 screen: 'mfs',
               ),
             ),
-            Expanded(
-              child: Container(
+            Container(
                 margin: const EdgeInsets.only(
                     bottom: 20, top: 82, left: 16, right: 16),
                 child: ListView(
@@ -197,7 +196,7 @@ class MessageToOfficePageState extends State<MessageToOfficePage> {
                     buildComposeMessageContainer()
                   ],
                 ),
-              ),
+
             ),
             Container(
               height: 500,
