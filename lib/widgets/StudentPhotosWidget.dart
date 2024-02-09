@@ -17,21 +17,42 @@ class StudentPhotosWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        click();
-      },
-      child: Expanded(child: Container(
-        constraints: const BoxConstraints.expand(),
-        padding: const EdgeInsets.all(10),
-        margin: const EdgeInsets.only(bottom: 15, right: 15),
-        decoration: kInnerDecoration,
-        child: Image.network(
-          "http://$image",
-          //client.read(Uri.parse(image)),
-          fit: BoxFit.contain,
-        ),
-      ),
-      )
-    );
+        onTap: () {
+          click();
+        },
+        child: Container(
+            constraints: const BoxConstraints.expand(),
+            margin: const EdgeInsets.only(bottom: 15, right: 15),
+            decoration: kInnerDecoration,
+            child: Center(
+                child: Image.network(
+                    "http://$image",
+                    frameBuilder: (context, child, frame,
+                        wasSynchronouslyLoaded) {
+                      return child;
+                    },
+                    loadingBuilder: (context, child, loadingProgress) {
+                      if (loadingProgress == null) {
+                        return child;
+                      } else {
+                        return const Center(
+                          child: CircularProgressIndicator(color: Colors.orange,strokeWidth: 2,),
+                        );
+                      }
+                      /*ClipRRect(
+                    borderRadius: BorderRadius.circular(8.0),
+                    child: Image.network(
+                      "http://$image",
+                      //client.read(Uri.parse(image)),
+                      fit: BoxFit.cover,
+                    ),
+                  ),*/
+
+                      // you can replace
+
+
+                    })
+            )
+        ));
   }
 }

@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/Users/gurpreetsingh/Documents/flutterSDK/flutter"
-export "FLUTTER_APPLICATION_PATH=/Users/gurpreetsingh/Documents/dummyprojects/clone/new/kmsschool-flutter"
+export "FLUTTER_ROOT=/Users/gurpreetsmacbook/Documents/flutter"
+export "FLUTTER_APPLICATION_PATH=/Users/gurpreetsmacbook/Documents/netfrux/kmsschool-flutter"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"

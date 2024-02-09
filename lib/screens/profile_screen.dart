@@ -317,20 +317,12 @@ class ProfilePageState extends State<ProfilePage> {
               screen: 'mwt',
             ),
           ),
-          Container(
-            margin:
-                const EdgeInsets.only(bottom: 20, top: 82, left: 16, right: 16),
-            child: ListView(
-              shrinkWrap: true,
-              primary: true,
-              children: [
+
                 buildTextFieldContainer(context),
-              ],
-            ),
-          ),
+
           Container(
             height: 500,
-            margin: const EdgeInsets.only(bottom: 20, top: 80),
+            margin: const EdgeInsets.only(bottom: 20, top: 20),
             child: const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -352,10 +344,7 @@ class ProfilePageState extends State<ProfilePage> {
     return Container(
       constraints: const BoxConstraints.expand(),
       decoration: boxImageDashboardBgDecoration(),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Stack(
         children: [
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -383,10 +372,9 @@ class ProfilePageState extends State<ProfilePage> {
   }
 
   Widget buildTextFieldContainer(BuildContext context){
-    return   Expanded(
-      child: Container(
+    return   Container(
         margin: const EdgeInsets.only(
-            bottom: 20, top: 22, left: 16, right: 16),
+            bottom: 20, top: 82, left: 16, right: 16),
         child: ListView(
           shrinkWrap: true,
           primary: true,
@@ -535,7 +523,7 @@ class ProfilePageState extends State<ProfilePage> {
             20.height,
           ],
         ),
-      ),
+
     );
   }
 

@@ -173,10 +173,8 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
     return Container(
       constraints: const BoxConstraints.expand(),
       decoration: boxImageDashboardBgDecoration(),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+      child: Stack(
+
         children: [
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -200,7 +198,7 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
           Container(
             margin: const EdgeInsets.only(
               bottom: 20,
-              top: 22,
+              top: 82,
               left: 16,
             ),
             child: ListView(
@@ -262,7 +260,7 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
   }
 
   Widget buildCategoriesListWeb2000Container(BuildContext context, Size mq) {
-    return Expanded(child: GridView.builder(
+    return GridView.builder(
           shrinkWrap: true,
           primary: false,
           itemCount: studentPhotos.length,
@@ -288,7 +286,7 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
             crossAxisCount: 2,
             childAspectRatio: 2 / 2,
           ),
-        )
+
         );
   }
 }
