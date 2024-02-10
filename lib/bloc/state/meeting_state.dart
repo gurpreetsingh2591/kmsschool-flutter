@@ -32,6 +32,11 @@ class GetOfficeBookedSuccessState extends MeetingState {
 
   const GetOfficeBookedSuccessState(this.response);
 }
+class GetDeleteOfficeBookedSuccessState extends MeetingState {
+  final dynamic response;
+
+  const GetDeleteOfficeBookedSuccessState(this.response);
+}
 
 class GetTeacherSlotState extends MeetingState {
   final dynamic response;
@@ -48,4 +53,9 @@ class GetTeacherBookedSuccessState extends MeetingState {
   final dynamic response;
 
   const GetTeacherBookedSuccessState(this.response);
+}
+class GetDeleteTeacherBookingState extends MeetingState {
+  final dynamic response;
+
+  const GetDeleteTeacherBookingState(this.response);
 }

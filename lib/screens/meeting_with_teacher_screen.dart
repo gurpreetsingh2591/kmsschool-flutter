@@ -69,10 +69,11 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
     }
 
     formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate);
+    meetingBloc.add(GetBookedTeacherSlotsList(studentId: studentId));
+
 
     meetingBloc.add(
         GetTeacherTimeSlotsByDate(date: formattedDate, studentId: studentId));
-    meetingBloc.add(GetBookedTeacherSlotsList(studentId: studentId));
   }
 
   setTimeSlotData(dynamic slots) {
@@ -85,7 +86,7 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
         final booking = BookingSlots(slot: "Select Slot");
         bookingSlots.add(booking);
         bookingSlots.addAll(messagesResponse.result);
-      }else{
+      } else {
         final booking = BookingSlots(slot: "Slot Unavailable ");
         bookingSlots.add(booking);
         bookingSlots.addAll(messagesResponse.result);
@@ -111,18 +112,17 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
   showDeleteAlertDialog(BuildContext context, String meetId) {
     // set up the button
     Widget okButton = TextButton(
-      child:  Text("Yes",style:textStyle(appBaseColor, 18, 0, FontWeight.w500)),
+      child:
+          Text("Yes", style: textStyle(appBaseColor, 18, 0, FontWeight.w500)),
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop();
         setState(() {
-          meetingBloc.add(GetDeleteTeacherSlotsList(
-            meetId: meetId,
-          ));
+          meetingBloc.add(GetDeleteTeacherSlotsList(meetId: meetId,));
         });
       },
     );
     Widget cancelButton = TextButton(
-      child:  Text("Cancel",style:textStyle(red, 18, 0, FontWeight.w500)),
+      child: Text("Cancel", style: textStyle(red, 18, 0, FontWeight.w500)),
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop();
       },
@@ -130,13 +130,12 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-
       title: Text(
         "Delete Meeting",
-        style: textStyle(Colors.white, 18, 0, FontWeight.w500),
+        style: textStyle(Colors.black, 18, 0, FontWeight.w500),
       ),
       content: Text("Are you sure you want to delete your meeting",
-          style: textStyle(Colors.white, 14, 0, FontWeight.normal)),
+          style: textStyle(Colors.black, 14, 0, FontWeight.normal)),
       actions: [
         cancelButton,
         okButton,
@@ -155,7 +154,8 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
   showAlertDialog(BuildContext context, String title, String dateTime) {
     // set up the button
     Widget okButton = TextButton(
-      child:  Text("Yes",style: textStyle(appBaseColor, 18, 0, FontWeight.w500)),
+      child:
+          Text("Yes", style: textStyle(appBaseColor, 18, 0, FontWeight.w500)),
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop();
         setState(() {
@@ -165,7 +165,8 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
       },
     );
     Widget cancelButton = TextButton(
-      child:  Text("Cancel",style: textStyle(Colors.red, 18, 0, FontWeight.w500)),
+      child:
+          Text("Cancel", style: textStyle(Colors.red, 18, 0, FontWeight.w500)),
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop();
       },
@@ -173,14 +174,12 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-
       title: Text(
         title,
-        style: textStyle(Colors.white, 18, 0, FontWeight.w500),
+        style: textStyle(Colors.black, 16, 0, FontWeight.w500),
       ),
-
       content: Text(dateTime,
-          style: textStyle(Colors.white, 14, 0, FontWeight.normal)),
+          style: textStyle(Colors.black, 14, 0, FontWeight.normal)),
       actions: [
         cancelButton,
         okButton,
@@ -190,7 +189,6 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
     // show the dialog
     showDialog(
       context: context,
-
       builder: (BuildContext context) {
         return alert;
       },
@@ -198,12 +196,16 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
   }
 
   setBookedHistorySlotData(dynamic bookings) {
-    bookedMeetings.clear();
+    //bookedMeetings.clear();
     try {
       var bookingResponse = BookedMeetingResponse.fromJson(bookings);
       int status = bookingResponse.status;
       String message = bookingResponse.message;
+      if (kDebugMode) {
+        print("object${bookingResponse.result}");
+      }
       if (status == 200) {
+        bookedMeetings.clear();
         bookedMeetings.addAll(bookingResponse.result);
       }
 
@@ -220,9 +222,11 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
   setBookSlotData(dynamic bookings) {
     try {
       var bookingResponse = CommonResponse.fromJson(bookings);
-      dynamic status = bookingResponse.status;
       String message = bookingResponse.message;
-
+     // meetingBloc.add(GetBookedTeacherSlotsList(studentId: studentId));
+      if (kDebugMode) {
+        print("message---$message");
+      }
       if (message != "Invalid") {
         toast("Slot booked successfully", false);
         meetingBloc.add(GetBookedTeacherSlotsList(studentId: studentId));
@@ -298,9 +302,15 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
                 return buildHomeContainer(context, mq);
               } else if (state is GetTeacherBookingSuccessState) {
                 setBookSlotData(state.response);
+
                 return buildHomeContainer(context, mq);
               } else if (state is GetTeacherBookedSuccessState) {
+
                 setBookedHistorySlotData(state.response);
+                return buildHomeContainer(context, mq);
+              } else if (state is GetDeleteTeacherBookingState) {
+                meetingBloc.add(GetBookedTeacherSlotsList(studentId: studentId));
+
                 return buildHomeContainer(context, mq);
               } else if (state is FailureState) {
                 return Center(
@@ -488,7 +498,7 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        GestureDetector(
+                        InkWell(
                           onTap: () {
                             // toast("message", true);
                             _selectDate(context);
@@ -535,7 +545,6 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
                     child: Container(
                       alignment: Alignment.centerLeft,
                       child: DropdownButton<String>(
-
                         padding: const EdgeInsets.symmetric(horizontal: 20),
                         value: selectedValue,
                         isExpanded: true,
@@ -545,7 +554,11 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
                             selectedValue = newValue!;
                           });
                         },
-                        icon: const Icon(Icons.arrow_drop_down,color: Colors.black,), // Ensure this line is included
+                        icon: const Icon(
+                          Icons.arrow_drop_down,
+                          color: Colors.black,
+                        ),
+                        // Ensure this line is included
 
                         items: bookingSlots.map((item) {
                           return DropdownMenuItem<String>(
@@ -561,7 +574,7 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
                       ),
                     ),
                   ),
-                 /* Expanded(
+                  /* Expanded(
                       flex: 1,
                       child: Container(
                         alignment: Alignment.center,
@@ -600,27 +613,29 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          bookedMeetings.isNotEmpty? ListView.builder(
-            primary: false,
-            shrinkWrap: true,
-            itemCount: bookedMeetings.length,
-            itemBuilder: (context, index) {
-              return BookingItemWidget(
-                date: bookedMeetings[index].meetdate,
-                time: bookedMeetings[index].meettime,
-                onTap: () {
-                  showDeleteAlertDialog(context,bookedMeetings[index].meet_id.toString());
-
-                },
-              );
-            },
-          ):Container(
-            margin: const EdgeInsets.only(top: 50),
-            child: Text(
-              "No Meeting has been booked yet.",
-              style: textStyle(Colors.black54, 18, 0, FontWeight.w400),
-            ),
-          ),
+          bookedMeetings.isNotEmpty
+              ? ListView.builder(
+                  primary: false,
+                  shrinkWrap: true,
+                  itemCount: bookedMeetings.length,
+                  itemBuilder: (context, index) {
+                    return BookingItemWidget(
+                      date: bookedMeetings[index].meetdate,
+                      time: bookedMeetings[index].meettime,
+                      onTap: () {
+                        showDeleteAlertDialog(
+                            context, bookedMeetings[index].meet_id.toString());
+                      },
+                    );
+                  },
+                )
+              : Container(
+                  margin: const EdgeInsets.only(top: 50),
+                  child: Text(
+                    "No Meeting has been booked yet.",
+                    style: textStyle(Colors.black54, 18, 0, FontWeight.w400),
+                  ),
+                ),
         ]);
   }
 }

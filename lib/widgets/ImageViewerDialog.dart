@@ -21,9 +21,10 @@ class ImageViewerDialog extends StatelessWidget {
         child: PhotoViewGallery.builder(
           itemCount: imageUrls.length,
           builder: (context, index) {
+            String imgUrl=imageUrls[index].imageurl.toString().replaceAll("file:///", "");
             return PhotoViewGalleryPageOptions(
               //imageProvider: NetworkImage("kmschool.observer.school/app23/uploads/2023-2024/CASA%20A/Mahataab%20Singh%20Mehtaab/20230817_134254000_iOS.jpg"/*imageUrls[index].imageurl.toString().replaceAll("file:///", "http://")*/),
-              imageProvider: NetworkImage(imageUrls[index].imageurl.toString().replaceAll("file:///", "http://")),
+              imageProvider: NetworkImage("http://"+imgUrl.toString()),
               minScale: PhotoViewComputedScale.contained,
               maxScale: PhotoViewComputedScale.covered * 2,
             );

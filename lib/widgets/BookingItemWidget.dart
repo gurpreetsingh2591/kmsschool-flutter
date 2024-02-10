@@ -38,10 +38,10 @@ class BookingItemWidget extends StatelessWidget {
             ),
             5.height,
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.max,
               children: [
-                Expanded(
-                  flex: 15,
-                  child: Text(
+                Text(
                     "Time: $time",
                     style: textStyle(
                       Colors.black87,
@@ -52,18 +52,16 @@ class BookingItemWidget extends StatelessWidget {
                     textAlign: TextAlign.left,
                     maxLines: 1,
                   ),
-                ),
-                GestureDetector(
-                  onTap:(){
-                    onTap();
-                  },
-                  child: Expanded(
-                    flex: 1,
-                    child: Image.asset(
+
+                 GestureDetector(
+                      onTap:(){
+                        onTap();
+                      },
+                      child: Image.asset(
                       "assets/icons/delete.png",
                       color: Colors.red,
                     ),
-                  ),),
+                  ),
               ],
             )
           ],

@@ -142,7 +142,7 @@ class MeetingBloc extends Bloc<MeetingSlotEvent, MeetingState> {
       // Process the API response
       // Emit a success state
 
-      emit(GetTeacherBookedSuccessState(getUserData));
+      emit(GetDeleteTeacherBookingState(getUserData));
     } catch (error) {
       // Emit a failure state
       emit(FailureState(error.toString()));
@@ -160,7 +160,7 @@ class MeetingBloc extends Bloc<MeetingSlotEvent, MeetingState> {
       // Process the API response
       // Emit a success state
 
-      emit(GetOfficeBookedSuccessState(getUserData));
+      emit(GetDeleteOfficeBookedSuccessState(getUserData));
     } catch (error) {
       // Emit a failure state
       emit(FailureState(error.toString()));

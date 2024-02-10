@@ -305,6 +305,9 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                   ),
                 ),
               ),
+              Visibility(
+                visible: false,
+                child:
               Align(
                   alignment: FractionalOffset.bottomCenter,
                   child: Column(
@@ -326,7 +329,7 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                 ),
 
 
-            ]));
+              )]));
   }
 
   Widget selectSubjectDropDown() {
@@ -390,7 +393,6 @@ class LessonProgressPageState extends State<LessonProgressPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-
                   padding: const EdgeInsets.all(10),
                   decoration: kMessageItemDecoration,
                   child: Row(
@@ -488,6 +490,25 @@ class LessonProgressPageState extends State<LessonProgressPage> {
                     lessonPresented: lessonRecord[index].lessonPresented ?? "0", primarySubject: lessonRecord[index].primarySubject??subjectName,
                   );
                 },
+              ),
+              Align(
+                alignment: FractionalOffset.bottomCenter,
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Container(
+                        height: 50,
+                        decoration: kInnerDecoration,
+                        alignment: Alignment.bottomCenter,
+                        child:  Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text("Student Journal:  $studentJournal",style: textStyle(Colors.white, 16, 0,FontWeight.normal),)
+                            ]),
+                      ),
+                    ]),
               )
             ]));
   }

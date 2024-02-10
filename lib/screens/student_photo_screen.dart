@@ -57,9 +57,8 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
   }
 
   getStudentPhotos(dynamic data) {
-
     try {
-      var  studentPhotosResponse = StudentPhotosResponse.fromJson(data);
+      var studentPhotosResponse = StudentPhotosResponse.fromJson(data);
       dynamic status = studentPhotosResponse.status;
       String message = studentPhotosResponse.message;
 
@@ -68,8 +67,7 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
         if (kDebugMode) {
           print("evenDatesList--$studentPhotos");
         }
-
-        }
+      }
     } catch (e) {
       if (kDebugMode) {
         print("Error:$e");
@@ -102,7 +100,6 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
               } else if (state is SuccessState) {
                 return buildHomeContainer(context, mq);
               } else if (state is GetStudentPhotosState) {
-
                 getStudentPhotos(state.response);
                 return buildHomeContainer(context, mq);
               } else if (state is FailureState) {
@@ -174,7 +171,6 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
       constraints: const BoxConstraints.expand(),
       decoration: boxImageDashboardBgDecoration(),
       child: Stack(
-
         children: [
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -220,37 +216,41 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
                   ),
                 ),
                 20.height,
-                buildCategoriesListWeb2000Container(context, mq),
+                buildCategoriesListContainer(context, mq),
                 20.height,
-                GestureDetector(
-                    onTap: () async {
-                      Uri uri = Uri.parse(
-                          "https://1drv.ms/f/s!AvubYmOtiPPidD4_iDsccWggi98?e=ea6cqQ");
-                      if (await canLaunchUrl(uri)) {
-                        await launchUrl(uri, mode: LaunchMode.platformDefault);
-                      } else {
-                        throw 'Could not launch $uri';
-                      }
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.only(right: 20),
-                      child: Text.rich(
-                        textAlign: TextAlign.right,
-                        TextSpan(
-                          text: "See",
-                          style:
-                              textStyle(Colors.black, 14, 0, FontWeight.w500),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: " More...          ",
-                              style: textStyle(
-                                  appBaseColor, 18, 0, FontWeight.w500),
-                            ),
-                            // can add more TextSpans here...
-                          ],
+                Visibility(
+                  visible: false,
+                  child: GestureDetector(
+                      onTap: () async {
+                        Uri uri = Uri.parse(
+                            "https://1drv.ms/f/s!AvubYmOtiPPidD4_iDsccWggi98?e=ea6cqQ");
+                        if (await canLaunchUrl(uri)) {
+                          await launchUrl(uri,
+                              mode: LaunchMode.platformDefault);
+                        } else {
+                          throw 'Could not launch $uri';
+                        }
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(right: 20),
+                        child: Text.rich(
+                          textAlign: TextAlign.right,
+                          TextSpan(
+                            text: "See",
+                            style:
+                                textStyle(Colors.black, 14, 0, FontWeight.w500),
+                            children: <TextSpan>[
+                              TextSpan(
+                                text: " More...          ",
+                                style: textStyle(
+                                    appBaseColor, 18, 0, FontWeight.w500),
+                              ),
+                              // can add more TextSpans here...
+                            ],
+                          ),
                         ),
-                      ),
-                    )),
+                      )),
+                ),
               ],
             ),
           ),
@@ -259,34 +259,36 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
     );
   }
 
-  Widget buildCategoriesListWeb2000Container(BuildContext context, Size mq) {
+  Widget buildCategoriesListContainer(BuildContext context, Size mq) {
     return GridView.builder(
-          shrinkWrap: true,
-          primary: false,
-          itemCount: studentPhotos.length,
-          itemBuilder: (BuildContext context, int index) {
-            return StudentPhotosWidget(
-              driveLink: driveLink,
-              image: studentPhotos[index].imageurl.toString().toString().replaceAll("file:///", ""),
-              click: () {
-                showDialog(
-                  context: context,
-                  builder: (context) {
-                    return ImageViewerDialog(
-                      imageUrls: studentPhotos,
-                      initialIndex: index,
-                    );
-                  },
+      shrinkWrap: true,
+      primary: false,
+      itemCount: studentPhotos.length,
+      itemBuilder: (BuildContext context, int index) {
+        return StudentPhotosWidget(
+          driveLink: driveLink,
+          image: studentPhotos[index]
+              .imageurl
+              .toString()
+              .toString()
+              .replaceAll("file:///", ""),
+          click: () {
+            showDialog(
+              context: context,
+              builder: (context) {
+                return ImageViewerDialog(
+                  imageUrls: studentPhotos,
+                  initialIndex: index,
                 );
-
               },
             );
           },
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            childAspectRatio: 2 / 2,
-          ),
-
         );
+      },
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 2 / 2,
+      ),
+    );
   }
 }

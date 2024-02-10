@@ -42,7 +42,7 @@ class SetReminderPageState extends State<SetReminderPage> {
   String studentName = "";
   String studentId = "";
 
-  List<bool> selectedItems = List.generate(10, (index) => false);
+  List<bool> selectedItems = List.generate(5, (index) => false);
   List<ReminderList> reminderList = [];
 
   @override
@@ -295,7 +295,7 @@ class SetReminderPageState extends State<SetReminderPage> {
                   ),
                 ),
                 20.height,
-                buildCategoriesListWeb2000Container(context, mq),
+                buildCategoriesListContainer(context, mq),
                 40.height,
                 ButtonWidget(
                   margin: 40,
@@ -304,7 +304,7 @@ class SetReminderPageState extends State<SetReminderPage> {
                   visibility: false,
                   padding: 0,
                   onTap: () {
-                    callSetReminderApi();
+                    //callSetReminderApi();
                   },
                   size: 12,
                   scale: 2,
@@ -389,7 +389,7 @@ class SetReminderPageState extends State<SetReminderPage> {
                   ),
                 ),
                 20.height,
-                buildCategoriesListWeb2000Container(context, mq),
+                buildCategoriesListContainer(context, mq),
                 40.height,
                 ButtonWidget(
                   margin: 40,
@@ -417,7 +417,7 @@ class SetReminderPageState extends State<SetReminderPage> {
     );
   }
 
-  Widget buildCategoriesListWeb2000Container(BuildContext context, Size mq) {
+  Widget buildCategoriesListContainer(BuildContext context, Size mq) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -438,10 +438,21 @@ class SetReminderPageState extends State<SetReminderPage> {
                   reminderList[index].daystext,
                   style: textStyle(Colors.white, 12, 0, FontWeight.normal),
                 ),
-                leading: InkWell(
+                leading: GestureDetector(
                   onTap: () {
                     setState(() {
-                      selectedItems[index] = !selectedItems[index];
+
+                      if(selectedItems[index]!=true) {
+                        selectedItems[index] = true;
+                        //toast("message--${selectedItems[index]}", true);
+                        //toast("index--$index", true);
+                      }else{
+                       // toast("index2--$index", true);
+                        selectedItems[index] = false;
+                      //  toast("message2--${selectedItems[index]}", false);
+
+
+                      }
                     });
                   },
                   child: Container(

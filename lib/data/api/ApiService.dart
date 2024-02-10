@@ -614,7 +614,7 @@ class ApiService {
       var response = await http.Response.fromStream(streamedResponse);
       if (kDebugMode) {
         print(response.statusCode);
-        print("booking list${response.body}");
+        print("booking delete--${response.body}");
       }
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);
@@ -649,7 +649,7 @@ class ApiService {
       var response = await http.Response.fromStream(streamedResponse);
       if (kDebugMode) {
         print(response.statusCode);
-        print("booking list${response.body}");
+        print("office booking delete${response.body}");
       }
       if (response.statusCode == 200) {
         var result = jsonDecode(response.body);

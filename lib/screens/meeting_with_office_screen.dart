@@ -70,11 +70,11 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
 
 
     formattedDate = DateFormat('yyyy-MM-dd').format(selectedDate);
-
-    meetingBloc.add(
-        GetOfficeTimeSlotsByDate(date: formattedDate, studentId: studentId));
     meetingBloc.add(
         GetBookedOfficeSlotsList(studentId: studentId, parentId: parentId));
+    meetingBloc.add(
+        GetOfficeTimeSlotsByDate(date: formattedDate, studentId: studentId));
+
 
     // String selectedValue = bookingSlots[0].slot;
   }
@@ -107,15 +107,16 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
     } else if (bookingSlots.isNotEmpty && selectedValue == "Select Slot") {
       toast("Please Select Time slot", false);
     } else {
+
       showAlertDialog(context, "Book Meeting With Office",
-          "Your Selected Date: $formattedDate\nYour Time Slot:$selectedValue");
+          "Your Selected Date: $formattedDate\nYour Time Slot:$selectedValue\n\nConfirm Book meeting");
     }
   }
 
   showAlertDialog(BuildContext context, String title, String dateTime) {
     // set up the button
     Widget okButton = TextButton(
-      child: const Text("Yes"),
+      child:  Text("Yes",style: textStyle(appBaseColor, 18, 0, FontWeight.w500)),
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop();
         setState(() {
@@ -125,7 +126,7 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
       },
     );
     Widget cancelButton = TextButton(
-      child: const Text("Cancel"),
+      child:  Text("Cancel",style: textStyle(red, 18, 0, FontWeight.w500)),
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop();
       },
@@ -133,8 +134,8 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text(title),
-      content: Text(dateTime),
+      title: Text(title,style: textStyle(Colors.black, 16, 0, FontWeight.w500)),
+      content: Text(dateTime,style: textStyle(Colors.black, 14, 0, FontWeight.normal)),
       actions: [
         cancelButton,
         okButton,
@@ -153,7 +154,7 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
   showDeleteAlertDialog(BuildContext context, String meetId) {
     // set up the button
     Widget okButton = TextButton(
-      child: const Text("Yes"),
+      child:  Text("Yes",style:textStyle(appBaseColor, 18, 0, FontWeight.w500)),
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop();
         setState(() {
@@ -164,7 +165,7 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
       },
     );
     Widget cancelButton = TextButton(
-      child: const Text("Cancel"),
+      child:  Text("Cancel",style:textStyle(red, 18, 0, FontWeight.w500)),
       onPressed: () {
         Navigator.of(context, rootNavigator: true).pop();
       },
@@ -174,10 +175,10 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
     AlertDialog alert = AlertDialog(
       title: Text(
         "Delete Meeting",
-        style: textStyle(Colors.black87, 18, 0, FontWeight.w500),
+        style: textStyle(Colors.black, 18, 0, FontWeight.w500),
       ),
       content: Text("Are you sure to delete your meeting",
-          style: textStyle(Colors.black87, 14, 0, FontWeight.normal)),
+          style: textStyle(Colors.black, 14, 0, FontWeight.normal)),
       actions: [
         cancelButton,
         okButton,
@@ -194,12 +195,13 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
   }
 
   setBookedHistorySlotData(dynamic bookings) {
-    bookedMeetings.clear();
     try {
       var bookingResponse = BookedMeetingResponse.fromJson(bookings);
       int status = bookingResponse.status;
       String message = bookingResponse.message;
+      print("status--$status");
       if (status == 200) {
+        bookedMeetings.clear();
         bookedMeetings.addAll(bookingResponse.result);
       }
 
@@ -303,6 +305,10 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
                 return buildHomeContainer(context, mq);
               } else if (state is GetOfficeBookedSuccessState) {
                 setBookedHistorySlotData(state.response);
+                return buildHomeContainer(context, mq);
+              }else if (state is GetDeleteOfficeBookedSuccessState) {
+                meetingBloc.add(
+                    GetBookedOfficeSlotsList(studentId: studentId, parentId: parentId));
                 return buildHomeContainer(context, mq);
               } else if (state is FailureState) {
                 return Center(
@@ -486,7 +492,7 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
                   ),
                   Expanded(
                       flex: 7,
-                      child: GestureDetector(
+                      child: InkWell(
                           onTap: () {
                             _selectDate(context);
                           }, // Specify the callback function here
