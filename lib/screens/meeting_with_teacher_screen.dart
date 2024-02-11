@@ -2,7 +2,6 @@ import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:go_router/go_router.dart';
 import 'package:kmschool/bloc/state/meeting_state.dart';
 import 'package:kmschool/model/BookingSlotsResponse.dart';
 
@@ -11,14 +10,10 @@ import 'package:kmschool/utils/toast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../app/router.dart';
 import '../bloc/event/meeting_slot_event.dart';
-import '../bloc/logic_bloc/get_device_bloc.dart';
 import '../bloc/logic_bloc/meeting_bloc.dart';
-import '../bloc/state/get_device_state.dart';
 import '../model/BookedMeetingResponse.dart';
 import '../model/CommonResponse.dart';
-import '../model/DeviceResponse.dart';
 
 import '../widgets/BookingItemWidget.dart';
 import '../widgets/ButtonWidget.dart';
