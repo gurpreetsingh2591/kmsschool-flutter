@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
@@ -167,8 +169,7 @@ class LoginPageState extends State<LoginPage> {
       if (userName.isEmpty) {
         toast(AppLocalizations.of(context).translate('enter_email'), true);
       } else if (!EmailValidator.validate(userName)) {
-        toast(
-            AppLocalizations.of(context).translate('enter_valid_email'), true);
+        toast(AppLocalizations.of(context).translate('enter_valid_email'), true);
       }
       emailError = true;
       _emailFocus.requestFocus();
@@ -189,9 +190,15 @@ class LoginPageState extends State<LoginPage> {
     else {
       passwordError = false;
       emailError = false;
-      if (fcmToken != null) {
+      if(Platform.isIOS){
+        fcmToken="hghfshfhsghfsfhr";
         loginBloc.add(LoginButtonPressed(
             username: userName, password: password, fcmToken: fcmToken!));
+      }else {
+        if (fcmToken != null) {
+          loginBloc.add(LoginButtonPressed(
+              username: userName, password: password, fcmToken: fcmToken!));
+        }
       }
     }
   }
@@ -435,6 +442,7 @@ class LoginPageState extends State<LoginPage> {
                 alignment: Alignment.center,
                 child: ElevatedButton(
                     onPressed: () {
+                      print("object");
                       dialogShown = false;
                       login(_emailText.text.trim().toString(),
                           _passwordText.text.trim().toString());
