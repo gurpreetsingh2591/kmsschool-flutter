@@ -31,7 +31,8 @@ class ForgotPasswordPage extends StatefulWidget {
 
 class ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  final _emailText = TextEditingController();
+  final _newPasswordText = TextEditingController();
+  final _confirmPassword = TextEditingController();
 
   final FocusNode _emailFocus = FocusNode();
 
@@ -61,7 +62,7 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
     Widget toast = CustomToastWidget(
       msg: 'Recovery email sent to',
       image: 'assets/images/resend_icon.png',
-      email: _emailText.text.toString(),
+      email: _newPasswordText.text.toString(),
       scale: 1.5,
     );
 
@@ -86,15 +87,15 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
   }
 
   void emailListener() {
-    _emailText.addListener(() {
+    _newPasswordText.addListener(() {
       //here you have the changes of your textfield
       if (kDebugMode) {
-        print("value: ${_emailText.text.toString()}");
+        print("value: ${_newPasswordText.text.toString()}");
       }
       //use setState to rebuild the widget
       setState(() {
         bool validEmail =
-            isValidEmail(context, _emailText.text.toString().trim());
+            isValidEmail(context, _newPasswordText.text.toString().trim());
         if (!validEmail) {
           error = true;
         } else {
@@ -108,19 +109,19 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
   }
 
   clickOnRecoverPassword() {
-    bool validEmail = isValidEmail(context, _emailText.text.toString().trim());
+    bool validEmail = isValidEmail(context, _newPasswordText.text.toString().trim());
 
     if (!validEmail) {
-      if (_emailText.text.toString().isEmpty) {
+      if (_newPasswordText.text.toString().isEmpty) {
         toast(AppLocalizations.of(context).translate('enter_email'), true);
-      } else if (!EmailValidator.validate(_emailText.text.toString())) {
+      } else if (!EmailValidator.validate(_newPasswordText.text.toString())) {
         toast(
             AppLocalizations.of(context).translate('enter_valid_email'), true);
       }
       _emailFocus.requestFocus();
       error = true;
     } else {
-      ApiService().resetPassword(_emailText.text.toString());
+      ApiService().resetPassword(_newPasswordText.text.toString());
       error = false;
 
       Future.delayed(Duration.zero, () {
@@ -192,7 +193,7 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
           BottomButtonWidget(
             name: 'recovery_email',
             onTap: () {
-              !error && _emailText.text.isNotEmpty
+              !error && _newPasswordText.text.isNotEmpty
                   ? clickOnRecoverPassword()
                   : null;
             },
@@ -203,7 +204,7 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
             titleVisibility: false,
             onTapTitle: () => {context.push(Routes.mainHome)},
             margin: 20,
-            decoration: error || _emailText.text.isEmpty
+            decoration: error || _newPasswordText.text.isEmpty
                 ? kDisabledButtonBoxDecoration
                 : kButtonBoxDecoration,
             textColor: Colors.black,
@@ -260,7 +261,7 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   )),
               5.height,
               CommonTextField(
-                controller: _emailText,
+                controller: _newPasswordText,
                 hintText: "",
                 text: "",
                 isFocused: false,

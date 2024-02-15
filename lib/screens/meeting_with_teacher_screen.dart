@@ -191,7 +191,7 @@ class MeetingWithTeacherPageState extends State<MeetingWithTeacherPage> {
   }
 
   setBookedHistorySlotData(dynamic bookings) {
-    //bookedMeetings.clear();
+    bookedMeetings.clear();
     try {
       var bookingResponse = BookedMeetingResponse.fromJson(bookings);
       int status = bookingResponse.status;

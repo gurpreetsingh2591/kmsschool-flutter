@@ -196,6 +196,7 @@ class MeetingWithOfficePageState extends State<MeetingWithOfficePage> {
 
   setBookedHistorySlotData(dynamic bookings) {
     try {
+      bookedMeetings.clear();
       var bookingResponse = BookedMeetingResponse.fromJson(bookings);
       int status = bookingResponse.status;
       String message = bookingResponse.message;

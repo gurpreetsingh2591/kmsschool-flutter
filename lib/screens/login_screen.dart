@@ -91,7 +91,8 @@ class LoginPageState extends State<LoginPage> {
         }
         SharedPrefs().setTokenKey(fcmToken!);
       });
-    });
+      });
+
   }
 
   void passwordListener() {
@@ -190,8 +191,11 @@ class LoginPageState extends State<LoginPage> {
     else {
       passwordError = false;
       emailError = false;
+      fcmToken=SharedPrefs().getTokenKey();
       if(Platform.isIOS){
-        fcmToken="hghfshfhsghfsfhr";
+        if(fcmToken==""||fcmToken==null){
+          fcmToken="dnsbfjdfjnsdjfc";
+        }
         loginBloc.add(LoginButtonPressed(
             username: userName, password: password, fcmToken: fcmToken!));
       }else {
