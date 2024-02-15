@@ -38,8 +38,8 @@ class SelectionWidget extends StatelessWidget {
                     icon: "",
                     visibility: false,
                     padding: 0,
-                    onTap: () {
-                      clickOnLeft();
+                    onTap: () =>{
+                      clickOnLeft(),
                     },
                     size: 12,
                     scale: 2,
@@ -62,8 +62,8 @@ class SelectionWidget extends StatelessWidget {
                     icon: "",
                     visibility: false,
                     padding: 0,
-                    onTap: () {
-                      clickOnRight();
+                    onTap: () =>{
+                      clickOnRight(),
                     },
                     size: 12,
                     scale: 2,

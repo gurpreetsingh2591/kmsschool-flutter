@@ -49,7 +49,7 @@ class DrawerWidget extends StatelessWidget {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  context.push(Routes.mainHome);
+                  context.pushReplacement(Routes.mainHome);
                 },
               )),
           7.height,
@@ -69,7 +69,7 @@ class DrawerWidget extends StatelessWidget {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  context.push(Routes.lunchMenu);
+                  context.pushReplacement(Routes.lunchMenu);
                 },
               )),
           7.height,
@@ -89,7 +89,7 @@ class DrawerWidget extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.pop(context);
-                context.push(Routes.snackMenu);
+                context.pushReplacement(Routes.snackMenu);
               },
             ),
           ),
@@ -110,7 +110,7 @@ class DrawerWidget extends StatelessWidget {
               ),
               onTap: () {
                 Navigator.pop(context);
-                context.push(Routes.schoolCalender);
+                context.pushReplacement(Routes.schoolCalender);
 
               },
             ),
@@ -132,7 +132,7 @@ class DrawerWidget extends StatelessWidget {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  context.push(Routes.messageFromSchool);
+                  context.pushReplacement(Routes.messageFromSchool);
                 },
               ),),
           7.height,
@@ -152,7 +152,7 @@ class DrawerWidget extends StatelessWidget {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  context.push(Routes.meetingWithTeacher);
+                  context.pushReplacement(Routes.meetingWithTeacher);
                 },
               )),
           7.height,
@@ -173,7 +173,7 @@ class DrawerWidget extends StatelessWidget {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  context.push(Routes.meetingWithOffice);
+                  context.pushReplacement(Routes.meetingWithOffice);
                 },
               )),
           7.height,
@@ -193,7 +193,7 @@ class DrawerWidget extends StatelessWidget {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  context.push(Routes.messageToTeacher);
+                  context.pushReplacement(Routes.messageToTeacher);
                 },
               )),
          7.height,
@@ -213,7 +213,7 @@ class DrawerWidget extends StatelessWidget {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  context.push(Routes.messageToOffice);
+                  context.pushReplacement(Routes.messageToOffice);
                 },
               )),
           7.height,
@@ -234,7 +234,7 @@ class DrawerWidget extends StatelessWidget {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  context.push(Routes.lessonProgress);
+                  context.pushReplacement(Routes.lessonProgress);
                 },
               )),
          7.height,
@@ -255,7 +255,7 @@ class DrawerWidget extends StatelessWidget {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  context.push(Routes.studentPhotos);
+                  context.pushReplacement(Routes.studentPhotos);
                 },
               )),
          7.height,
@@ -276,7 +276,7 @@ class DrawerWidget extends StatelessWidget {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  context.push(Routes.setReminder);
+                  context.pushReplacement(Routes.setReminder);
                 },
               )),
           7.height,
@@ -297,7 +297,7 @@ class DrawerWidget extends StatelessWidget {
                 ),
                 onTap: () {
                   Navigator.pop(context);
-                  context.push(Routes.accountInfo);
+                  context.pushReplacement(Routes.accountInfo);
                 },
               )),
          7.height,

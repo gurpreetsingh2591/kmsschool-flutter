@@ -72,9 +72,11 @@ class SetReminderPageState extends State<SetReminderPage> {
       String message = remindersResponse.message;
 
       if (status == 200) {
+        if(remindersResponse.result.isNotEmpty){
         reminderList.addAll(remindersResponse.result);
         studentLessonBloc.add(
             SetAlreadyRemindersData(studentId: studentId, days: "getbyid"));
+        }
       } else {
         toast("Data Not available", false);
       }
@@ -103,11 +105,16 @@ class SetReminderPageState extends State<SetReminderPage> {
 
     // Iterate through the response data and update the selectedItems list
     for (var response in reminderResponses) {
-      List<String> selectedDays = response.days.split(',');
+      List<String> selectedDays = [];
+      if (response.days.isNotEmpty) {
+        selectedDays = response.days.split(',');
+      }
 
       for (int i = 0; i < reminderList.length; i++) {
-        if (selectedDays.contains(reminderList[i].days)) {
-          selectedItems[i] = true;
+        if (reminderList.isNotEmpty) {
+          if (selectedDays.contains(reminderList[i].days)) {
+            selectedItems[i] = true;
+          }
         }
       } /*for (int i = 0; i < reminderList.length; i++) {
         for (int j = 0; j < selectedDays.length; j++) {
@@ -269,12 +276,8 @@ class SetReminderPageState extends State<SetReminderPage> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(
-              bottom: 20,
-              top: 82,
-              left: 16,
-              right: 16
-            ),
+            margin:
+                const EdgeInsets.only(bottom: 20, top: 82, left: 16, right: 16),
             child: ListView(
               shrinkWrap: true,
               primary: false,
@@ -427,7 +430,7 @@ class SetReminderPageState extends State<SetReminderPage> {
           reverse: false,
           shrinkWrap: true,
           primary: true,
-          itemCount: reminderList.length,
+          itemCount: reminderList.isNotEmpty ? reminderList.length : 0,
           itemBuilder: (BuildContext context, int index) {
             return Card(
               color: appBaseColor,
@@ -435,23 +438,20 @@ class SetReminderPageState extends State<SetReminderPage> {
                 contentPadding: const EdgeInsets.only(left: 20),
                 // visualDensity:   VisualDensity(horizontal: -4),
                 title: Text(
-                  reminderList[index].daystext,
+                  reminderList.isNotEmpty?reminderList[index].daystext:"Data not found",
                   style: textStyle(Colors.white, 12, 0, FontWeight.normal),
                 ),
                 leading: GestureDetector(
                   onTap: () {
                     setState(() {
-
-                      if(selectedItems[index]!=true) {
+                      if (selectedItems[index] != true) {
                         selectedItems[index] = true;
                         //toast("message--${selectedItems[index]}", true);
                         //toast("index--$index", true);
-                      }else{
-                       // toast("index2--$index", true);
+                      } else {
+                        // toast("index2--$index", true);
                         selectedItems[index] = false;
-                      //  toast("message2--${selectedItems[index]}", false);
-
-
+                        //  toast("message2--${selectedItems[index]}", false);
                       }
                     });
                   },
