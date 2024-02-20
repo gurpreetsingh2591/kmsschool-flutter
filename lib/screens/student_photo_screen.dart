@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_pagewise/flutter_pagewise.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:kmschool/bloc/event/student_lesson_event.dart';
 import 'package:kmschool/utils/extensions/lib_extensions.dart';
@@ -36,6 +37,22 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
   String studentName = "";
   String studentId = "";
   String driveLink = "";
+  int _currentPage = 0;
+  int itemsPerPage = 6;
+  bool _isLoading = false;
+  final ScrollController _scrollController = ScrollController();
+
+// Create a ScrollController
+  final ScrollController _controller = ScrollController();
+
+  // Function to scroll to the end of the ListView
+  void _scrollToEnd() {
+    _controller.animateTo(
+      _controller.position.maxScrollExtent,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
+  }
 
   @override
   void initState() {
@@ -49,15 +66,65 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
       studentName = SharedPrefs().getUserFullName().toString();
       studentId = SharedPrefs().getStudentId().toString();
     });
-    studentLessonBloc.add(GetStudentPhotosData(studentId: studentId));
+    _scrollController.addListener(_scrollListener);
+
+    studentLessonBloc
+        .add(GetStudentPhotosData(studentId: studentId, index: _currentPage));
+  }
+
+  _scrollListener() {
+    _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+    // If you want to animate the scroll, use animateTo instead
+    _scrollController.animateTo(
+      _scrollController.position.maxScrollExtent,
+      duration: Duration(milliseconds: 500),
+      curve: Curves.ease,
+    );
+    // Reach the end of the grid view
+    // You can handle any logic here when the end is reached
+    // }
   }
 
   Future<void> initializePreference() async {
     SharedPrefs.init(await SharedPreferences.getInstance());
   }
 
+  void _handleScroll(dynamic data) {
+    if (_isLoading) return;
+
+    final double maxScroll = MediaQuery.of(context).size.height;
+    final double currentScroll = MediaQuery.of(context).size.height * 0.7;
+    const double scrollThreshold = 50.0; // Adjust this threshold as needed
+
+    if (maxScroll - currentScroll <= scrollThreshold) {
+      // setState(() {
+      _isLoading = true;
+      _currentPage++;
+
+      // });
+    }
+    getStudentPhotos(data);
+  }
+
+// Function to handle scrolling and load more images
+/*  void _handleScroll(dynamic data) {
+    if (_isLoading) return;
+
+    final double maxScroll = MediaQuery.of(context).size.height;
+    final double currentScroll = MediaQuery.of(context).size.height * 0.7;
+    if (maxScroll == currentScroll) {
+      setState(() {
+        _isLoading = true;
+        _currentPage++;
+        studentLessonBloc.add(GetStudentPhotosData(studentId: studentId,index: _currentPage));
+        getStudentPhotos(data);
+
+      });
+    }
+  }*/
   getStudentPhotos(dynamic data) {
     try {
+      studentPhotos.clear();
       var studentPhotosResponse = StudentPhotosResponse.fromJson(data);
       dynamic status = studentPhotosResponse.status;
       String message = studentPhotosResponse.message;
@@ -96,21 +163,22 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
           child: BlocBuilder<StudentLessonBloc, CommonState>(
             builder: (context, state) {
               if (state is LoadingState) {
-                return loaderBar(context, mq);
+                return buildHomeContainer(context, mq,true);
               } else if (state is SuccessState) {
-                return buildHomeContainer(context, mq);
+                return buildHomeContainer(context, mq,false);
               } else if (state is GetStudentPhotosState) {
-                getStudentPhotos(state.response);
-                return buildHomeContainer(context, mq);
+                _handleScroll(state.response);
+                //getStudentPhotos(state.response);
+                return buildHomeContainer(context, mq,false);
               } else if (state is FailureState) {
-                return buildHomeContainer(context, mq);
+                return buildHomeContainer(context, mq,false);
               }
               return LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
                   if (constraints.maxWidth < 757) {
-                    return buildHomeContainer(context, mq);
+                    return buildHomeContainer(context, mq,false);
                   } else {
-                    return buildHomeContainer(context, mq);
+                    return buildHomeContainer(context, mq,false);
                   }
                 },
               );
@@ -146,6 +214,9 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
               screen: 'mwt',
             ),
           ),
+          studentPhotos.isNotEmpty
+              ? buildCategoriesListContainer(context, mq)
+              : SizedBox(),
           Container(
             height: 500,
             margin: const EdgeInsets.only(bottom: 20, top: 80),
@@ -166,7 +237,7 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
     );
   }
 
-  Widget buildHomeContainer(BuildContext context, Size mq) {
+  Widget buildHomeContainer(BuildContext context, Size mq,bool isLoading) {
     return Container(
       constraints: const BoxConstraints.expand(),
       decoration: boxImageDashboardBgDecoration(),
@@ -200,6 +271,7 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
             child: ListView(
               shrinkWrap: true,
               primary: false,
+              controller: _controller,
               children: [
                 Text.rich(
                   textAlign: TextAlign.left,
@@ -218,43 +290,100 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
                 20.height,
                 buildCategoriesListContainer(context, mq),
                 20.height,
-                Visibility(
-                  visible: false,
-                  child: GestureDetector(
-                      onTap: () async {
-                        Uri uri = Uri.parse(
-                            "https://1drv.ms/f/s!AvubYmOtiPPidD4_iDsccWggi98?e=ea6cqQ");
-                        if (await canLaunchUrl(uri)) {
-                          await launchUrl(uri,
-                              mode: LaunchMode.platformDefault);
-                        } else {
-                          throw 'Could not launch $uri';
-                        }
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.only(right: 20),
-                        child: Text.rich(
-                          textAlign: TextAlign.right,
-                          TextSpan(
-                            text: "See",
-                            style:
-                                textStyle(Colors.black, 14, 0, FontWeight.w500),
-                            children: <TextSpan>[
-                              TextSpan(
-                                text: " More...          ",
-                                style: textStyle(
-                                    appBaseColor, 18, 0, FontWeight.w500),
-                              ),
-                              // can add more TextSpans here...
-                            ],
-                          ),
-                        ),
-                      )),
-                ),
+
+               Row(
+                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                 children: [
+                   Visibility(
+                     visible: _currentPage>0?true:false,
+                     child: InkWell(
+                         onTap: () async {
+                           setState(() {
+                             _isLoading = false;
+                             _currentPage--;
+                             studentLessonBloc.add(GetStudentPhotosData(
+                                 studentId: studentId, index: _currentPage));
+                             _scrollToEnd();
+                             //_scrollListener();
+                           });
+
+                         },
+                         child: Container(
+                           margin: const EdgeInsets.only(right: 20),
+                           child: Text.rich(
+                             textAlign: TextAlign.left,
+                             TextSpan(
+                               text: "See",
+                               style:
+                               textStyle(Colors.black, 14, 0, FontWeight.w500),
+                               children: <TextSpan>[
+                                 TextSpan(
+                                   text: " Previous",
+                                   style: textStyle(
+                                       appBaseColor, 18, 0, FontWeight.w500),
+                                 ),
+                                 // can add more TextSpans here...
+                               ],
+                             ),
+                           ),
+                         )),
+                   ),
+                 Visibility(
+                   visible: true,
+                   child: InkWell(
+                       onTap: () async {
+                         setState(() {
+                           _isLoading = false;
+                           _currentPage++;
+                           studentLessonBloc.add(GetStudentPhotosData(
+                               studentId: studentId, index: _currentPage));
+                           _scrollToEnd();
+                           //_scrollListener();
+                         });
+                       },
+                       child: Container(
+                         margin: const EdgeInsets.only(right: 20),
+                         child: Text.rich(
+                           textAlign: TextAlign.right,
+                           TextSpan(
+                             text: "See",
+                             style:
+                             textStyle(Colors.black, 14, 0, FontWeight.w500),
+                             children: <TextSpan>[
+                               TextSpan(
+                                 text: " Next",
+                                 style: textStyle(
+                                     appBaseColor, 18, 0, FontWeight.w500),
+                               ),
+                               // can add more TextSpans here...
+                             ],
+                           ),
+                         ),
+                       )),
+                 ),
+               ],),
               ],
             ),
           ),
-        ],
+          Visibility(
+              visible: isLoading,
+              child:
+          Container(
+            height: 500,
+            margin: const EdgeInsets.only(bottom: 20, top: 80),
+            child: const Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Center(
+                    child: SpinKitFadingCircle(
+                      color: kLightGray,
+                      size: 80.0,
+                    ))
+              ],
+            ),
+          ),
+          ),],
       ),
     );
   }
@@ -263,6 +392,8 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
     return GridView.builder(
       shrinkWrap: true,
       primary: false,
+      reverse: false,
+      controller: _controller,
       itemCount: studentPhotos.length,
       itemBuilder: (BuildContext context, int index) {
         return StudentPhotosWidget(

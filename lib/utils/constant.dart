@@ -492,11 +492,9 @@ bool isValidPassword(BuildContext context, String password) {
   bool isValid = false;
   if (password.isEmpty) {
     isValid = false;
-  } else if (password.length < 8) {
+  } else if (password.length < 6) {
     isValid = false;
-  } else if (!passwordRegEx.hasMatch(password)) {
-    isValid = false;
-  } else {
+  }  else {
     isValid = true;
   }
 

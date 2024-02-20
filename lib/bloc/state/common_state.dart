@@ -77,3 +77,8 @@ class GetStudentPhotosState extends CommonState {
 
   const GetStudentPhotosState(this.response);
 }
+class GetChangePasswordState extends CommonState {
+  final dynamic response;
+
+  const GetChangePasswordState(this.response);
+}

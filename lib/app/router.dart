@@ -42,6 +42,7 @@ class Routes {
   static const studentPhotos = '/student-photos';
   static const lessonProgress = '/lesson-progress';
   static const setReminder = '/set-reminder';
+  static const changePassword = '/changePassword';
 }
 
 GoRouter buildRouter() {
@@ -58,6 +59,10 @@ GoRouter buildRouter() {
       GoRoute(
         path: Routes.mainHome,
         builder: (_, __) => const HomePage(),
+      ),
+      GoRoute(
+        path: Routes.changePassword,
+        builder: (_, __) => const ForgotPasswordPage(),
       ),
       GoRoute(
         path: Routes.messageFromSchool,

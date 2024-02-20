@@ -146,7 +146,7 @@ class StudentLessonBloc extends Bloc<StudentLessonEvent, CommonState> {
     emit(LoadingState());
 
     try {
-      dynamic getUserData = await ApiService().getStudentPhotosDates(event.studentId);
+      dynamic getUserData = await ApiService().getStudentPhotosDates(event.studentId,event.index);
       // Process the API response
       // Emit a success state
       if (kDebugMode) {

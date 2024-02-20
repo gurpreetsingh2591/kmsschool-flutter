@@ -29,7 +29,7 @@ class MessageFromSchoolPage extends StatefulWidget {
 class MessageFromSchoolPageState extends State<MessageFromSchoolPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  bool isLoading = false;
+  bool isLoading = true;
   bool isLogin = false;
   bool selection = true;
   List<SchoolMessages> schoolMessages = [];
@@ -45,19 +45,23 @@ class MessageFromSchoolPageState extends State<MessageFromSchoolPage> {
       isLogin = SharedPrefs().isLogin();
     });
 
-    messagesBloc.add(GetSchoolMessageData(studentId: SharedPrefs().getStudentId().toString()));
     messagesBloc.add(GetTeacherMessageData(
+        studentId: SharedPrefs().getStudentId().toString()));
+
+    messagesBloc.add(GetSchoolMessageData(
         studentId: SharedPrefs().getStudentId().toString()));
   }
 
   setSchoolData(dynamic messages) {
-    schoolMessages.clear();
     try {
       var messagesResponse = SchoolMessagesResponse.fromJson(messages);
       int status = messagesResponse.status;
       String message = messagesResponse.message;
       if (status == 200) {
-        schoolMessages.addAll(messagesResponse.result);
+        setState(() {
+          //schoolMessages.clear();
+          schoolMessages.addAll(messagesResponse.result);
+        });
       }
 
       if (kDebugMode) {
@@ -71,7 +75,6 @@ class MessageFromSchoolPageState extends State<MessageFromSchoolPage> {
   }
 
   setTeacherData(dynamic messages) {
-    teacherMessages.clear();
     try {
       var messagesResponse = TeacherMessagesResponse.fromJson(messages);
       int status = messagesResponse.status;
@@ -81,9 +84,10 @@ class MessageFromSchoolPageState extends State<MessageFromSchoolPage> {
         print("messages$messagesResponse");
       }
       if (status == 200) {
+        teacherMessages.clear();
+
         setState(() {
           teacherMessages.addAll(messagesResponse.result);
-
         });
       }
 
@@ -122,25 +126,26 @@ class MessageFromSchoolPageState extends State<MessageFromSchoolPage> {
           child: BlocBuilder<MessagesBloc, CommonState>(
             builder: (context, state) {
               if (state is LoadingState) {
-                return loaderBar(context, mq);
+                return buildHomeContainer(context, mq, isLoading);
               } else if (state is SuccessState) {
-               // toast("school data get", false);
+                // toast("school data get", false);
                 setSchoolData(state.response);
 
-                return buildHomeContainer(context, mq);
+                return buildHomeContainer(context, mq, false);
               } else if (state is UserDataSuccessState) {
-               // toast("teacher data get", false);
+                // toast("teacher data get", false);
                 setTeacherData(state.response);
-                return buildHomeContainer(context, mq);
+
+                return buildHomeContainer(context, mq, false);
               } else if (state is FailureState) {
-                return buildHomeContainer(context, mq);
+                return buildHomeContainer(context, mq, false);
               }
               return LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
                   if (constraints.maxWidth < 757) {
-                    return buildHomeContainer(context, mq);
+                    return buildHomeContainer(context, mq, false);
                   } else {
-                    return buildHomeContainer(context, mq);
+                    return buildHomeContainer(context, mq, false);
                   }
                 },
               );
@@ -151,7 +156,7 @@ class MessageFromSchoolPageState extends State<MessageFromSchoolPage> {
     );
   }
 
-  Widget loaderBar(BuildContext context, Size mq) {
+  Widget buildHomeContainer(BuildContext context, Size mq, bool isLoading) {
     return SafeArea(
       child: Container(
         constraints: const BoxConstraints.expand(),
@@ -169,63 +174,7 @@ class MessageFromSchoolPageState extends State<MessageFromSchoolPage> {
                 onTapLeft: () {
                   _scaffoldKey.currentState?.openDrawer();
                 },
-                onTapRight: () {
-
-                },
-                leftIcon: 'assets/icons/menu.png',
-                rightIcon: 'assets/icons/user.png',
-                title: "Message From School",
-                rightVisibility: false,
-                leftVisibility: true,
-                bottomTextVisibility: false,
-                subTitle: '',
-                screen: 'mfs',
-              ),
-            ),
-            Container(
-              height: 500,
-              margin: const EdgeInsets.only(bottom: 20, top: 80),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  schoolMessages.isEmpty
-                      ? const Center(
-                          child: SpinKitFadingCircle(
-                          color: kLightGray,
-                          size: 80.0,
-                        ))
-                      : const SizedBox(),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget buildHomeContainer(BuildContext context, Size mq) {
-    return SafeArea(
-      child: Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: boxImageDashboardBgDecoration(),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              height: 60,
-              decoration: kButtonBgDecoration,
-              child: TopBarWidget(
-                onTapLeft: () {
-                  _scaffoldKey.currentState?.openDrawer();
-                },
-                onTapRight: () {
-
-                },
+                onTapRight: () {},
                 leftIcon: 'assets/icons/menu.png',
                 rightIcon: 'assets/icons/user.png',
                 title: "Message From School",
@@ -252,7 +201,28 @@ class MessageFromSchoolPageState extends State<MessageFromSchoolPage> {
                   ],
                 ),
               ),
-            )
+            ),
+            Visibility(
+                visible: isLoading,
+                child: Container(
+                  height: 500,
+                  margin: const EdgeInsets.only(
+                    bottom: 20,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      schoolMessages.isEmpty
+                          ? const Center(
+                              child: SpinKitFadingCircle(
+                              color: kLightGray,
+                              size: 80.0,
+                            ))
+                          : const SizedBox(),
+                    ],
+                  ),
+                )),
           ],
         ),
       ),
@@ -264,11 +234,17 @@ class MessageFromSchoolPageState extends State<MessageFromSchoolPage> {
       clickOnLeft: () {
         setState(() {
           selection = true;
+          isLoading = true;
+          messagesBloc.add(GetSchoolMessageData(
+              studentId: SharedPrefs().getStudentId().toString()));
         });
       },
       clickOnRight: () {
         setState(() {
           selection = false;
+          isLoading = true;
+          messagesBloc.add(GetTeacherMessageData(
+              studentId: SharedPrefs().getStudentId().toString()));
         });
       },
       selection: selection,
@@ -278,7 +254,6 @@ class MessageFromSchoolPageState extends State<MessageFromSchoolPage> {
   }
 
   Widget buildTeacherMessageContainer() {
-
     print(teacherMessages.length);
     return Column(
         mainAxisSize: MainAxisSize.max,
@@ -298,26 +273,34 @@ class MessageFromSchoolPageState extends State<MessageFromSchoolPage> {
                     );
                   },
                 )
-              :Container(
-            margin: const EdgeInsets.only(top: 50),
-            child: Text(
-              kData,
-              style: textStyle(Colors.black54, 18, 0, FontWeight.w400),
-            ),
-          ),
+              : Container(
+                  margin: const EdgeInsets.only(top: 50),
+                  child: Text(
+                    kData,
+                    style: textStyle(Colors.black54, 18, 0, FontWeight.w400),
+                  ),
+                ),
         ]);
   }
 
   Widget buildSchoolMessageContainer() {
-
-    print(schoolMessages.length);
+    if (kDebugMode) {
+      print(schoolMessages.length);
+    }
     return Column(
-        mainAxisSize: MainAxisSize.max,
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          schoolMessages.isNotEmpty
-              ? ListView.builder(
+          schoolMessages.isEmpty
+              ? Container(
+                  margin: const EdgeInsets.only(top: 50),
+                  child: Text(
+                    kData,
+                    style: textStyle(Colors.black54, 18, 0, FontWeight.w400),
+                  ),
+                )
+              : ListView.builder(
                   primary: false,
                   shrinkWrap: true,
                   itemCount: schoolMessages.length,
@@ -328,14 +311,7 @@ class MessageFromSchoolPageState extends State<MessageFromSchoolPage> {
                       date: schoolMessages[index].currtime,
                     );
                   },
-                )
-              :Container(
-            margin: const EdgeInsets.only(top: 50),
-            child: Text(
-              kData,
-              style: textStyle(Colors.black54, 18, 0, FontWeight.w400),
-            ),
-          ),
+                ),
         ]);
   }
 }

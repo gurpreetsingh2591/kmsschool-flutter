@@ -60,6 +60,7 @@ class LoginPageState extends State<LoginPage> {
   bool dialogShown = false;
   final signupBloc = SignUpBloc();
   String? fcmToken;
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
   @override
   void initState() {
@@ -71,7 +72,7 @@ class LoginPageState extends State<LoginPage> {
     _passwordFocus.addListener(_onFocusPasswordChange);
     initializePreference().whenComplete(() {});
     isLogin = SharedPrefs().isLogin();
-
+    _requestPermissions();
     if (kDebugMode) {
       print(isLogin);
     }
@@ -93,6 +94,11 @@ class LoginPageState extends State<LoginPage> {
       });
       });
 
+  }
+
+
+  void _requestPermissions() {
+    _firebaseMessaging.requestPermission();
   }
 
   void passwordListener() {

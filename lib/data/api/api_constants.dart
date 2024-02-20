@@ -33,6 +33,7 @@ class ApiConstants {
   static String API_GET_OFFICE_MEETING_LIST="meetwithoffice";
   static String API_GET_PARENT_PROFILE="parent-profile.php";
   static String API_GET_UPDATE_PARENT_PROFILE="update-parent-profile.php";
+  static String API_GET_CHANGE_PASSWORD="change-password.php";
   static String API_GET_DELETE_MEETING="delete-meeting-with-office.php";
   static String API_GET_DELETE_MEETING_WITH_TEACHER="delete-meeting-with-teacher.php";
   static String API_GET_SUBJECT_LIST="get-subject.php";
@@ -72,4 +73,7 @@ class ApiConstants {
   static String classId="classid";
   static String fcmToken="fcmToken";
   static String dayS="&days=";
+  static String vchOldPassword="vchOldpassword";
+  static String vchNewPassword="vchNewPassword";
+  static String vchNewRetypePassword="vchNewRetypePassword";
 }

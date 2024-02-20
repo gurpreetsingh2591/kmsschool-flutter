@@ -300,6 +300,27 @@ class DrawerWidget extends StatelessWidget {
                   context.pushReplacement(Routes.accountInfo);
                 },
               )),
+          7.height,
+          SizedBox(
+              height: 40,
+
+              child: ListTile(
+                leading: Image.asset(
+                  'assets/icons/user.png',
+                  scale: 12,
+                ),
+                title: Transform(
+                  transform: Matrix4.translationValues(-10, 0.0, 0.0),
+                  child: Text(
+                    'Change Password',
+                    style: textStyle(Colors.black, 14, 0, FontWeight.normal),
+                  ),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  context.pushReplacement(Routes.changePassword);
+                },
+              )),
          7.height,
           SizedBox(
               height: 40,

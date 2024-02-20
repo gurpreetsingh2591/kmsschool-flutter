@@ -592,13 +592,14 @@ class ApiService {
       log(e.toString());
     }
   }
+
   /// Get Delete Booked Teacher Time Slots List*/
   Future<dynamic> getTeacherDeleteBookedSlot(
     String meetId,
   ) async {
     try {
-      var url = Uri.parse(
-          ApiConstants.baseUrl + ApiConstants.API_GET_DELETE_MEETING_WITH_TEACHER);
+      var url = Uri.parse(ApiConstants.baseUrl +
+          ApiConstants.API_GET_DELETE_MEETING_WITH_TEACHER);
 
       var request = http.MultipartRequest('POST', url);
 
@@ -627,13 +628,14 @@ class ApiService {
       log(e.toString());
     }
   }
+
   /// Get Delete Booked office Time Slots List*/
   Future<dynamic> getOfficeDeleteBookedSlot(
     String meetId,
   ) async {
     try {
-      var url = Uri.parse(
-          ApiConstants.baseUrl + ApiConstants.API_GET_DELETE_MEETING);
+      var url =
+          Uri.parse(ApiConstants.baseUrl + ApiConstants.API_GET_DELETE_MEETING);
 
       var request = http.MultipartRequest('POST', url);
 
@@ -904,6 +906,7 @@ class ApiService {
       log(e.toString());
     }
   }
+
   /// Set Already Reminder*/
   Future<dynamic> alreadySetReminders(String studentId, String days) async {
     try {
@@ -934,12 +937,10 @@ class ApiService {
     }
   }
 
-
   /// Get Event Dates*/
   Future<dynamic> getEventDates() async {
     try {
-      var url = Uri.parse(ApiConstants.baseUrl +
-          ApiConstants.API_GET_EVENT);
+      var url = Uri.parse(ApiConstants.baseUrl + ApiConstants.API_GET_EVENT);
       var request = http.Request('GET', url);
       request.body = '''''';
       //var request = http.StreamedRequest('GET', url);
@@ -965,10 +966,9 @@ class ApiService {
   }
 
   /// Get Student Photos */
-  Future<dynamic> getStudentPhotosDates(String studentId) async {
+  Future<dynamic> getStudentPhotosDates(String studentId,int index) async {
     try {
-      var url = Uri.parse(ApiConstants.baseUrl +
-          ApiConstants.API_SET_STUDENT_PHOTOS+studentId);
+      var url = Uri.parse("${ApiConstants.baseUrl}${ApiConstants.API_SET_STUDENT_PHOTOS}$studentId&index=$index");
       var request = http.Request('GET', url);
       request.body = '''''';
       //var request = http.StreamedRequest('GET', url);
@@ -996,15 +996,14 @@ class ApiService {
   /// Get profile  Data*/
   Future<dynamic> getUserProfileData(String parentId) async {
     try {
-      var url = Uri.parse(ApiConstants.baseUrl +
-          ApiConstants.API_GET_PARENT_PROFILE);
+      var url =
+          Uri.parse(ApiConstants.baseUrl + ApiConstants.API_GET_PARENT_PROFILE);
 
       var request = http.MultipartRequest('POST', url);
 
       request.fields.addAll({
         ApiConstants.PARENT_ID: parentId,
       });
-
 
       var streamedResponse = await request.send();
       var response = await http.Response.fromStream(streamedResponse);
@@ -1025,10 +1024,11 @@ class ApiService {
   }
 
   /// Get update profile  Data*/
-  Future<dynamic> getUserUpdateProfileData(String parentId,Map<String, String> updateData) async {
+  Future<dynamic> getUserUpdateProfileData(
+      String parentId, Map<String, String> updateData) async {
     try {
-      var url = Uri.parse(ApiConstants.baseUrl +
-          ApiConstants.API_GET_UPDATE_PARENT_PROFILE);
+      var url = Uri.parse(
+          ApiConstants.baseUrl + ApiConstants.API_GET_UPDATE_PARENT_PROFILE);
 
       var request = http.MultipartRequest('POST', url);
 
@@ -1039,6 +1039,41 @@ class ApiService {
         request.fields[key] = value;
       });
 
+      //final response = await http.post(url, body: updateData);
+
+      var streamedResponse = await request.send();
+      var response = await http.Response.fromStream(streamedResponse);
+      if (kDebugMode) {
+        print(request.fields);
+        print(response.body);
+      }
+      if (response.statusCode == 200) {
+        var result = jsonDecode(response.body);
+        return result;
+      } else {
+        var result = jsonDecode(response.body);
+        return result;
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
+  ///get chnage password
+  Future<dynamic> getUserChangePasswordData(String parentId, String oldPassword,
+      String newPassword, String confirmPassword) async {
+    try {
+      var url = Uri.parse(
+          ApiConstants.baseUrl + ApiConstants.API_GET_CHANGE_PASSWORD);
+
+      var request = http.MultipartRequest('POST', url);
+
+      request.fields.addAll({
+        ApiConstants.PARENT_ID: parentId,
+        ApiConstants.vchOldPassword: oldPassword,
+        ApiConstants.vchNewPassword: newPassword,
+        ApiConstants.vchNewRetypePassword: confirmPassword,
+      });
 
       //final response = await http.post(url, body: updateData);
 

@@ -1,44 +1,26 @@
 {
   "project_info": {
-    "project_number": "215947601281",
-    "project_id": "kmschool-1d017",
-    "storage_bucket": "kmschool-1d017.appspot.com"
+    "project_number": "391239972928",
+    "project_id": "kmschool-bc4c3",
+    "storage_bucket": "kmschool-bc4c3.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:215947601281:android:eccc0d315a1cf9fcacb480",
+        "mobilesdk_app_id": "1:391239972928:android:12a5fb31abbb86684307a5",
         "android_client_info": {
           "package_name": "com.phonegap.kmsobserver"
         }
       },
-      "oauth_client": [
-        {
-          "client_id": "215947601281-vr0s26723ijckji4scvlgs0m0d0e6l51.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.phonegap.kmsobserver",
-            "certificate_hash": "de342398046050ef478c568bce6741e8f7bf6696"
-          }
-        },
-        {
-          "client_id": "215947601281-qskdhkvpjfiu6a633bs5fuui3l4hao6k.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
+      "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAmzic4xhUX_lcbe96RMBwGqcxr8eU_Sno"
+          "current_key": "AIzaSyCcR1042G15lBTzydU_mtBy8AHc3c5yQ6w"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "215947601281-qskdhkvpjfiu6a633bs5fuui3l4hao6k.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "other_platform_oauth_client": []
         }
       }
     }

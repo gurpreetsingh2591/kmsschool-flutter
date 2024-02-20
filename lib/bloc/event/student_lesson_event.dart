@@ -62,9 +62,10 @@ class GetEventsData extends StudentLessonEvent {
 
 class GetStudentPhotosData extends StudentLessonEvent {
   final String studentId;
-  const GetStudentPhotosData({required this.studentId});
+  final int index;
+  const GetStudentPhotosData({required this.studentId,required this.index});
   @override
-  List<Object> get props => [studentId];
+  List<Object> get props => [studentId,index];
 }
 
 

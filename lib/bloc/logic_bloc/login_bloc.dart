@@ -11,6 +11,7 @@ class LoginBloc extends Bloc<LoginEvent, CommonState> {
     on<GetUserDataLogin>(_onGetUserData);
     on<GetUserProfileData>(_onGetUserProfileData);
     on<GetUserProfileDataUpdate>(_onGetUserProfileUpdateData);
+    on<GetChangePasswordButtonPressed>(_onGetChangePasswordButtonPressed);
   }
 
   Future<void> _onLoginButtonPressed(
@@ -87,6 +88,24 @@ class LoginBloc extends Bloc<LoginEvent, CommonState> {
         print(getUserData);
       }
       emit(GetUpdateProfileDataState(getUserData));
+    } catch (error) {
+      // Emit a failure state
+      emit(FailureState(error.toString()));
+    }
+  }
+  Future<void> _onGetChangePasswordButtonPressed(
+      GetChangePasswordButtonPressed event, Emitter<CommonState> emit) async {
+    // Handle the Get User Data event
+    emit(LoadingState());
+
+    try {
+      dynamic getData = await ApiService().getUserChangePasswordData(event.parentId,event.oldPassword,event.newPassword,event.confirmPassword);
+      // Process the API response
+      // Emit a success state
+      if (kDebugMode) {
+        print("change password response : $getData");
+      }
+      emit(GetChangePasswordState(getData));
     } catch (error) {
       // Emit a failure state
       emit(FailureState(error.toString()));

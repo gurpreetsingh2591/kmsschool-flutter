@@ -50,20 +50,19 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAmzic4xhUX_lcbe96RMBwGqcxr8eU_Sno',
-    appId: '1:215947601281:android:eccc0d315a1cf9fcacb480',
-    messagingSenderId: '215947601281',
-    projectId: 'kmschool-1d017',
-    storageBucket: 'kmschool-1d017.appspot.com',
+    apiKey: 'AIzaSyCcR1042G15lBTzydU_mtBy8AHc3c5yQ6w',
+    appId: '1:391239972928:android:12a5fb31abbb86684307a5',
+    messagingSenderId: '391239972928',
+    projectId: 'kmschool-bc4c3',
+    storageBucket: 'kmschool-bc4c3.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBRcwEQ-LlK5WX5Bdl6h6DBSSw8ipy9x6E',
-    appId: '1:215947601281:ios:ffb82121558f352dacb480',
-    messagingSenderId: '215947601281',
-    projectId: 'kmschool-1d017',
-    storageBucket: 'kmschool-1d017.appspot.com',
-    androidClientId: '215947601281-vr0s26723ijckji4scvlgs0m0d0e6l51.apps.googleusercontent.com',
-    iosBundleId: 'com.phonegap.kmsobserver.kmschool',
+    apiKey: 'AIzaSyCKfvg-38ksVzR1rM1LtgQXvsa6Nba6Yj0',
+    appId: '1:391239972928:ios:e83dd9e3d422d7564307a5',
+    messagingSenderId: '391239972928',
+    projectId: 'kmschool-bc4c3',
+    storageBucket: 'kmschool-bc4c3.appspot.com',
+    iosBundleId: 'org.kmschool.observer',
   );
 }
