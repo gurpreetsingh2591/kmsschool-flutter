@@ -993,6 +993,34 @@ class ApiService {
     }
   }
 
+  /// Get delete user */
+  Future<dynamic> getDeleteUserData(String parentId) async {
+    try {
+      var url = Uri.parse("${ApiConstants.baseUrl}${ApiConstants.API_GET_DELETE_USER}$parentId");
+      var request = http.Request('GET', url);
+      request.body = '''''';
+      //var request = http.StreamedRequest('GET', url);
+
+      var streamedResponse = await request.send();
+      var response = await http.Response.fromStream(streamedResponse);
+      if (kDebugMode) {
+        print("url$url");
+        print(request);
+        print(response.statusCode);
+        print(response.body);
+      }
+      if (response.statusCode == 200) {
+        var result = jsonDecode(response.body);
+        return result;
+      } else {
+        var result = jsonDecode(response.body);
+        return result;
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+
   /// Get profile  Data*/
   Future<dynamic> getUserProfileData(String parentId) async {
     try {
@@ -1059,7 +1087,7 @@ class ApiService {
     }
   }
 
-  ///get chnage password
+  ///get change password
   Future<dynamic> getUserChangePasswordData(String parentId, String oldPassword,
       String newPassword, String confirmPassword) async {
     try {

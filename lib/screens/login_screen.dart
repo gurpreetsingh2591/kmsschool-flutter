@@ -79,23 +79,81 @@ class LoginPageState extends State<LoginPage> {
 
     if (isLogin) {
       Future.delayed(Duration.zero, () {
-        context.go(Routes.mainHome);
+       //context.go(Routes.mainHome);
+        _configureFirebaseMessaging();
       });
     }
 
     FirebaseMessaging messaging = FirebaseMessaging.instance;
     messaging.getToken().then((token) {
-      setState(() {
+      //setState(() {
         fcmToken = token;
         if (kDebugMode) {
           print(fcmToken);
         }
         SharedPrefs().setTokenKey(fcmToken!);
-      });
+     // });
       });
 
   }
+  void _configureFirebaseMessaging() {
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      if (kDebugMode) {
+        print("onMessage: $message");
+      }
+      // Handle notification when the app is in the foreground
+      _handleNotification(message.data);
+    });
 
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      if (kDebugMode) {
+        print("onMessageOpenedApp: $message");
+      }
+      // Handle notification when the app is in the background and opened by tapping on the notification
+      _handleNotification(message.data);
+
+    });
+
+    FirebaseMessaging.onBackgroundMessage((RemoteMessage message) async {
+      if (kDebugMode) {
+        print("onBackgroundMessage: $message");
+      }
+      // Handle notification when the app is terminated
+      _handleNotification(message.data);
+    });
+  }
+
+  void _handleNotification(Map<String, dynamic> message) {
+    // Extract the screen name from the data payload
+    String screenName = message['screen'];
+
+    // Navigate to the corresponding screen
+    if (screenName == "calendar") {
+      // Example of using named routes for navigation
+      context.push(Routes.schoolCalender);
+      //Navigator.pushNamed(context, '/$screenName');
+    }else if (screenName == "message_to_parent") {
+      // Example of using named routes for navigation
+      context.push(Routes.messageToTeacher);
+      //Navigator.pushNamed(context, '/$screenName');
+    }else if (screenName == "Lunch") {
+      // Example of using named routes for navigation
+      context.push(Routes.lunchMenu);
+      //Navigator.pushNamed(context, '/$screenName');
+    }else if (screenName == "Snack") {
+      // Example of using named routes for navigation
+      context.push(Routes.snackMenu);
+      //Navigator.pushNamed(context, '/$screenName');
+    }else if (screenName == "photos") {
+      // Example of using named routes for navigation
+      context.push(Routes.studentPhotos);
+      //Navigator.pushNamed(context, '/$screenName');
+    }else  {
+      // Example of using named routes for navigation
+      context.push(Routes.mainHome);
+      //Navigator.pushNamed(context, '/$screenName');
+    }
+  }
 
   void _requestPermissions() {
     _firebaseMessaging.requestPermission();
@@ -199,11 +257,12 @@ class LoginPageState extends State<LoginPage> {
       emailError = false;
       fcmToken=SharedPrefs().getTokenKey();
       if(Platform.isIOS){
-        if(fcmToken==""||fcmToken==null){
-          fcmToken="dnsbfjdfjnsdjfc";
+        if(fcmToken!=""||fcmToken!=null) {
+          loginBloc.add(LoginButtonPressed(
+              username: userName, password: password, fcmToken: fcmToken!));
+        }else{
+          toast("Fcm token empty", false);
         }
-        loginBloc.add(LoginButtonPressed(
-            username: userName, password: password, fcmToken: fcmToken!));
       }else {
         if (fcmToken != null) {
           loginBloc.add(LoginButtonPressed(
@@ -452,7 +511,9 @@ class LoginPageState extends State<LoginPage> {
                 alignment: Alignment.center,
                 child: ElevatedButton(
                     onPressed: () {
-                      print("object");
+                      if (kDebugMode) {
+                        print("object");
+                      }
                       dialogShown = false;
                       login(_emailText.text.trim().toString(),
                           _passwordText.text.trim().toString());
@@ -472,10 +533,10 @@ class LoginPageState extends State<LoginPage> {
                     )),
               ),
               20.height,
-              GestureDetector(
+              InkWell(
                 onTap: () async {
-                  Uri uri = Uri.parse(
-                      "http://kmschool.observer.school/parent/forgot-password.php");
+                  Uri uri = Uri.parse("https://kmschool.observer.school/parent/forgot-password.php");
+                 // String url = ("http://kmschool.observer.school/parent/forgot-password.php");
                   if (await canLaunchUrl(uri)) {
                     await launchUrl(uri, mode: LaunchMode.platformDefault);
                   } else {
@@ -483,7 +544,7 @@ class LoginPageState extends State<LoginPage> {
                   }
                 },
                 child:  Container(
-                  padding: const EdgeInsets.all(10),
+                  margin: const EdgeInsets.all(10),
                   alignment: Alignment.center,
                   child: const Text(
                       "Forgot Password?",

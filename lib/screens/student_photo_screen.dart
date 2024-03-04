@@ -163,22 +163,22 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
           child: BlocBuilder<StudentLessonBloc, CommonState>(
             builder: (context, state) {
               if (state is LoadingState) {
-                return buildHomeContainer(context, mq,true);
+                return buildHomeContainer(context, mq, true);
               } else if (state is SuccessState) {
-                return buildHomeContainer(context, mq,false);
+                return buildHomeContainer(context, mq, false);
               } else if (state is GetStudentPhotosState) {
                 _handleScroll(state.response);
                 //getStudentPhotos(state.response);
-                return buildHomeContainer(context, mq,false);
+                return buildHomeContainer(context, mq, false);
               } else if (state is FailureState) {
-                return buildHomeContainer(context, mq,false);
+                return buildHomeContainer(context, mq, false);
               }
               return LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
                   if (constraints.maxWidth < 757) {
-                    return buildHomeContainer(context, mq,false);
+                    return buildHomeContainer(context, mq, false);
                   } else {
-                    return buildHomeContainer(context, mq,false);
+                    return buildHomeContainer(context, mq, false);
                   }
                 },
               );
@@ -189,55 +189,7 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
     );
   }
 
-  Widget loaderBar(BuildContext context, Size mq) {
-    return Container(
-      constraints: const BoxConstraints.expand(),
-      decoration: boxImageDashboardBgDecoration(),
-      child: Stack(
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            height: 60,
-            decoration: kButtonBgDecoration,
-            child: TopBarWidget(
-              onTapLeft: () {
-                _scaffoldKey.currentState?.openDrawer();
-              },
-              onTapRight: () {},
-              leftIcon: 'assets/icons/menu.png',
-              rightIcon: 'assets/icons/user.png',
-              title: "Photos",
-              rightVisibility: false,
-              leftVisibility: true,
-              bottomTextVisibility: false,
-              subTitle: '',
-              screen: 'mwt',
-            ),
-          ),
-          studentPhotos.isNotEmpty
-              ? buildCategoriesListContainer(context, mq)
-              : SizedBox(),
-          Container(
-            height: 500,
-            margin: const EdgeInsets.only(bottom: 20, top: 80),
-            child: const Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Center(
-                    child: SpinKitFadingCircle(
-                  color: kLightGray,
-                  size: 80.0,
-                ))
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget buildHomeContainer(BuildContext context, Size mq,bool isLoading) {
+  Widget buildHomeContainer(BuildContext context, Size mq, bool isLoading) {
     return Container(
       constraints: const BoxConstraints.expand(),
       decoration: boxImageDashboardBgDecoration(),
@@ -267,123 +219,124 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
               bottom: 20,
               top: 82,
               left: 16,
+              right: 16
             ),
             child: ListView(
               shrinkWrap: true,
               primary: false,
               controller: _controller,
               children: [
-                Text.rich(
-                  textAlign: TextAlign.left,
-                  TextSpan(
-                    text: "",
-                    style: textStyle(Colors.black, 14, 0, FontWeight.w500),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: "Photos",
-                        style: textStyle(appBaseColor, 18, 0, FontWeight.w500),
-                      ),
-                      // can add more TextSpans here...
-                    ],
-                  ),
+                Text( "Photos",
+                  style: textStyle(appBaseColor, 18, 0, FontWeight.w500),)
+                ,
+                20.height,
+                studentPhotos.isNotEmpty
+                    ? buildCategoriesListContainer(context, mq)
+                    : Container(
+                        alignment: Alignment.center,
+                        height: 500,
+                        child: Text(
+                          "Photos not found",
+                          textAlign: TextAlign.center,
+                          style:
+                              textStyle(Colors.black, 22, 0, FontWeight.normal),
+                        )),
+                20.height,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Visibility(
+                      visible: _currentPage > 0 ? true : false,
+                      child: InkWell(
+                          onTap: () async {
+                            setState(() {
+                              _isLoading = false;
+                              _currentPage--;
+                              studentLessonBloc.add(GetStudentPhotosData(
+                                  studentId: studentId, index: _currentPage));
+                              _scrollToEnd();
+                              //_scrollListener();
+                            });
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.only(left: 8),
+                            alignment: Alignment.bottomLeft,
+                            child: Text.rich(
+                              textAlign: TextAlign.left,
+                              TextSpan(
+                                text: "",
+                                style: textStyle(
+                                    Colors.black, 14, 0, FontWeight.w500),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: "Previous",
+                                    style: textStyle(
+                                        appBaseColor, 18, 0, FontWeight.w500),
+                                  ),
+                                  // can add more TextSpans here...
+                                ],
+                              ),
+                            ),
+                          )),
+                    ),
+                    Visibility(
+                      visible: studentPhotos.isNotEmpty ? true : false,
+                      child: InkWell(
+                          onTap: () async {
+                            setState(() {
+                              _isLoading = false;
+                              _currentPage++;
+                              studentLessonBloc.add(GetStudentPhotosData(
+                                  studentId: studentId, index: _currentPage));
+                              _scrollToEnd();
+                              //_scrollListener();
+                            });
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.only(right: 8),
+
+                            child: Text.rich(
+                              textAlign: TextAlign.right,
+                              TextSpan(
+                                text: "",
+                                style: textStyle(
+                                    Colors.black, 14, 0, FontWeight.w500),
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: " Next",
+                                    style: textStyle(
+                                        appBaseColor, 18, 0, FontWeight.w500),
+                                  ),
+                                  // can add more TextSpans here...
+                                ],
+                              ),
+                            ),
+                          )),
+                    ),
+                  ],
                 ),
-                20.height,
-                buildCategoriesListContainer(context, mq),
-                20.height,
-
-               Row(
-                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                 children: [
-                   Visibility(
-                     visible: _currentPage>0?true:false,
-                     child: InkWell(
-                         onTap: () async {
-                           setState(() {
-                             _isLoading = false;
-                             _currentPage--;
-                             studentLessonBloc.add(GetStudentPhotosData(
-                                 studentId: studentId, index: _currentPage));
-                             _scrollToEnd();
-                             //_scrollListener();
-                           });
-
-                         },
-                         child: Container(
-                           margin: const EdgeInsets.only(right: 20),
-                           child: Text.rich(
-                             textAlign: TextAlign.left,
-                             TextSpan(
-                               text: "See",
-                               style:
-                               textStyle(Colors.black, 14, 0, FontWeight.w500),
-                               children: <TextSpan>[
-                                 TextSpan(
-                                   text: " Previous",
-                                   style: textStyle(
-                                       appBaseColor, 18, 0, FontWeight.w500),
-                                 ),
-                                 // can add more TextSpans here...
-                               ],
-                             ),
-                           ),
-                         )),
-                   ),
-                 Visibility(
-                   visible: true,
-                   child: InkWell(
-                       onTap: () async {
-                         setState(() {
-                           _isLoading = false;
-                           _currentPage++;
-                           studentLessonBloc.add(GetStudentPhotosData(
-                               studentId: studentId, index: _currentPage));
-                           _scrollToEnd();
-                           //_scrollListener();
-                         });
-                       },
-                       child: Container(
-                         margin: const EdgeInsets.only(right: 20),
-                         child: Text.rich(
-                           textAlign: TextAlign.right,
-                           TextSpan(
-                             text: "See",
-                             style:
-                             textStyle(Colors.black, 14, 0, FontWeight.w500),
-                             children: <TextSpan>[
-                               TextSpan(
-                                 text: " Next",
-                                 style: textStyle(
-                                     appBaseColor, 18, 0, FontWeight.w500),
-                               ),
-                               // can add more TextSpans here...
-                             ],
-                           ),
-                         ),
-                       )),
-                 ),
-               ],),
               ],
             ),
           ),
           Visibility(
-              visible: isLoading,
-              child:
-          Container(
-            height: 500,
-            margin: const EdgeInsets.only(bottom: 20, top: 80),
-            child: const Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Center(
-                    child: SpinKitFadingCircle(
-                      color: kLightGray,
-                      size: 80.0,
-                    ))
-              ],
+            visible: isLoading,
+            child: Container(
+              height: 500,
+              margin: const EdgeInsets.only(bottom: 20, top: 80),
+              child: const Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Center(
+                      child: SpinKitFadingCircle(
+                    color: kLightGray,
+                    size: 80.0,
+                  ))
+                ],
+              ),
             ),
           ),
-          ),],
+        ],
       ),
     );
   }
@@ -392,7 +345,6 @@ class StudentPhotoPageState extends State<StudentPhotoPage> {
     return GridView.builder(
       shrinkWrap: true,
       primary: false,
-      reverse: false,
       controller: _controller,
       itemCount: studentPhotos.length,
       itemBuilder: (BuildContext context, int index) {

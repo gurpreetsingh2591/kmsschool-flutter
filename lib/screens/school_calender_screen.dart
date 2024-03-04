@@ -102,7 +102,7 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
           int year = int.parse(endDateParts[2]);
           int month = int.parse(endDateParts[0]);
           int day = int.parse(endDateParts[1]);
-          DateTime endConvertedDate = DateTime(year, month, day);
+          DateTime endConvertedDate = DateTime(year, month, day+1);
 
           if (startDate.split(" ")[0] == endDate.split(" ")[0]) {
             final formatted =

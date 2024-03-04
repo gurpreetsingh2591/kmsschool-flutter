@@ -36,6 +36,7 @@ class SetReminderPageState extends State<SetReminderPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   bool isLoading = false;
+  int isLoad = 0;
   bool isLogin = false;
   final studentLessonBloc = StudentLessonBloc();
 
@@ -72,10 +73,10 @@ class SetReminderPageState extends State<SetReminderPage> {
       String message = remindersResponse.message;
 
       if (status == 200) {
-        if(remindersResponse.result.isNotEmpty){
-        reminderList.addAll(remindersResponse.result);
-        studentLessonBloc.add(
-            SetAlreadyRemindersData(studentId: studentId, days: "getbyid"));
+        if (remindersResponse.result.isNotEmpty) {
+          reminderList.addAll(remindersResponse.result);
+          studentLessonBloc.add(
+              SetAlreadyRemindersData(studentId: studentId, days: "getbyid"));
         }
       } else {
         toast("Data Not available", false);
@@ -114,6 +115,11 @@ class SetReminderPageState extends State<SetReminderPage> {
         if (reminderList.isNotEmpty) {
           if (selectedDays.contains(reminderList[i].days)) {
             selectedItems[i] = true;
+            callSetReminderApi();
+
+            if (kDebugMode) {
+              print("selectedItems[i]---$i--${selectedItems[i]}");
+            }
           }
         }
       } /*for (int i = 0; i < reminderList.length; i++) {
@@ -148,6 +154,8 @@ class SetReminderPageState extends State<SetReminderPage> {
       // Call the API with the selected days
       studentLessonBloc.add(
           SetRemindersData(studentId: studentId, days: selectedDaysString));
+      toast("Your Reminders are set successfully", false);
+
     } else {
       toast("Please select at least one reminder", false);
     }
@@ -182,7 +190,14 @@ class SetReminderPageState extends State<SetReminderPage> {
       String message = remindersResponse.message;
 
       if (status == 200) {
-        toast("Your Reminders are set successfully", false);
+        if (isLoad > 0) {
+          if(isLoading){
+          //  toast("Your Reminders are set successfully", false);
+            isLoading=false;
+          }
+
+        }
+        isLoad++;
       } else {
         toast("Something went wrong, Try again", false);
       }
@@ -214,21 +229,21 @@ class SetReminderPageState extends State<SetReminderPage> {
           child: BlocBuilder<StudentLessonBloc, CommonState>(
             builder: (context, state) {
               if (state is LoadingState) {
-                return loaderBar(context, mq);
+                return buildHomeContainer(context, mq, true);
               } else if (state is ReminderListState) {
                 getReminderListData(state.response);
-                return buildHomeContainer(context, mq);
+                return buildHomeContainer(context, mq, false);
               } else if (state is AlreadySetReminderListState) {
                 if (kDebugMode) {
                   print("object${state.response}");
                 }
                 setReminderListData(state.response);
 
-                return buildHomeContainer(context, mq);
+                return buildHomeContainer(context, mq, false);
               } else if (state is SetReminderListState) {
                 setReminderData(state.response);
 
-                return buildHomeContainer(context, mq);
+                return buildHomeContainer(context, mq, false);
               } else if (state is FailureState) {
                 return Center(
                   child: Text('Error: ${state.error}'),
@@ -237,9 +252,9 @@ class SetReminderPageState extends State<SetReminderPage> {
               return LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
                   if (constraints.maxWidth < 757) {
-                    return buildHomeContainer(context, mq);
+                    return buildHomeContainer(context, mq, false);
                   } else {
-                    return buildHomeContainer(context, mq);
+                    return buildHomeContainer(context, mq, false);
                   }
                 },
               );
@@ -250,7 +265,7 @@ class SetReminderPageState extends State<SetReminderPage> {
     );
   }
 
-  Widget loaderBar(BuildContext context, Size mq) {
+  Widget buildHomeContainer(BuildContext context, Size mq, bool isLoading) {
     return Container(
       constraints: const BoxConstraints.expand(),
       decoration: boxImageDashboardBgDecoration(),
@@ -272,7 +287,7 @@ class SetReminderPageState extends State<SetReminderPage> {
               leftVisibility: true,
               bottomTextVisibility: false,
               subTitle: '',
-              screen: 'mfs',
+              screen: 'sr',
             ),
           ),
           Container(
@@ -302,105 +317,12 @@ class SetReminderPageState extends State<SetReminderPage> {
                 40.height,
                 ButtonWidget(
                   margin: 40,
-                  name: "Add Reminder".toUpperCase(),
-                  icon: "",
-                  visibility: false,
-                  padding: 0,
-                  onTap: () {
-                    //callSetReminderApi();
-                  },
-                  size: 12,
-                  scale: 2,
-                  height: 50,
-                  decoration: kSelectedDecoration,
-                  textColors: Colors.white,
-                  rightVisibility: false,
-                  weight: FontWeight.w400,
-                  iconColor: Colors.white,
-                )
-              ],
-            ),
-          ),
-          Container(
-            height: 500,
-            margin: const EdgeInsets.only(bottom: 20, top: 80),
-            child: const Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Center(
-                    child: SpinKitFadingCircle(
-                  color: kLightGray,
-                  size: 80.0,
-                ))
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget buildHomeContainer(BuildContext context, Size mq) {
-    return Container(
-      constraints: const BoxConstraints.expand(),
-      decoration: boxImageDashboardBgDecoration(),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            height: 60,
-            decoration: kButtonBgDecoration,
-            child: TopBarWidget(
-              onTapLeft: () {
-                _scaffoldKey.currentState?.openDrawer();
-              },
-              onTapRight: () {},
-              leftIcon: 'assets/icons/menu.png',
-              rightIcon: 'assets/icons/user.png',
-              title: "Settings",
-              rightVisibility: false,
-              leftVisibility: true,
-              bottomTextVisibility: false,
-              subTitle: '',
-              screen: 'sr',
-            ),
-          ),
-          Container(
-            margin:
-                const EdgeInsets.only(bottom: 20, top: 22, left: 16, right: 16),
-            child: ListView(
-              shrinkWrap: true,
-              primary: false,
-              children: [
-                Text.rich(
-                  textAlign: TextAlign.left,
-                  TextSpan(
-                    text: "",
-                    style: textStyle(Colors.black, 14, 0, FontWeight.w500),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text:
-                            "Select the event reminder options for the days before you want to receive",
-                        style: textStyle(appBaseColor, 14, 0, FontWeight.w500),
-                      ),
-                      // can add more TextSpans here...
-                    ],
-                  ),
-                ),
-                20.height,
-                buildCategoriesListContainer(context, mq),
-                40.height,
-                ButtonWidget(
-                  margin: 40,
                   name: "Save".toUpperCase(),
                   icon: "",
                   visibility: false,
                   padding: 0,
                   onTap: () {
+                    isLoading=true;
                     callSetReminderApi();
                   },
                   size: 12,
@@ -415,6 +337,24 @@ class SetReminderPageState extends State<SetReminderPage> {
               ],
             ),
           ),
+          Visibility(
+            visible: isLoading,
+            child: Container(
+              height: 500,
+              margin: const EdgeInsets.only(bottom: 20, top: 80),
+              child: const Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Center(
+                      child: SpinKitFadingCircle(
+                    color: kLightGray,
+                    size: 80.0,
+                  ))
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );
@@ -427,7 +367,6 @@ class SetReminderPageState extends State<SetReminderPage> {
       mainAxisSize: MainAxisSize.min,
       children: [
         GridView.builder(
-          reverse: false,
           shrinkWrap: true,
           primary: true,
           itemCount: reminderList.isNotEmpty ? reminderList.length : 0,
@@ -438,19 +377,30 @@ class SetReminderPageState extends State<SetReminderPage> {
                 contentPadding: const EdgeInsets.only(left: 20),
                 // visualDensity:   VisualDensity(horizontal: -4),
                 title: Text(
-                  reminderList.isNotEmpty?reminderList[index].daystext:"Data not found",
+                  reminderList.isNotEmpty
+                      ? reminderList[index].daystext
+                      : "Data not found",
                   style: textStyle(Colors.white, 12, 0, FontWeight.normal),
                 ),
-                leading: GestureDetector(
+                leading: InkWell(
                   onTap: () {
                     setState(() {
-                      if (selectedItems[index] != true) {
-                        selectedItems[index] = true;
-                        //toast("message--${selectedItems[index]}", true);
-                        //toast("index--$index", true);
-                      } else {
-                        // toast("index2--$index", true);
+                      if (kDebugMode) {
+                        print("index--$index");
+                        print("selectedItems--${selectedItems[index]}");
+                      }
+
+                      if (selectedItems[index] == true) {
+                        if (kDebugMode) {
+                          print(selectedItems[index]);
+                        }
                         selectedItems[index] = false;
+                      } else {
+                        if (kDebugMode) {
+                          print(selectedItems[index]);
+                        }
+                        // toast("index2--$index", true);
+                        selectedItems[index] = true;
                         //  toast("message2--${selectedItems[index]}", false);
                       }
                     });

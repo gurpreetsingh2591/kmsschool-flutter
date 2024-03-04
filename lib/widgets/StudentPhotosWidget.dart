@@ -22,11 +22,12 @@ class StudentPhotosWidget extends StatelessWidget {
         },
         child: Container(
             constraints: const BoxConstraints.expand(),
-            margin: const EdgeInsets.only(bottom: 15, right: 15),
+            margin: const EdgeInsets.only(bottom: 15,left: 5,right: 5),
             decoration: kInnerDecoration,
             child: Center(
                 child: Image.network(
                     "http://$image",
+                    fit: BoxFit.cover,
                     frameBuilder: (context, child, frame,
                         wasSynchronouslyLoaded) {
                       return child;

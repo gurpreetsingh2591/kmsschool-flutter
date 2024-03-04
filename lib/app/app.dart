@@ -45,8 +45,7 @@ class MyAppState extends State<MyApp> {
             Locale('es'),
             Locale('en'),
           ],
-          locale: Provider.of<LanguageProvider>(context)
-              .selectedLocale /* SharedPrefs().getLocale()*/,
+          locale: Provider.of<LanguageProvider>(context).selectedLocale /* SharedPrefs().getLocale()*/,
 
           /// Set the app's current locale
           scrollBehavior: MyCustomScrollBehavior(),

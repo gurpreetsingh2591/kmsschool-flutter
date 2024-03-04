@@ -42,6 +42,7 @@ class ApiConstants {
   static String API_SET_PARENT_REMINDER="parent_reminder.php?student_id=";
   static String API_SET_ALREADY_PARENT_REMINDER="parent_reminder.php?days=getbyid&student_ids=";
   static String API_SET_STUDENT_PHOTOS="student-photos.php?student_id=";
+  static String API_GET_DELETE_USER="del-act.php?pid=";
 
 
 

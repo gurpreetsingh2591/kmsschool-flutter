@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
+import 'package:kmschool/dialog/common_dialogs.dart';
+import 'package:kmschool/model/CommonResponse.dart';
 import 'package:kmschool/utils/extensions/extensions.dart';
 import 'package:kmschool/utils/shared_prefs.dart';
+import 'package:kmschool/utils/toast.dart';
 
 import '../app/router.dart';
+import '../data/api/ApiService.dart';
 import '../utils/constant.dart';
 
 final Uri _url = Uri.parse('https://flutter.dev');
@@ -16,17 +21,116 @@ class DrawerWidget extends StatelessWidget {
     required this.contexts,
   }) : super(key: key);
 
+
+   Future<void> yesClick(BuildContext context)  async {
+     Navigator.of(context, rootNavigator: true).pop();
+
+   //  showVerifyEmailLoader(context,true);
+
+     dynamic getUserData =  await ApiService().getDeleteUserData(SharedPrefs().getParentId().toString());
+
+    // Ensure listener fires
+    var deleteUser = CommonResponse.fromJson(getUserData);
+    dynamic status = deleteUser.status;
+    String message = deleteUser.message;
+
+
+
+    if (status == 200) {
+     toast(message, false);
+      SharedPrefs().setIsLogin(false);
+      SharedPrefs().reset();
+      context.go(Routes.signIn);
+
+   }
+    // Navigator.pop(context);
+
+  }
+   cancelClick(BuildContext context){
+    Navigator.pop(context);
+  }
+
+  showDeleteAccountAlertDialog(BuildContext context, String title, String msg,
+      ) {
+    // set up the button
+    Widget okButton = TextButton(
+      child: const Text("Yes"),
+      onPressed: () {
+        yesClick(contexts);
+      },
+    );
+    Widget cancelButton = TextButton(
+      child: const Text("Cancel"),
+      onPressed: () {
+        //Navigator.pop(contexts);
+
+        Navigator.of(contexts, rootNavigator: true).pop();
+        },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title:
+      Text(title, style: textStyle(Colors.black, 14, 0, FontWeight.normal)),
+      content: Text(
+        msg,
+        style: textStyle(Colors.black, 14, 0, FontWeight.normal),
+      ),
+      actions: [
+        cancelButton,
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+
+  showVerifyEmailLoader(BuildContext context, bool isLoading) {
+    showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return Visibility(
+              visible: isLoading,
+              child: Dialog(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                child: Padding(
+                  padding: const EdgeInsets.all(20),
+                  child: Center(
+                    child: Container(
+                      height: 100,
+                      width: 100,
+                      padding: const EdgeInsets.all(20),
+                      decoration: kDialogBgDecorationSecondary,
+                      child: const SpinKitFadingCircle(
+                        color: Colors.white,
+                        size: 50.0,
+                      ),
+                    ),
+                  ),
+                ),
+              ));
+        });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: boxImageDrawerBgDecoration(),
       child: ListView(
-        padding: const EdgeInsets.only(
-          top: 40,left: 10
-        ),
+        padding: const EdgeInsets.only(top: 40, left: 10),
         children: [
           Container(
-            margin: const EdgeInsets.only(left: 15,bottom: 7),
+            margin: const EdgeInsets.only(left: 15, bottom: 7),
             alignment: Alignment.topLeft,
             child: Image.asset(
               'assets/icons/app_logo.png',
@@ -34,7 +138,7 @@ class DrawerWidget extends StatelessWidget {
             ),
           ),
           SizedBox(
-            height: 40,
+              height: 40,
               child: ListTile(
                 leading: Image.asset(
                   'assets/icons/home.png',
@@ -54,7 +158,7 @@ class DrawerWidget extends StatelessWidget {
               )),
           7.height,
           SizedBox(
-            height: 40,
+              height: 40,
               child: ListTile(
                 leading: Image.asset(
                   'assets/icons/menu_list.png',
@@ -111,30 +215,30 @@ class DrawerWidget extends StatelessWidget {
               onTap: () {
                 Navigator.pop(context);
                 context.pushReplacement(Routes.schoolCalender);
-
               },
             ),
           ),
           7.height,
           SizedBox(
             height: 40,
-              child: ListTile(
-                leading: Image.asset(
-                  'assets/icons/message_from_school.png',
-                  scale: 12,
+            child: ListTile(
+              leading: Image.asset(
+                'assets/icons/message_from_school.png',
+                scale: 12,
+              ),
+              title: Transform(
+                transform: Matrix4.translationValues(-10, 0.0, 0.0),
+                child: Text(
+                  'Message From School',
+                  style: textStyle(Colors.black, 14, 0, FontWeight.normal),
                 ),
-                title: Transform(
-                  transform: Matrix4.translationValues(-10, 0.0, 0.0),
-                  child: Text(
-                    'Message From School',
-                    style: textStyle(Colors.black, 14, 0, FontWeight.normal),
-                  ),
-                ),
-                onTap: () {
-                  Navigator.pop(context);
-                  context.pushReplacement(Routes.messageFromSchool);
-                },
-              ),),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+                context.pushReplacement(Routes.messageFromSchool);
+              },
+            ),
+          ),
           7.height,
           SizedBox(
               height: 40,
@@ -158,7 +262,6 @@ class DrawerWidget extends StatelessWidget {
           7.height,
           SizedBox(
               height: 40,
-
               child: ListTile(
                 leading: Image.asset(
                   'assets/icons/meeting_with_office.png',
@@ -196,7 +299,7 @@ class DrawerWidget extends StatelessWidget {
                   context.pushReplacement(Routes.messageToTeacher);
                 },
               )),
-         7.height,
+          7.height,
           SizedBox(
               height: 40,
               child: ListTile(
@@ -219,7 +322,6 @@ class DrawerWidget extends StatelessWidget {
           7.height,
           SizedBox(
               height: 40,
-
               child: ListTile(
                 leading: Image.asset(
                   'assets/icons/user.png',
@@ -237,10 +339,9 @@ class DrawerWidget extends StatelessWidget {
                   context.pushReplacement(Routes.lessonProgress);
                 },
               )),
-         7.height,
+          7.height,
           SizedBox(
               height: 40,
-
               child: ListTile(
                 leading: Image.asset(
                   'assets/icons/user.png',
@@ -258,10 +359,9 @@ class DrawerWidget extends StatelessWidget {
                   context.pushReplacement(Routes.studentPhotos);
                 },
               )),
-         7.height,
+          7.height,
           SizedBox(
               height: 40,
-
               child: ListTile(
                 leading: Image.asset(
                   'assets/icons/user.png',
@@ -282,7 +382,6 @@ class DrawerWidget extends StatelessWidget {
           7.height,
           SizedBox(
               height: 40,
-
               child: ListTile(
                 leading: Image.asset(
                   'assets/icons/user.png',
@@ -303,7 +402,6 @@ class DrawerWidget extends StatelessWidget {
           7.height,
           SizedBox(
               height: 40,
-
               child: ListTile(
                 leading: Image.asset(
                   'assets/icons/user.png',
@@ -321,7 +419,7 @@ class DrawerWidget extends StatelessWidget {
                   context.pushReplacement(Routes.changePassword);
                 },
               )),
-         7.height,
+          7.height,
           SizedBox(
               height: 40,
               child: ListTile(
@@ -336,11 +434,10 @@ class DrawerWidget extends StatelessWidget {
                     style: textStyle(Colors.black, 14, 0, FontWeight.normal),
                   ),
                 ),
-                onTap: () {
+                onTap: () async {
                   Navigator.pop(context);
-                  SharedPrefs().setIsLogin(false);
-                  SharedPrefs().reset();
-                  context.go(Routes.signIn);
+
+                  showDeleteAccountAlertDialog(context,"Delete Account","Are you sure to delete account permanently?");
                 },
               )),
           7.height,
@@ -364,7 +461,6 @@ class DrawerWidget extends StatelessWidget {
                   SharedPrefs().reset();
 
                   context.go(Routes.signIn);
-
                 },
               )),
           7.height,
@@ -373,7 +469,7 @@ class DrawerWidget extends StatelessWidget {
     );
   }
 
- /* Future<void> _launchUrl(Uri url) async {
+/* Future<void> _launchUrl(Uri url) async {
     if (!await launchUrl(url)) {
       throw Exception('Could not launch $url');
     }
