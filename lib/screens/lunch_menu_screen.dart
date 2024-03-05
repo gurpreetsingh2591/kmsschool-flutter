@@ -73,25 +73,32 @@ class LunchMenuPageState extends State<LunchMenuPage> {
     monday.add(response['result']['Week2'][0]['lunchmenu']);
     monday.add(response['result']['Week3'][0]['lunchmenu']);
     monday.add(response['result']['Week4'][0]['lunchmenu']);
+    monday.add(response['result']['Week5'][0]['lunchmenu']);
+
+
     tuesday.add(response['result']['Week1'][1]['lunchmenu']);
     tuesday.add(response['result']['Week2'][1]['lunchmenu']);
     tuesday.add(response['result']['Week3'][1]['lunchmenu']);
     tuesday.add(response['result']['Week4'][1]['lunchmenu']);
+    tuesday.add(response['result']['Week5'][1]['lunchmenu']);
 
     wednesday.add(response['result']['Week1'][2]['lunchmenu']);
     wednesday.add(response['result']['Week2'][2]['lunchmenu']);
     wednesday.add(response['result']['Week3'][2]['lunchmenu']);
     wednesday.add(response['result']['Week4'][2]['lunchmenu']);
+    wednesday.add(response['result']['Week5'][2]['lunchmenu']);
 
     thursday.add(response['result']['Week1'][3]['lunchmenu']);
     thursday.add(response['result']['Week2'][3]['lunchmenu']);
     thursday.add(response['result']['Week3'][3]['lunchmenu']);
     thursday.add(response['result']['Week4'][3]['lunchmenu']);
+    thursday.add(response['result']['Week5'][3]['lunchmenu']);
 
     friday.add(response['result']['Week1'][4]['lunchmenu']);
     friday.add(response['result']['Week2'][4]['lunchmenu']);
     friday.add(response['result']['Week3'][4]['lunchmenu']);
     friday.add(response['result']['Week4'][4]['lunchmenu']);
+    friday.add(response['result']['Week5'][4]['lunchmenu']);
   }
 
   @override
@@ -275,9 +282,9 @@ class LunchMenuPageState extends State<LunchMenuPage> {
           ListView.builder(
             primary: false,
             shrinkWrap: true,
-            itemCount: 4,
+            itemCount: 5,
             itemBuilder: (context, index) {
-              List<dynamic> week = ["1", "2", "3", "4"];
+              List<dynamic> week = ["1", "2", "3", "4","5"];
 
               return MenuItemWidget(
                 monday: monday,

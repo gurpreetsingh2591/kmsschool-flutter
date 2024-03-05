@@ -1,8 +1,11 @@
+import 'dart:js';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:kmschool/screens/controller/LanguageProvider.dart';
 import 'package:kmschool/utils/shared_prefs.dart';
 import 'package:kmschool/utils/themes/colors.dart';
@@ -11,6 +14,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upgrader/upgrader.dart';
 
 import 'app/app.dart';
+import 'app/router.dart';
 import 'firebase_options.dart';
 FirebaseMessaging messaging = FirebaseMessaging.instance;
 
@@ -33,6 +37,28 @@ Future<void> main() async {
 
   });
 
+// Handle the onMessage when the app is in foreground
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    // Handle the message here
+    print('Received a foreground message: ${message.notification!.title}');
+  });
+
+  // Handle the onMessageOpenedApp when the app is in background or terminated
+  FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+    // Handle the message here
+    print('User tapped on the notification when the app is in background or terminated: ${message.notification!.title}');
+
+    // Navigate to the desired screen here
+    // For example:
+    // Navigator.pushNamed(context, '/desired-screen');
+  });
+
+  // Handle background messages if necessary
+  FirebaseMessaging.onBackgroundMessage((message) async {
+    // Handle background message here
+    //_handleNotification(message.data, context);
+    print('Handling a background message ${message.messageId}');
+  });
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -100,9 +126,9 @@ void _configureFirebaseMessaging() {
     // Handle notification when the app is terminated
     _handleNotification(message.data);
   });
-}
+}*/
 
-void _handleNotification(Map<String, dynamic> message) {
+void _handleNotification(Map<String, dynamic> message,BuildContext context) {
   // Extract the screen name from the data payload
   String screenName = message['screen'];
 
@@ -132,4 +158,4 @@ void _handleNotification(Map<String, dynamic> message) {
     context.push(Routes.mainHome);
     //Navigator.pushNamed(context, '/$screenName');
   }
-}*/
+}

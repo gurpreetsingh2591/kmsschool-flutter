@@ -185,7 +185,7 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
     Future.delayed(Duration.zero, () {
       if (!isLoading) {
         showCustomToast();
-        context.push(Routes.mainHome);
+        context.push(Routes.signIn);
         isLoading = true;
       }
     });
