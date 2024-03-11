@@ -1,10 +1,9 @@
-import 'dart:js';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:go_router/go_router.dart';
 import 'package:kmschool/screens/controller/LanguageProvider.dart';
 import 'package:kmschool/utils/shared_prefs.dart';
@@ -13,10 +12,12 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:upgrader/upgrader.dart';
 
+import 'app/FirebaseService.dart';
 import 'app/app.dart';
 import 'app/router.dart';
 import 'firebase_options.dart';
 FirebaseMessaging messaging = FirebaseMessaging.instance;
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -31,34 +32,15 @@ Future<void> main() async {
       print("Firebase initialization error: $e");
     }
   }
+  await FirebaseService.initializeFirebase();
+
   messaging.getToken().then((token) {
 
     SharedPrefs().setTokenKey(token!);
 
   });
-
-// Handle the onMessage when the app is in foreground
-  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
-    // Handle the message here
-    print('Received a foreground message: ${message.notification!.title}');
-  });
-
-  // Handle the onMessageOpenedApp when the app is in background or terminated
-  FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
-    // Handle the message here
-    print('User tapped on the notification when the app is in background or terminated: ${message.notification!.title}');
-
-    // Navigate to the desired screen here
-    // For example:
-    // Navigator.pushNamed(context, '/desired-screen');
-  });
-
-  // Handle background messages if necessary
-  FirebaseMessaging.onBackgroundMessage((message) async {
-    // Handle background message here
-    //_handleNotification(message.data, context);
-    print('Handling a background message ${message.messageId}');
-  });
+ // _configureFirebaseMessaging();
+ // initializeNotificationChannel();
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -100,14 +82,25 @@ Future<void> main() async {
 
 
 }
-/*
+
+/*void initializeNotificationChannel() async {
+  const AndroidNotificationChannel channel = AndroidNotificationChannel(
+    'com.phonegap.kmsobserver', // Change this to your desired channel ID
+    'KMSchool', // Change this to your desired channel name
+    importance: Importance.high,
+  );
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(channel);
+
+  _configureFirebaseMessaging();
+}*/
 void _configureFirebaseMessaging() {
   FirebaseMessaging.onMessage.listen((RemoteMessage message) {
     if (kDebugMode) {
       print("onMessage: $message");
     }
     // Handle notification when the app is in the foreground
-    _handleNotification(message.data);
   });
 
   FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
@@ -115,7 +108,6 @@ void _configureFirebaseMessaging() {
       print("onMessageOpenedApp: $message");
     }
     // Handle notification when the app is in the background and opened by tapping on the notification
-    _handleNotification(message.data);
 
   });
 
@@ -124,38 +116,6 @@ void _configureFirebaseMessaging() {
       print("onBackgroundMessage: $message");
     }
     // Handle notification when the app is terminated
-    _handleNotification(message.data);
   });
-}*/
-
-void _handleNotification(Map<String, dynamic> message,BuildContext context) {
-  // Extract the screen name from the data payload
-  String screenName = message['screen'];
-
-  // Navigate to the corresponding screen
-  if (screenName == "calendar") {
-    // Example of using named routes for navigation
-    context.push(Routes.schoolCalender);
-    //Navigator.pushNamed(context, '/$screenName');
-  }else if (screenName == "message_to_parent") {
-    // Example of using named routes for navigation
-    context.push(Routes.messageToTeacher);
-    //Navigator.pushNamed(context, '/$screenName');
-  }else if (screenName == "Lunch") {
-    // Example of using named routes for navigation
-    context.push(Routes.lunchMenu);
-    //Navigator.pushNamed(context, '/$screenName');
-  }else if (screenName == "Snack") {
-    // Example of using named routes for navigation
-    context.push(Routes.snackMenu);
-    //Navigator.pushNamed(context, '/$screenName');
-  }else if (screenName == "photos") {
-    // Example of using named routes for navigation
-    context.push(Routes.studentPhotos);
-    //Navigator.pushNamed(context, '/$screenName');
-  }else  {
-    // Example of using named routes for navigation
-    context.push(Routes.mainHome);
-    //Navigator.pushNamed(context, '/$screenName');
-  }
 }
+
