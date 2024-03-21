@@ -33,7 +33,7 @@ class MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
 
-   // _configureFirebaseMessaging();
+    //_configureFirebaseMessaging();
     initializeNotificationChannel();
     /*_firebaseMessaging.configure(
       onMessage: (Map<String, dynamic> message) async {
@@ -90,6 +90,53 @@ class MyAppState extends State<MyApp> {
           debugShowCheckedModeBanner: false,
         );
   }
+
+  void _handleNotification(Map<String, dynamic> message) {
+    // Extract the screen name from the data payload
+    String screenName = message['screen'];
+    print('Received notification for screen: $screenName');
+
+    // Navigate to the corresponding screen
+    switch (screenName) {
+      case "calendar":
+        if (kDebugMode) {
+          print('Navigating to school calendar');
+        }
+        context.push(Routes.schoolCalender);
+        break;
+      case "message_to_parent":
+        if (kDebugMode) {
+          print('Navigating to message to parent');
+        }
+        context.push(Routes.messageToTeacher);
+        break;
+      case "Lunch":
+        if (kDebugMode) {
+          print('Navigating to lunch menu');
+        }
+        context.push(Routes.lunchMenu);
+        break;
+      case "Snack":
+        if (kDebugMode) {
+          print('Navigating to snack menu');
+        }
+        context.push(Routes.snackMenu);
+        break;
+      case "photos":
+        if (kDebugMode) {
+          print('Navigating to student photos');
+        }
+        context.push(Routes.studentPhotos);
+        break;
+      default:
+        if (kDebugMode) {
+          print('Navigating to main home');
+        }
+        context.push(Routes.mainHome);
+    }
+  }
+
+/*
   void _handleNotification(Map<String, dynamic> message,BuildContext context) {
     // Extract the screen name from the data payload
     String screenName = message['screen'];
@@ -117,10 +164,11 @@ class MyAppState extends State<MyApp> {
       //Navigator.pushNamed(context, '/$screenName');
     }else  {
       // Example of using named routes for navigation
-      context.push(Routes.mainHome);
+      context.push(Routes.snackMenu);
       //Navigator.pushNamed(context, '/$screenName');
     }
   }
+*/
 
   void _configureFirebaseMessaging() {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
@@ -136,7 +184,7 @@ class MyAppState extends State<MyApp> {
         print("onMessageOpenedApp: $message");
       }
       // Handle notification when the app is in the background and opened by tapping on the notification
-      _handleNotification(message.data,context);
+      _handleNotification(message.data);
 
     });
 
@@ -145,7 +193,7 @@ class MyAppState extends State<MyApp> {
         print("onBackgroundMessage: $message");
       }
       // Handle notification when the app is terminated
-      _handleNotification(message.data,context);
+      _handleNotification(message.data);
     });
   }
 }

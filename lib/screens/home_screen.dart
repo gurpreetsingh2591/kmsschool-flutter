@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -50,8 +51,104 @@ class HomePageState extends State<HomePage> {
       studentName = SharedPrefs().getUserFullName().toString();
     });
     getStudentList();
+    _configureFirebaseMessaging();
+  }
+  void _configureFirebaseMessaging() {
+    FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+      if (kDebugMode) {
+        print("onMessage: $message");
+      }
+      // Handle notification when the app is in the foreground
+      //_handleNotification(message.data);
+    });
+
+    FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
+      if (kDebugMode) {
+        print("onMessageOpenedApp: $message");
+      }
+      // Handle notification when the app is in the background and opened by tapping on the notification
+      _handleNotification(message.data);
+
+    });
+
+    FirebaseMessaging.onBackgroundMessage((RemoteMessage message) async {
+      if (kDebugMode) {
+        print("onBackgroundMessage: $message");
+      }
+      // Handle notification when the app is terminated
+      _handleNotification(message.data);
+    });
   }
 
+  void _handleNotification(Map<String, dynamic> message) {
+    // Extract the screen name from the data payload
+    String screenName = message['screen'];
+    if (kDebugMode) {
+      print('Received notification for screen: $screenName');
+    }
+
+    // Navigate to the corresponding screen
+    switch (screenName) {
+      case "calendar":
+        print('Navigating to school calendar');
+        context.push(Routes.schoolCalender);
+        break;
+      case "message_to_parent":
+        print('Navigating to message to parent');
+        context.push(Routes.messageFromSchool);
+        break;
+      case "Lunch":
+        print('Navigating to lunch menu');
+        context.push(Routes.lunchMenu);
+        break;
+      case "Snack":
+        print('Navigating to snack menu');
+        context.push(Routes.snackMenu);
+        break;
+      case "photos":
+        print('Navigating to student photos');
+        context.push(Routes.studentPhotos);
+        break;
+      default:
+        print('Navigating to main home');
+        context.push(Routes.mainHome);
+    }
+  }
+
+
+/*
+  void _handleNotification(Map<String, dynamic> message) {
+    // Extract the screen name from the data payload
+    String screenName = message['payload']['screen'];
+
+    // Navigate to the corresponding screen
+    if (screenName == "calendar") {
+      // Example of using named routes for navigation
+      context.push(Routes.schoolCalender);
+      //Navigator.pushNamed(context, '/$screenName');
+    }else if (screenName == "message_to_parent") {
+      // Example of using named routes for navigation
+      context.push(Routes.messageToTeacher);
+      //Navigator.pushNamed(context, '/$screenName');
+    }else if (screenName == "Lunch") {
+      // Example of using named routes for navigation
+      context.push(Routes.lunchMenu);
+      //Navigator.pushNamed(context, '/$screenName');
+    }else if (screenName == "Snack") {
+      // Example of using named routes for navigation
+      context.push(Routes.snackMenu);
+      //Navigator.pushNamed(context, '/$screenName');
+    }else if (screenName == "photos") {
+      // Example of using named routes for navigation
+      context.push(Routes.studentPhotos);
+      //Navigator.pushNamed(context, '/$screenName');
+    }else  {
+      // Example of using named routes for navigation
+      context.push(Routes.mainHome);
+      //Navigator.pushNamed(context, '/$screenName');
+    }
+  }
+*/
   getStudentList() async {
     retrievedStudents.clear();
 

@@ -185,7 +185,9 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
     Future.delayed(Duration.zero, () {
       if (!isLoading) {
         showCustomToast();
-        context.push(Routes.signIn);
+        SharedPrefs().setIsLogin(false);
+        SharedPrefs().reset();
+        context.go(Routes.signIn);
         isLoading = true;
       }
     });
@@ -205,16 +207,19 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
       error = true;
     }
   }
+
   void _toggleOldPasswordVisibility() {
     setState(() {
       _obscureOldPassword = !_obscureOldPassword;
     });
   }
+
   void _toggleNewPasswordVisibility() {
     setState(() {
       _obscureNewPassword = !_obscureNewPassword;
     });
   }
+
   void _toggleConfirmPasswordVisibility() {
     setState(() {
       _obscureConfirmPassword = !_obscureConfirmPassword;
@@ -227,114 +232,111 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
     return BlocProvider(
       create: (context) => loginBloc,
       child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        key: _scaffoldKey,
-        drawer: SizedBox(
-          width: MediaQuery.of(context).size.width *
-              0.75, // 75% of screen will be occupied
-          child: Drawer(
-            backgroundColor: Colors.white,
-            child: DrawerWidget(
-              contexts: context,
-            ),
-          ), //Drawer
-        ),
-        body: ColoredSafeArea(
-          child: BlocBuilder<LoginBloc, CommonState>(
-            builder: (context, state) {
-              if (state is LoadingState) {
-                return buildHomeContainer(context, mq, true);
-              } else if (state is GetChangePasswordState) {
-                if (state.response["status"] == 400) {
-                  toast("wrong old password", false);
-                } else {
-                  changedPassword();
-                }
-
-                return buildHomeContainer(context, mq, false);
-              } else if (state is FailureState) {
-                return Center(
-                  child: Text('Error: ${state.error}'),
-                );
-              }
-              return LayoutBuilder(
-                builder: (BuildContext context, BoxConstraints constraints) {
-                  if (constraints.maxWidth < 757) {
-                    return buildHomeContainer(context, mq, false);
-                  } else {
-                    return buildHomeContainer(context, mq, false);
-                  }
-                },
-              );
-            },
+          resizeToAvoidBottomInset: true,
+          key: _scaffoldKey,
+          drawer: SizedBox(
+            width: MediaQuery.of(context).size.width *
+                0.75, // 75% of screen will be occupied
+            child: Drawer(
+              backgroundColor: Colors.white,
+              child: DrawerWidget(
+                contexts: context,
+              ),
+            ), //Drawer
           ),
-        ),
-      ),
+          body: ColoredSafeArea(
+            child: BlocBuilder<LoginBloc, CommonState>(
+              builder: (context, state) {
+                if (state is LoadingState) {
+                  return buildHomeContainer(context, mq, true);
+                } else if (state is GetChangePasswordState) {
+                  if (state.response["status"] == 400) {
+                    toast("wrong old password", false);
+                  } else {
+                    changedPassword();
+                  }
+
+                  return buildHomeContainer(context, mq, false);
+                } else if (state is FailureState) {
+                  return Center(
+                    child: Text('Error: ${state.error}'),
+                  );
+                }
+                return LayoutBuilder(
+                  builder: (BuildContext context, BoxConstraints constraints) {
+                    if (constraints.maxWidth < 757) {
+                      return buildHomeContainer(context, mq, false);
+                    } else {
+                      return buildHomeContainer(context, mq, false);
+                    }
+                  },
+                );
+              },
+            ),
+          )),
     );
   }
 
   Widget buildHomeContainer(BuildContext context, Size mq, bool isLoading) {
-    return Container(
-      constraints: const BoxConstraints.expand(),
-      decoration: boxImageDashboardBgDecoration(),
-      child: Stack(
-        children: [
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            height: 60,
-            decoration: kButtonBgDecoration,
-            child: TopBarWidget(
-              onTapLeft: () {
-                _scaffoldKey.currentState?.openDrawer();
-              },
-              onTapRight: () {
-                //context.push(Routes.accountInfo);
-              },
-              leftIcon: 'assets/icons/menu.png',
-              rightIcon: 'assets/icons/user.png',
-              title: "Change Password",
-              rightVisibility: false,
-              leftVisibility: true,
-              bottomTextVisibility: false,
-              subTitle: '',
-              screen: 'chp',
-            ),
-          ),
-          Container(
-              alignment: Alignment.bottomCenter,
-              margin: const EdgeInsets.only(bottom: 100),
-              child: ButtonWidget(
-                margin: 40,
-                name: "Change Password".toUpperCase(),
-                icon: "",
-                visibility: false,
-                padding: 0,
-                onTap: () {
-                  clickOnRecoverPassword(_newPasswordText.text.toString(),
-                      _confirmPassword.text.toString());
-                  //callSetReminderApi();
+    return Stack(children: [
+      Container(
+        constraints: const BoxConstraints.expand(),
+        decoration: boxImageDashboardBgDecoration(),
+        child: Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              height: 60,
+              decoration: kButtonBgDecoration,
+              child: TopBarWidget(
+                onTapLeft: () {
+                  _scaffoldKey.currentState?.openDrawer();
                 },
-                size: 12,
-                scale: 2,
-                height: 50,
-                decoration: kSelectedDecoration,
-                textColors: Colors.white,
+                onTapRight: () {
+                  //context.push(Routes.accountInfo);
+                },
+                leftIcon: 'assets/icons/menu.png',
+                rightIcon: 'assets/icons/user.png',
+                title: "Change Password",
                 rightVisibility: false,
-                weight: FontWeight.w400,
-                iconColor: Colors.white,
-              )),
-          Container(
-            margin:
-                const EdgeInsets.only(bottom: 10, top: 82, left: 32, right: 32),
-            child: ListView(
-              shrinkWrap: true,
-              primary: false,
-              children: [
-                buildPasswordContainer(context, mq),
-              ],
+                leftVisibility: true,
+                bottomTextVisibility: false,
+                subTitle: '',
+                screen: 'chp',
+              ),
             ),
-          ),
-          Visibility(
+            Container(
+              margin: const EdgeInsets.only(
+                  bottom: 10, top: 22, left: 32, right: 32),
+              child: buildPasswordContainer(context, mq),
+            ),
+            Container(
+                alignment: Alignment.center,
+                margin: const EdgeInsets.only(top: 20),
+                child: ButtonWidget(
+                  margin: 30,
+                  name: "Change Password".toUpperCase(),
+                  icon: "",
+                  visibility: false,
+                  padding: 0,
+                  onTap: () {
+                    clickOnRecoverPassword(_newPasswordText.text.toString(),
+                        _confirmPassword.text.toString());
+                    //callSetReminderApi();
+                  },
+                  size: 12,
+                  scale: 2,
+                  height: 50,
+                  decoration: kSelectedDecoration,
+                  textColors: Colors.white,
+                  rightVisibility: false,
+                  weight: FontWeight.w400,
+                  iconColor: Colors.white,
+                )),
+          ],
+        ),
+      ),
+               Visibility(
             visible: isLoading,
             child: Container(
               height: 500,
@@ -351,10 +353,9 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 ],
               ),
             ),
-          ),
-        ],
-      ),
-    );
+          )
+
+    ]);
   }
 
   Widget buildPasswordContainer(BuildContext context, Size mq) {
@@ -364,16 +365,15 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              50.height,
-              Text("Old Password",
+              20.height,
+              /*Text("Old Password",
                   textAlign: TextAlign.center,
                   style: textStyle(
                     Colors.black,
-                    18,
+                    14,
                     0.5,
                     FontWeight.w400,
-                  )),
-              5.height,
+                  )),*/
               Stack(children: [
                 CommonPasswordTextField(
                   controller: _oldPasswordText,
@@ -382,7 +382,7 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   isFocused: false,
                   textColor: Colors.black,
                   focus: _oldPasswordFocus,
-                  textSize: 16,
+                  textSize: 14,
                   weight: FontWeight.w400,
                   hintColor: Colors.black26,
                   obscurePassword: _obscureOldPassword,
@@ -403,16 +403,15 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   ),
                 ),
               ]),
-              15.height,
-              Text("New Password",
+              10.height,
+              /*Text("New Password",
                   textAlign: TextAlign.center,
                   style: textStyle(
                     Colors.black,
-                    18,
+                    14,
                     0.5,
                     FontWeight.w400,
-                  )),
-              5.height,
+                  )),*/
               Stack(children: [
                 CommonPasswordTextField(
                   controller: _newPasswordText,
@@ -421,7 +420,7 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   isFocused: false,
                   textColor: Colors.black,
                   focus: _newPasswordFocus,
-                  textSize: 16,
+                  textSize: 14,
                   weight: FontWeight.w400,
                   hintColor: Colors.black26,
                   obscurePassword: _obscureNewPassword,
@@ -442,25 +441,24 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   ),
                 ),
               ]),
-              15.height,
-              Text("Confirm New Password",
+              10.height,
+             /* Text("Confirm New Password",
                   textAlign: TextAlign.center,
                   style: textStyle(
                     Colors.black,
-                    18,
+                    14,
                     0.5,
                     FontWeight.w400,
-                  )),
-              5.height,
+                  )),*/
               Stack(children: [
                 CommonPasswordTextField(
                   controller: _confirmPassword,
-                  hintText: "New Password",
+                  hintText: "Confirm New Password",
                   text: "",
                   isFocused: false,
                   textColor: Colors.black,
                   focus: _confirmPasswordFocus,
-                  textSize: 16,
+                  textSize: 14,
                   weight: FontWeight.w400,
                   hintColor: Colors.black26,
                   obscurePassword: _obscureConfirmPassword,
@@ -480,8 +478,7 @@ class ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     ),
                   ),
                 ),
-              ])
-              ,
+              ]),
             ]));
   }
 }

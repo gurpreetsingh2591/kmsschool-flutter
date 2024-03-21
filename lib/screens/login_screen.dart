@@ -79,8 +79,7 @@ class LoginPageState extends State<LoginPage> {
 
     if (isLogin) {
       Future.delayed(Duration.zero, () {
-       //context.go(Routes.mainHome);
-        _configureFirebaseMessaging();
+       context.go(Routes.mainHome);
       });
     }
 
@@ -94,7 +93,7 @@ class LoginPageState extends State<LoginPage> {
         SharedPrefs().setTokenKey(fcmToken!);
      // });
       });
-
+_configureFirebaseMessaging();
   }
   void _configureFirebaseMessaging() {
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
@@ -122,7 +121,40 @@ class LoginPageState extends State<LoginPage> {
       _handleNotification(message.data);
     });
   }
+  void _handleNotification(Map<String, dynamic> message) {
+    // Extract the screen name from the data payload
+    String screenName = message['screen'];
+    print('Received notification for screen: $screenName');
 
+    // Navigate to the corresponding screen
+    switch (screenName) {
+      case "calendar":
+        print('Navigating to school calendar');
+        context.push(Routes.schoolCalender);
+        break;
+      case "message_to_parent":
+        print('Navigating to message to parent');
+        context.push(Routes.messageToTeacher);
+        break;
+      case "Lunch":
+        print('Navigating to lunch menu');
+        context.push(Routes.lunchMenu);
+        break;
+      case "Snack":
+        print('Navigating to snack menu');
+        context.push(Routes.snackMenu);
+        break;
+      case "photos":
+        print('Navigating to student photos');
+        context.push(Routes.studentPhotos);
+        break;
+      default:
+        print('Navigating to main home');
+        context.push(Routes.mainHome);
+    }
+  }
+
+/*
   void _handleNotification(Map<String, dynamic> message) {
     // Extract the screen name from the data payload
     String screenName = message['screen'];
@@ -154,6 +186,7 @@ class LoginPageState extends State<LoginPage> {
       //Navigator.pushNamed(context, '/$screenName');
     }
   }
+*/
 
   void _requestPermissions() {
     _firebaseMessaging.requestPermission();
@@ -360,7 +393,7 @@ class LoginPageState extends State<LoginPage> {
     return BlocProvider(
         create: (context) => loginBloc,
         child: Scaffold(
-          resizeToAvoidBottomInset: false,
+          resizeToAvoidBottomInset: true,
           body: BlocBuilder<LoginBloc, CommonState>(
             builder: (context, state) {
               if (state is LoadingState) {

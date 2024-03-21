@@ -39,8 +39,8 @@ Future<void> main() async {
     SharedPrefs().setTokenKey(token!);
 
   });
- // _configureFirebaseMessaging();
- // initializeNotificationChannel();
+  //_configureFirebaseMessaging();
+  //_handleNotification();
 
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -66,7 +66,7 @@ Future<void> main() async {
             ChangeNotifierProvider(create: (context) => LanguageProvider()),
           ],
           child:UpgradeAlert(
-              dialogStyle: UpgradeDialogStyle.material,
+              dialogStyle: UpgradeDialogStyle.cupertino,
               child: const Scaffold(
                 body: MyApp(),
               )),
@@ -117,5 +117,38 @@ void _configureFirebaseMessaging() {
     }
     // Handle notification when the app is terminated
   });
+
 }
+void _handleNotification(Map<String, dynamic> message,BuildContext context) {
+  // Extract the screen name from the data payload
+  String screenName = message['screen'];
+
+  // Navigate to the corresponding screen
+  if (screenName == "calendar") {
+    // Example of using named routes for navigation
+    context.push(Routes.schoolCalender);
+    //Navigator.pushNamed(context, '/$screenName');
+  }else if (screenName == "message_to_parent") {
+    // Example of using named routes for navigation
+    context.push(Routes.messageToTeacher);
+    //Navigator.pushNamed(context, '/$screenName');
+  }else if (screenName == "Lunch") {
+    // Example of using named routes for navigation
+    context.push(Routes.lunchMenu);
+    //Navigator.pushNamed(context, '/$screenName');
+  }else if (screenName == "Snack") {
+    // Example of using named routes for navigation
+    context.push(Routes.snackMenu);
+    //Navigator.pushNamed(context, '/$screenName');
+  }else if (screenName == "photos") {
+    // Example of using named routes for navigation
+    context.push(Routes.studentPhotos);
+    //Navigator.pushNamed(context, '/$screenName');
+  }else  {
+    // Example of using named routes for navigation
+    context.push(Routes.mainHome);
+    //Navigator.pushNamed(context, '/$screenName');
+  }
+}
+
 

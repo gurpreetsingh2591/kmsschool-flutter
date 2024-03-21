@@ -102,7 +102,7 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
           int year = int.parse(endDateParts[2]);
           int month = int.parse(endDateParts[0]);
           int day = int.parse(endDateParts[1]);
-          DateTime endConvertedDate = DateTime(year, month, day+1);
+          DateTime endConvertedDate = DateTime(year, month, day + 1);
 
           if (startDate.split(" ")[0] == endDate.split(" ")[0]) {
             final formatted =
@@ -440,12 +440,22 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
       child: CalendarCarousel<Event>(
         onDayPressed: (DateTime date, List<Event> events) {
           setState(() => selectedDate = date);
+          if (kDebugMode) {
+            print(date);
+          }
+
+
 
           String? eventName = "";
 
+          for (var eventData in evenDatesList) {
+            String startDate = eventData.start;
+            String endDate = eventData.end;
+            _startDate = startDate.split(" ")[0];
+            _endDate = endDate.split(" ")[0];
+          }
           for (var event in events) {
             eventName = event.title;
-
           }
 
           eventName!.isNotEmpty
@@ -505,8 +515,12 @@ class SchoolCalenderPageState extends State<SchoolCalenderPage> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text(title,style: textStyle(Colors.black, 16, 0, FontWeight.w500),),
-      content: Text(msg,style: textStyle(Colors.black, 16, 0, FontWeight.w500)),
+      title: Text(
+        title,
+        style: textStyle(Colors.black, 16, 0, FontWeight.w500),
+      ),
+      content:
+          Text(msg, style: textStyle(Colors.black, 16, 0, FontWeight.w500)),
       actions: [
         okButton,
       ],
